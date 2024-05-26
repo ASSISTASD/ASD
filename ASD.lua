@@ -9,5 +9,5 @@ local Tab = Window:MakeTab({
 })
 
 local Section = Tab:AddSection({
-	Name = "MAIN ESP"
+	Name = "WW"
 })
