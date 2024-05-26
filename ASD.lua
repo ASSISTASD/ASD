@@ -3,7 +3,7 @@ local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlex
 local Window =asdlib:MakeWindow({Name = "asd script", HidePremium = false, SaveConfig = true, ConfigFolder = "ASD"})
 
 local Tab = Window:MakeTab({
-	Name = "ESP",
+	Name = "nani",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
