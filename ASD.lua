@@ -3121,6 +3121,54 @@ TPTAP:AddButton({
       		Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
   	end    
 })
+local Sectionesp = TPTAP:AddSection({
+	Name = "TP BOAT"
+})
+TPTAP:AddButton({
+	Name = "Teleport Your Boat",
+	Callback = function()
+	game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame
+    end
+})
+
+TPTAP:AddToggle({
+	Name = "Teleport Your Boat",
+	Default = _G.Miragenpc,
+	Callback = function(bool)
+		
+_G.TPB = bool       
+ StopTween(_G.TPB)
+
+   if _G.TPB then
+       _G.Boats = true
+       while _G.Boats do wait()
+           Distance = (game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+           Speed = 220
+           tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+           tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame})
+           tween:Play()
+           _G.Clip = true
+           wait(Distance/Speed)
+       end
+   elseif _G.TPB == false then
+       _G.Boats = false
+       while _G.Boats do wait()
+           Distance = (game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+           Speed = 220
+           tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+           tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame})
+           tween:Play()
+           _G.Clip = true
+           wait(Distance/Speed)
+       end
+       tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(.1, Enum.EasingStyle.Linear)
+       tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame})
+       tween:Play()
+       _G.Clip = false
+   end
+end    
+})
+
 -----------
 local MISCTAP = Window:MakeTab({
 	Name = "MISC",
