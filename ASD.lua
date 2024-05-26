@@ -1745,6 +1745,41 @@ spawn(function()
     end)
 end)
 
+Skillz = true
+Skillx = true
+Skillc = true
+Skillv = true
+
+spawn(function()
+    while wait() do
+        pcall(function()
+            if AutoSkill then
+                if Skillz then
+                    game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+                    wait(.1)
+                    game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+                end
+                if Skillx then
+                    game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+                    wait(.1)
+                    game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+                end
+                if Skillc then
+                    game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+                    wait(.1)
+                    game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+                end
+                if Skillv then
+                    game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
+                    wait(.1)
+                    game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
+                end
+            end
+        end)
+    end
+end)
+
+
     --UseSkillMasCakeandBone
     spawn(function()
         while wait() do
