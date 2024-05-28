@@ -2,7 +2,6 @@ local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlex
 
 local Window =asdlib:MakeWindow({Name = "asd script", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
 -- set local
-local _G.MagnitudeAdd = 0
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
@@ -3275,40 +3274,7 @@ spawn(function()
         end)
     end)
     
-    Type = 1
-spawn(function()
-    while wait(.1) do
-        if Type == 1 then
-            RaidPos = CFrame.new(0,25,0)
-		elseif Type == 2 then
-			RaidPos = CFrame.new(0,25,-40)
-		elseif Type == 3 then
-			RaidPos = CFrame.new(40,25,0)
-		elseif Type == 4 then
-			RaidPos = CFrame.new(0,25,40)	
-		elseif Type == 5 then
-			RaidPos = CFrame.new(-40,25,0)
-		elseif Type == 6 then
-			RaidPos = CFrame.new(0,25,0)
-        end
-        end
-    end)
 
-spawn(function()
-    while wait(.1) do
-        Type = 1
-        wait(0.9)
-        Type = 2
-        wait(0.9)
-        Type = 3
-        wait(0.9)
-        Type = 4
-        wait(0.9)
-        Type = 5
-        wait(0.9)
-    end
-end)
-    
 
 spawn(function()
         while wait(.1) do
