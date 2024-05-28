@@ -3642,13 +3642,7 @@ ESPTAP:AddToggle({
 		StopTween(_G.Auto_Dungeon)
 	end    
 })
-ESPTAP:AddToggle({
-	Name = "AUTO SELECT RAID",
-	Default = _G.AutoSelectDungeon,
-	Callback = function(Value)
-		_G.AutoSelectDungeon = Value
-	end    
-})
+
 
 
 ESPTAP:AddToggle({
