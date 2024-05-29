@@ -3356,7 +3356,7 @@ spawn(function()
                     NumberSequenceKeypoint.new(1, 4); 
                 }
                 inf.Size = NumberSequence.new(numberKeypoints2)
-                inf.RotSpeed = NumberRange.new(9999, 99999)
+                inf.RotSpeed = NumberRange.new(99999, 99999)
                 inf.Rotation = NumberRange.new(0, 0)
                 inf.Speed = NumberRange.new(30, 30)
                 inf.SpreadAngle = Vector2.new(0,0,0,0)
@@ -3383,6 +3383,26 @@ spawn(function()
             end
         end
     end)
+    
+spawn(function()
+    while wait() do
+		pcall(function()
+			if _G.AutoAwakeningRace then
+				game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
+				wait(0.1)
+                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
+			end
+		end)
+    end
+    end)
+    
+    
+Playerslist = {}
+    
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        table.insert(Playerslist,v.Name)
+    end
+    
 -------------
 local AFTAP = Window:MakeTab({
 	Name = "AUTO FARM",
@@ -3855,6 +3875,17 @@ MISCTAP:AddToggle({
         end
 	end    
 })
+
+
+MISCTAP:AddToggle({
+	Name = "AUTO AWAKENING RACE",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoAwakeningRace = Value
+	end    
+})
+
+
 -------------------------------
 local CBTAP = Window:MakeTab({
 	Name = "PLAYER",
@@ -3887,4 +3918,29 @@ CBTAP:AddToggle({
 		_G.Aimbot_Skill = Value
 	end    
 })
+local SectionCB = CBTAP:AddSection({
+	Name = "PLAYERS"
+})
 
+CBTAP:AddDropdown({
+	Name = "SELECT PLAYER",
+	Default = Playerslist,
+	Options = Playerslist,
+	Callback = function(Value)
+		_G.SelectPly = Value
+	end    
+})
+
+CBTAP:AddToggle({
+	Name = "TP PLAYER",
+	Default = false,
+	Callback = function(Value)
+		_G.TeleportPly = Value
+        pcall(function()
+            if _G.TeleportPly then
+                repeat topos(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
+            end
+            StopTween(_G.TeleportPly)
+        end)
+	end    
+})
