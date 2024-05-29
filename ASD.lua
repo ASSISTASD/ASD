@@ -3331,21 +3331,13 @@ spawn(function()
         pcall(function()
             while wait(.1) do
                 if _G.NoStun then
-                    game:GetService("RunService").RenderStepped:Connect(function()
                     game.Players.LocalPlayer.Character.Stun.Value = 0
                 end
             end
         end)
     end)
 ----------missc
-spawn(function()
-        while wait() do
-            if InfAbility then
-                InfAb()
-            end
-        end
-    end)
-function InfAb()
+    function InfAb()
         if InfAbility then
             if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility") then
                 local inf = Instance.new("ParticleEmitter")
@@ -3382,7 +3374,16 @@ function InfAb()
         end
     end
     
----------
+    local LocalPlayer = game:GetService'Players'.LocalPlayer
+    local originalstam = LocalPlayer.Character.Energy.Value
+spawn(function()
+        while wait() do
+            if InfAbility then
+                InfAb()
+            end
+        end
+    end)
+-------------
 local AFTAP = Window:MakeTab({
 	Name = "AUTO FARM",
 	Icon = "rbxassetid://4483345998",
@@ -3848,8 +3849,8 @@ MISCTAP:AddToggle({
 	Name = "INFINITY ABILITY",
 	Default = true,
 	Callback = function(Value)
-		InfAbility = Value
-        if value == false then
+        InfAbility = Value
+        if Value == false then
             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy()
         end
 	end    
