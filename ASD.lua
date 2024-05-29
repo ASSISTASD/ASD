@@ -3274,7 +3274,40 @@ spawn(function()
         end)
     end)
     
+Type = 1
+spawn(function()
+    while wait(.1) do
+        if Type == 1 then
+            RaidPos = CFrame.new(0,25,0)
+		elseif Type == 2 then
+			RaidPos = CFrame.new(0,25,-40)
+		elseif Type == 3 then
+			RaidPos = CFrame.new(40,25,0)
+		elseif Type == 4 then
+			RaidPos = CFrame.new(0,25,40)	
+		elseif Type == 5 then
+			RaidPos = CFrame.new(-40,25,0)
+		elseif Type == 6 then
+			RaidPos = CFrame.new(0,25,0)
+        end
+        end
+    end)
 
+spawn(function()
+    while wait(.1) do
+        Type = 1
+        wait(0.9)
+        Type = 2
+        wait(0.9)
+        Type = 3
+        wait(0.9)
+        Type = 4
+        wait(0.9)
+        Type = 5
+        wait(0.9)
+    end
+end)
+    
 
 spawn(function()
         while wait(.1) do
@@ -3293,7 +3326,16 @@ spawn(function()
             end)
         end
     end)
-    
+---------------my hack
+spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if _G.NoStun then
+                    game.Players.LocalPlayer.Character.Stun.Value = 0
+                end
+            end
+        end)
+    end)
     
 ---------
 local AFTAP = Window:MakeTab({
@@ -3335,6 +3377,13 @@ AFTAP:AddToggle({
 	end    
 })
 
+local Section = AFTAP:AddSection({
+	Name = "AUTO FARM LEVEL"
+})
+
+
+
+
 local STAP = Window:MakeTab({
 	Name = "SETTING",
 	Icon = "rbxassetid://4483345998",
@@ -3375,6 +3424,49 @@ STAP:AddToggle({
 	end    
 })
 
+STAP:AddToggle({
+	Name = "NO STUN",
+	Default = true,
+	Callback = function(Value)
+		_G.NoStun = Value
+	end    
+})
+local Sectionst = STAP:AddSection({
+	Name = "SETTING TWEEN"
+})
+
+
+local Sectionst = STAP:AddSection({
+	Name = "SETTING SKILLS"
+})
+STAP:AddToggle({
+	Name = "Skill Z",
+	Default = true,
+	Callback = function(Value)
+		_G.SkillZ = Value
+	end    
+})
+STAP:AddToggle({
+	Name = "Skill X",
+	Default = true,
+	Callback = function(Value)
+		_G.SkillX = Value
+	end    
+})
+STAP:AddToggle({
+	Name = "Skill C",
+	Default = true,
+	Callback = function(Value)
+		_G.SkillC = Value
+	end    
+})
+STAP:AddToggle({
+	Name = "Skill V",
+	Default = true,
+	Callback = function(Value)
+		_G.SkillV = Value
+	end    
+})
 local FRUITTAP= Window:MakeTab({
 	Name = "FRUIT",
 	Icon = "rbxassetid://4483345998",
