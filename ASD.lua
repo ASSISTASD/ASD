@@ -301,6 +301,22 @@ spawn(function()
             end)
         end
     end)
+spawn(function()
+    while wait(.1) do
+        if _G.BringMode then
+            pcall(function()
+                if _G.BringMode == "Low" then
+                    _G.BringMode = 250
+                elseif _G.BringMode == "Normal" then
+                    _G.BringMode = 300
+                elseif _G.BringMode == "Super Bring" then
+                    _G.BringMode = 350
+                end
+            end)
+        end
+    end
+end)
+    
     
  	function CheckQuest() 
         MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
@@ -3685,6 +3701,15 @@ STAP:AddToggle({
 	Default = true,
 	Callback = function(Value)
 		_G.BringMonster = Value
+	end    
+})
+
+STAP:AddDropdown({
+	Name = "Select mod",
+	Default = "Low",
+	Options = {"Low", "Normal", "Super Bring"},
+	Callback = function(Value)
+		_G.BringMode = Value
 	end    
 })
 
