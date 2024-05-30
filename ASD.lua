@@ -2133,6 +2133,48 @@ gg.__namecall = newcclosure(function(...)
 	return old(...)
 end)
 
+local lp = game:GetService('Players').LocalPlayer
+local mouse = lp:GetMouse()
+spawn(function()
+	while wait() do
+		if _G.Aimbot_Skill_Fov then
+			pcall(function()
+				local MaxDist, Closest = math.huge
+				for i,v in pairs(game:GetService("Players"):GetChildren()) do 
+					local Head = v.Character:FindFirstChild("HumanoidRootPart")
+					local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera, Head.Position)
+					local MousePos, TheirPos = Vector2.new(mouse.X, mouse.Y), Vector2.new(Pos.X, Pos.Y)
+					local Dist = (TheirPos - MousePos).Magnitude
+					if Dist < MaxDist and Dist <= _G.Select_Size_Fov and v.Name ~= game.Players.LocalPlayer.Name then
+						MaxDist = Dist
+						_G.Aim_Players = v
+					end
+				end
+			end)
+		end
+	end
+end)
+
+spawn(function()
+	local gg = getrawmetatable(game)
+	local old = gg.__namecall
+	setreadonly(gg,false)
+	gg.__namecall = newcclosure(function(...)
+		local method = getnamecallmethod()
+		local args = {...}
+		if tostring(method) == "FireServer" then
+			if tostring(args[1]) == "RemoteEvent" then
+				if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
+					if _G.Aimbot_Skill_Fov then
+						args[2] = _G.Aim_Players.Character.HumanoidRootPart.Position
+						return old(unpack(args))
+					end
+				end
+			end
+		end
+		return old(...)
+	end)
+end)
 
 Skillz = true
 Skillx = true
@@ -4003,6 +4045,27 @@ CBTAP:AddToggle({
 		_G.Aimbot_Skill = Value
 	end    
 })
+
+CBTAP:AddSlider({
+	Name = "SLIDER SIZE",
+	Min = 0,
+	Max = 360,
+	Default = 360,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "SIZE AIM BOT",
+	Callback = function(Value)
+		_G.Select_Size_Fov = Value
+	end    
+})
+
+CBTAP:AddToggle({
+	Name = "AIMBOT SKILLS V2",
+	Default = false,
+	Callback = function(Value)
+		_G.Aimbot_Skill_Fov = Value
+	end    
+})
 local SectionCB = CBTAP:AddSection({
 	Name = "PLAYERS"
 })
@@ -4043,3 +4106,4 @@ CBTAP:AddToggle({
         game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
 	end    
 })
+
