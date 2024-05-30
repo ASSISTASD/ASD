@@ -1715,8 +1715,8 @@ spawn(function()
 				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Spring Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Spring Fruit") then
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Spring-Spring",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Spring Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Spring Fruit"))
 				end
-				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Kilo Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Kilo Fruit") then
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Kilo-Kilo",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Kilo Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Kilo Fruit"))
+				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Rocket Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Rocket Fruit") then
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Rocket-Rocket",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Rocket Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Rocket Fruit"))
 				end
 				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Smoke Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Smoke Fruit") then
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Smoke-Smoke",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Smoke Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Smoke Fruit"))
@@ -1760,8 +1760,8 @@ spawn(function()
 				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Magma Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Magma Fruit") then
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Magma-Magma",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Magma Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Magma Fruit"))
 				end
-				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Door Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Door Fruit") then
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Door-Door",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Door Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Door Fruit"))
+				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Portal Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Portal Fruit") then
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Portal-Portal",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Portal Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Portal Fruit"))
 				end
 				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Quake Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Quake Fruit") then
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit","Quake-Quake",game:GetService("Players").LocalPlayer.Character:FindFirstChild("Quake Fruit") or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Quake Fruit"))
@@ -3326,6 +3326,16 @@ spawn(function()
             end)
         end
     end)
+    _G.SelectChip = selectraids or ""
+	Raidslist = {}
+	RaidsModule = require(game.ReplicatedStorage.Raids)
+	for i,v in pairs(RaidsModule.raids) do
+		table.insert(Raidslist,v)
+	end
+	for i,v in pairs(RaidsModule.advancedRaids) do
+		table.insert(Raidslist,v)
+	end
+	
 ---------------my hack
 spawn(function()
         pcall(function()
@@ -3356,7 +3366,7 @@ spawn(function()
                     NumberSequenceKeypoint.new(1, 4); 
                 }
                 inf.Size = NumberSequence.new(numberKeypoints2)
-                inf.RotSpeed = NumberRange.new(99999, 99999)
+                inf.RotSpeed = NumberRange.new(9999999, 9999999)
                 inf.Rotation = NumberRange.new(0, 0)
                 inf.Speed = NumberRange.new(30, 30)
                 inf.SpreadAngle = Vector2.new(0,0,0,0)
@@ -3633,6 +3643,40 @@ SEATAP:AddToggle({
 	end    
 })
 
+SEATAP:AddToggle({
+	Name = "AUTO COLLECT AZURE EMBER",
+	Default = _G.tpkit,
+	Callback = function(Value)
+		_G.lumlinhhon = value
+        StopTween(_G.lumlinhhon)
+    
+        if _G.lumlinhhon then
+            spawn(function()
+                while _G.lumlinhhon do
+                    wait()
+    
+                    local emberTemplate = game:GetService("Workspace").EmberTemplate
+                    local player = game.Players.LocalPlayer
+                    local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+    
+                    if humanoidRootPart then
+                        local partFound = false
+                        while not partFound and humanoidRootPart:IsDescendantOf(workspace) do
+                            for _, v in pairs(emberTemplate:GetDescendants()) do
+                                if v:IsA("BasePart") and v.Name == "Part" then
+                                    partFound = true
+                                    humanoidRootPart.CFrame = v.CFrame
+                                    break
+                                end
+                            end
+                            wait(0.1)
+                        end
+                    end
+                end
+            end)
+        end
+	end    
+})
 
 local Sectionsea = SEATAP:AddSection({
 	Name = "MIRAGE ISLAND"
@@ -3733,7 +3777,7 @@ ESPTAP:AddToggle({
 
 ESPTAP:AddToggle({
 	Name = "ESP ADVANCED FRUIT DEALER",
-	Default = _G.Miragenpc,
+	Default = false,
 	Callback = function(Value)
 		AfdESP = Value
         while AfdESP do wait()
@@ -3758,6 +3802,23 @@ ESPTAP:AddToggle({
 		_G.Auto_Awakener = Value
 	end    
 })
+
+ESPTAP:AddDropdown({
+	Name = "SELECT CHIP RAID",
+	Default = Raidslist,
+	Options = Raidslist,
+	Callback = function(Value)
+		_G.SelectChip = Value
+	end    
+})
+
+ESPTAP:AddButton({
+	Name = "BUY CHIP RAID",
+	Callback = function()
+      		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc","Select",_G.SelectChip)
+  	end    
+})
+
 ESPTAP:AddToggle({
 	Name = "AUTO NEXT ISLAND",
 	Default = _G.Auto_Dungeon,
@@ -3792,13 +3853,37 @@ TPTAP:AddButton({
       		Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
   	end    
 })
+
+
+local Sectionesp = TPTAP:AddSection({
+	Name = "TELEPORT NORMAL"
+})
+TPTAP:AddButton({
+	Name = "TELEPORT TO OLD WORLD",
+	Callback = function()
+    	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+    end
+})
+
+TPTAP:AddButton({
+	Name = "TELEPORT TO 2 SEA",
+	Callback = function()
+    	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+    end
+})
+TPTAP:AddButton({
+	Name = "TELEPORT TO 3 SEA",
+	Callback = function()
+    	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+    end
+})
 local Sectionesp = TPTAP:AddSection({
 	Name = "TP BOAT"
 })
 TPTAP:AddButton({
 	Name = "Teleport Your Boat",
 	Callback = function()
-	game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Boats[Lantern].VehicleSeat.CFrame
+    	game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Boats["Lantern"].VehicleSeat.CFrame
     end
 })
 
@@ -3807,37 +3892,37 @@ TPTAP:AddToggle({
 	Default = _G.TPB,
 	Callback = function(bool)
 		
-_G.TPB = bool       
- StopTween(_G.TPB)
-
-   if _G.TPB then
-       _G.Boats = true
-       while _G.Boats do wait()
-           Distance = (game:GetService("Workspace").Boats[Lantern].VehicleSeat.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-           Speed = 220
-           tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-           tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame})
-           tween:Play()
-           _G.Clip = true
-           wait(Distance/Speed)
-       end
-   elseif _G.TPB == false then
-       _G.Boats = false
-       while _G.Boats do wait()
-           Distance = (game:GetService("Workspace").Boats[Lantern].VehicleSeat.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-           Speed = 220
-           tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-           tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame})
-           tween:Play()
-           _G.Clip = true
-           wait(Distance/Speed)
-       end
-       tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(.1, Enum.EasingStyle.Linear)
-       tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame})
-       tween:Play()
-       _G.Clip = false
-   end
-end    
+        _G.TPB = bool       
+         StopTween(_G.TPB)
+        
+           if _G.TPB then
+               _G.Boats = true
+               while _G.Boats do wait()
+                   Distance = (game:GetService("Workspace").Boats[Lantern].VehicleSeat.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                   Speed = 220
+                   tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                   tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame})
+                   tween:Play()
+                   _G.Clip = true
+                   wait(Distance/Speed)
+               end
+           elseif _G.TPB == false then
+               _G.Boats = false
+               while _G.Boats do wait()
+                   Distance = (game:GetService("Workspace").Boats[Lantern].VehicleSeat.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                   Speed = 220
+                   tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+                   tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game:GetService("Workspace").Boats[_G.SelectB].VehicleSeat.CFrame})
+                   tween:Play()
+                   _G.Clip = true
+                   wait(Distance/Speed)
+               end
+               tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(.1, Enum.EasingStyle.Linear)
+               tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame})
+               tween:Play()
+               _G.Clip = false
+           end
+        end    
 })
 
 -----------
