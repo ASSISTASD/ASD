@@ -2333,56 +2333,52 @@ gg.__namecall = newcclosure(function(...)
 end)
 
 local lp = game:GetService('Players').LocalPlayer
-local mouse = lp:GetMouse()
+local UserInputService = game:GetService("UserInputService")
 
 spawn(function()
-    while wait() do
+    while true do
+        wait()
         if _G.Aimbot_Skill_Fov then
             pcall(function()
-                local MaxDist = _G.Select_Size_Fov or math.huge
-                local Closest = nil
-
-                for _, player in pairs(game:GetService("Players"):GetChildren()) do
-                    if player ~= lp and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                        local Head = player.Character.HumanoidRootPart
-                        local Pos, Vis = game.Workspace.CurrentCamera:WorldToScreenPoint(Head.Position)
-                        if Vis then
-                            local MousePos = Vector2.new(mouse.X, mouse.Y)
+                local MaxDist, Closest = math.huge
+                for i,v in pairs(game:GetService("Players"):GetPlayers()) do 
+                    if v ~= game.Players.LocalPlayer then
+                        local Head = v.Character:FindFirstChild("HumanoidRootPart")
+                        if Head then
+                            local Pos, Vis = game.Workspace.CurrentCamera:WorldToScreenPoint(Head.Position)
+                            local MousePos = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
                             local TheirPos = Vector2.new(Pos.X, Pos.Y)
                             local Dist = (TheirPos - MousePos).Magnitude
-                            if Dist < MaxDist then
-                                MaxDist = Dist
-                                Closest = player
+                            if Dist < MaxDist and Dist <= _G.Select_Size_Fov then
+                                _G.Aim_Players = v
                             end
                         end
                     end
                 end
-
-                _G.Aim_Players = Closest
             end)
         end
     end
 end)
 
 spawn(function()
-	local gg = getrawmetatable(game)
-	local old = gg.__namecall
-	setreadonly(gg,false)
-	gg.__namecall = newcclosure(function(...)
-		local method = getnamecallmethod()
-		local args = {...}
-		if tostring(method) == "FireServer" then
-			if tostring(args[1]) == "RemoteEvent" then
-				if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
-					if _G.Aimbot_Skill_Fov then
-						args[2] = _G.Aim_Players.Character.HumanoidRootPart.Position
-						return old(unpack(args))
-					end
-				end
-			end
-		end
-		return old(...)
-	end)
+    local gg = getrawmetatable(game)
+    local old = gg.__namecall
+    setreadonly(gg,false)
+    gg.__namecall = newcclosure(function(...)
+        local method = getnamecallmethod()
+        local args = {...}
+        if tostring(method) == "FireServer" then
+            if tostring(args[1]) == "RemoteEvent" then
+                if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
+                    if _G.Aimbot_Skill_Fov then
+                        args[2] = _G.Aim_Players.Character.HumanoidRootPart.Position
+                        return old(unpack(args))
+                    end
+                end
+            end
+        end
+        return old(...)
+    end)
 end)
 
 Skillz = true
@@ -4841,7 +4837,7 @@ CBTAP:AddSlider({
 	Name = "SLIDER SIZE",
 	Min = 1,
 	Max = 360,
-	Default = 360,
+	Default = 100,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
 	ValueName = "SIZE AIM BOT",
