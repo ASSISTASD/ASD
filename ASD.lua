@@ -3721,10 +3721,10 @@ task.spawn(function()
 	while task.wait() do
 		pcall(function()
 			if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')  then
-				KITSUNE:Set("🏝 Mirage Island:  ✅")
+				MRG:Set("🏝 Mirage Island:  ✅")
 				notis.new("<Color=Yellow>THE MIRAGE SPAWNED<Color=/>"):Display()
 			else
-				KITSUNE:Set("🏝 Mirage Island:  ❌")
+				MRG:Set("🏝 Mirage Island:  ❌")
 			end
 		end)
 	end
@@ -3968,7 +3968,7 @@ local Sectionseaa = SEATAP:AddSection({
 	Name = "KITSUNE ISLAND"
 })
 
-local KITSUNE = SEATAP:AddLabel("no spawn")
+local KITSUNE = SEATAP:AddLabel("🏝 Kitsune Island:  ❌")
 
 SEATAP:AddToggle({
 	Name = "AUTO FIND KITSUNE",
@@ -4026,7 +4026,7 @@ local Sectionsea = SEATAP:AddSection({
 	Name = "MIRAGE ISLAND"
 })
 
-local MRG = SEATAP:AddLabel("no spawn")
+local MRG = SEATAP:AddLabel("🏝 Mirage Island:  ❌")
 
 SEATAP:AddToggle({
 	Name = "AUTO SPAWN MIRAGE ISLAND",
