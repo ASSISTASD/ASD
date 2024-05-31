@@ -2334,23 +2334,34 @@ end)
 
 local lp = game:GetService('Players').LocalPlayer
 local mouse = lp:GetMouse()
+
 spawn(function()
-	while wait() do
-		if _G.Aimbot_Skill_Fov then
-			pcall(function()
-				local MaxDist, Closest = math.huge
-				for i,v in pairs(game:GetService("Players"):GetChildren()) do 
-					local Head = v.Character:FindFirstChild("HumanoidRootPart")
-					local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera, Head.Position)
-					local MousePos, TheirPos = Vector2.new(mouse.X, mouse.Y), Vector2.new(Pos.X, Pos.Y)
-					local Dist = (TheirPos - MousePos).Magnitude
-					if Dist < MaxDist and Dist <= _G.Select_Size_Fov and v.Name ~= game.Players.LocalPlayer.Name then
-						_G.Aim_Players = v
-					end
-				end
-			end)
-		end
-	end
+    while wait() do
+        if _G.Aimbot_Skill_Fov then
+            pcall(function()
+                local MaxDist = _G.Select_Size_Fov or math.huge
+                local Closest = nil
+
+                for _, player in pairs(game:GetService("Players"):GetChildren()) do
+                    if player ~= lp and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        local Head = player.Character.HumanoidRootPart
+                        local Pos, Vis = game.Workspace.CurrentCamera:WorldToScreenPoint(Head.Position)
+                        if Vis then
+                            local MousePos = Vector2.new(mouse.X, mouse.Y)
+                            local TheirPos = Vector2.new(Pos.X, Pos.Y)
+                            local Dist = (TheirPos - MousePos).Magnitude
+                            if Dist < MaxDist then
+                                MaxDist = Dist
+                                Closest = player
+                            end
+                        end
+                    end
+                end
+
+                _G.Aim_Players = Closest
+            end)
+        end
+    end
 end)
 
 spawn(function()
