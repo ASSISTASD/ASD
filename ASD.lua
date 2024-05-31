@@ -2345,7 +2345,6 @@ spawn(function()
 					local MousePos, TheirPos = Vector2.new(mouse.X, mouse.Y), Vector2.new(Pos.X, Pos.Y)
 					local Dist = (TheirPos - MousePos).Magnitude
 					if Dist < MaxDist and Dist <= _G.Select_Size_Fov and v.Name ~= game.Players.LocalPlayer.Name then
-						MaxDist = Dist
 						_G.Aim_Players = v
 					end
 				end
@@ -3770,7 +3769,7 @@ Playerslist = {}
 task.spawn(function()
 	while task.wait() do
 		pcall(function()
-			if game.Workspace.Map:FindFirstChild("KitsuneIsland") then
+			if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
 				KITSUNE:Set("🏝 Kitsune Island:  ✅")
 				notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
 			else
@@ -4176,7 +4175,7 @@ SEATAP:AddToggle({
 	Name = "AUTO COLLECT AZURE EMBER",
 	Default = false,
 	Callback = function(Value)
-		_G.lumlinhhon = value
+		_G.lumlinhhon = Value
         StopTween(_G.lumlinhhon)
     
         if _G.lumlinhhon then
@@ -4649,6 +4648,15 @@ MISCTAP:AddToggle({
 		_G.No_clip = Value
 	end    
 })
+
+MISCTAP:AddToggle({
+	Name = "NO FOG IN SEA",
+	Default = false,
+	Callback = function(Value)
+		game:GetService("Lighting").LightingLayers:Destroy()
+	end    
+})
+
 MISCTAP:AddToggle({
 	Name = "INFINITY ABILITY",
 	Default = true,
@@ -4700,7 +4708,16 @@ MISCTAP:AddButton({
 	end
 		
 })
+local Sectionmisc = MISCTAP:AddSection({
+	Name = "SERVER"
+})
 
+MISCTAP:AddButton({
+	Name = "SERVER HOP",
+	Callback = function()
+    	Hop()
+    end
+})
 -------------------------------
 local RCTAP = Window:MakeTab({
 	Name = "RACE V4",
@@ -4870,15 +4887,3 @@ CBTAP:AddToggle({
 	end    
 })
 -------++----++----+-++++-----------------
-local SRTAP = Window:MakeTab({
-	Name = "SERVER",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-SRTAP:AddButton({
-	Name = "SERVER HOP",
-	Callback = function()
-    	Hop()
-    end
-})
