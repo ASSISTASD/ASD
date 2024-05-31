@@ -1,3 +1,6 @@
+notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
+notis.new("<Color=Yellow>You Will Get A Permanent Band <Color=/>"):Display()
+
 local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window =asdlib:MakeWindow({Name = "asd script", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
@@ -3701,6 +3704,31 @@ Playerslist = {}
         table.insert(Playerslist,v.Name)
     end
     
+-------------lable
+task.spawn(function()
+	while task.wait() do
+		pcall(function()
+			if game.Workspace.Map:FindFirstChild("KitsuneIsland") then
+				KITSUNE:Set("🏝 Kitsune Island:  ✅")
+				notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
+			else
+				KITSUNE:Set("🏝 Kitsune Island:  ❌")
+			end
+		end)
+	end
+end) 
+task.spawn(function()
+	while task.wait() do
+		pcall(function()
+			if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')  then
+				KITSUNE:Set("🏝 Mirage Island:  ✅")
+				notis.new("<Color=Yellow>THE MIRAGE SPAWNED<Color=/>"):Display()
+			else
+				KITSUNE:Set("🏝 Mirage Island:  ❌")
+			end
+		end)
+	end
+end) 
 -------------
 local AFTAP = Window:MakeTab({
 	Name = "AUTO FARM",
@@ -3940,6 +3968,8 @@ local Sectionseaa = SEATAP:AddSection({
 	Name = "KITSUNE ISLAND"
 })
 
+local KITSUNE = SEATAP:AddLabel("no spawn")
+
 SEATAP:AddToggle({
 	Name = "AUTO FIND KITSUNE",
 	Default = _G.AutoFKitsune,
@@ -3995,6 +4025,8 @@ SEATAP:AddToggle({
 local Sectionsea = SEATAP:AddSection({
 	Name = "MIRAGE ISLAND"
 })
+
+local MRG = SEATAP:AddLabel("no spawn")
 
 SEATAP:AddToggle({
 	Name = "AUTO SPAWN MIRAGE ISLAND",
@@ -4081,84 +4113,89 @@ ESPTAP:AddToggle({
 	UpdateRealFruitChams() 
 	end    
 })
-local Sectionsea = ESPTAP:AddSection({
-	Name = "INFO MIRAGE ESP"
-})
+if World3 then
+    local Sectionsea = ESPTAP:AddSection({
+    	Name = "INFO MIRAGE ESP"
+    })
+    
+    ESPTAP:AddToggle({
+    	Name = "ESP MIRAGE",
+    	Default = false,
+    	Callback = function(Value)
+    		MirageIslandESP = Value
+            while MirageIslandESP do wait()
+                UpdateIslandMirageESP()
+            end
+    	end    
+    })
+    
+    
+    ESPTAP:AddToggle({
+    	Name = "ESP ADVANCED FRUIT DEALER",
+    	Default = false,
+    	Callback = function(Value)
+    		AfdESP = Value
+            while AfdESP do wait()
+                UpdateAfdESP()
+            end
+    	end    
+    })
+end
+if World3 or World2 then
 
-ESPTAP:AddToggle({
-	Name = "ESP MIRAGE",
-	Default = false,
-	Callback = function(Value)
-		MirageIslandESP = Value
-        while MirageIslandESP do wait()
-            UpdateIslandMirageESP()
-        end
-	end    
-})
-
-
-ESPTAP:AddToggle({
-	Name = "ESP ADVANCED FRUIT DEALER",
-	Default = false,
-	Callback = function(Value)
-		AfdESP = Value
-        while AfdESP do wait()
-            UpdateAfdESP()
-        end
-	end    
-})
-local Sectionsea = ESPTAP:AddSection({
-	Name = "RAID"
-})
-ESPTAP:AddToggle({
-	Name = "KILL AURA",
-	Default = nil,
-	Callback = function(Value)
-		_G.Kill_Aura = Value
-	end    
-})
-ESPTAP:AddToggle({
-	Name = "AUTO AWAKING",
-	Default = _G.Auto_Awakener,
-	Callback = function(Value)
-		_G.Auto_Awakener = Value
-	end    
-})
-
-ESPTAP:AddDropdown({
-	Name = "SELECT CHIP RAID",
-	Default = Raidslist,
-	Options = Raidslist,
-	Callback = function(Value)
-		_G.SelectChip = Value
-	end    
-})
-
-ESPTAP:AddButton({
-	Name = "BUY CHIP RAID",
-	Callback = function()
-      		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc","Select",_G.SelectChip)
-  	end    
-})
-
-ESPTAP:AddToggle({
-	Name = "AUTO NEXT ISLAND",
-	Default = _G.Auto_Dungeon,
-	Callback = function(Value)
-		_G.Auto_Dungeon = Value
-		StopTween(_G.Auto_Dungeon)
-	end    
-})
-
-
-
-ESPTAP:AddToggle({
-	Name = "AUTO START RAID",
-	Default = _G.Auto_StartRaid,
-	Callback = function(Value)
-		_G.Auto_StartRaid = Value
-	end    
-})
+    local Sectionsea = ESPTAP:AddSection({
+    	Name = "RAID"
+    })
+    ESPTAP:AddToggle({
+    	Name = "KILL AURA",
+    	Default = nil,
+    	Callback = function(Value)
+    		_G.Kill_Aura = Value
+    	end    
+    })
+    ESPTAP:AddToggle({
+    	Name = "AUTO AWAKING",
+    	Default = _G.Auto_Awakener,
+    	Callback = function(Value)
+    		_G.Auto_Awakener = Value
+    	end    
+    })
+    
+    ESPTAP:AddDropdown({
+    	Name = "SELECT CHIP RAID",
+    	Default = Raidslist,
+    	Options = Raidslist,
+    	Callback = function(Value)
+    		_G.SelectChip = Value
+    	end    
+    })
+    
+    ESPTAP:AddButton({
+    	Name = "BUY CHIP RAID",
+    	Callback = function()
+          		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("RaidsNpc","Select",_G.SelectChip)
+      	end    
+    })
+    
+    ESPTAP:AddToggle({
+    	Name = "AUTO NEXT ISLAND",
+    	Default = _G.Auto_Dungeon,
+    	Callback = function(Value)
+    		_G.Auto_Dungeon = Value
+    		StopTween(_G.Auto_Dungeon)
+    	end    
+    })
+    
+    
+    
+    ESPTAP:AddToggle({
+    	Name = "AUTO START RAID",
+    	Default = _G.Auto_StartRaid,
+    	Callback = function(Value)
+    		_G.Auto_StartRaid = Value
+    	end    
+    })
+end
 ------------------------
 local TPTAP = Window:MakeTab({
 	Name = "TP",
