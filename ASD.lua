@@ -4708,7 +4708,7 @@ local RCTAP = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local Sectionesp = RCTAP:AddSection({
+local SectionRc = RCTAP:AddSection({
 	Name = "TP RACE V4"
 })
 
@@ -4720,7 +4720,7 @@ RCTAP:AddButton({
 })
 
 RCTAP:AddButton({
-	Name = "Teleport To Lever Pull"",
+	Name = "Teleport To Lever Pull",
 	Callback = function()
       		topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
   	end    
