@@ -2332,7 +2332,6 @@ gg.__namecall = newcclosure(function(...)
 	return old(...)
 end)
 
-local lp = game:GetService('Players').LocalPlayer
 local UserInputService = game:GetService("UserInputService")
 
 spawn(function()
@@ -2349,7 +2348,8 @@ spawn(function()
                             local MousePos = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
                             local TheirPos = Vector2.new(Pos.X, Pos.Y)
                             local Dist = (TheirPos - MousePos).Magnitude
-                            if Dist < MaxDist and Dist <= _G.Select_Size_Fov then
+                            if Dist < MaxDist then
+                                MaxDist = Dist
                                 _G.Aim_Players = v
                             end
                         end
@@ -4837,7 +4837,7 @@ CBTAP:AddSlider({
 	Name = "SLIDER SIZE",
 	Min = 1,
 	Max = 360,
-	Default = 100,
+	Default = 1,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
 	ValueName = "SIZE AIM BOT",
