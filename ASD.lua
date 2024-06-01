@@ -3643,7 +3643,9 @@ spawn(function()
 				if _G.AutoFKitsune then
 					if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
 					    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-					    _G.tpkit = true 
+					    _G.tpkit = true
+					    wait(2)
+					    _G.tpkit = false
 					end
 				end
 			end
@@ -4049,6 +4051,20 @@ local Sectionst = STAP:AddSection({
 local Sectionst = STAP:AddSection({
 	Name = "SETTING SKILLS"
 })
+
+STAP:AddSlider({
+	Name = "Kill At %",
+	Min = 1,
+	Max = 100,
+	Default = 25,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "SIZE",
+	Callback = function(Value)
+		_G.Kill_At = Value
+	end    
+})
+
 STAP:AddToggle({
 	Name = "Skill Z",
 	Default = true,
@@ -4657,13 +4673,15 @@ MISCTAP:AddToggle({
 	end    
 })
 
-MISCTAP:AddToggle({
+
+MISCTAP:AddButton({
 	Name = "NO FOG IN SEA",
-	Default = false,
-	Callback = function(Value)
-		game:GetService("Lighting").LightingLayers:Destroy()
-	end    
+	Callback = function()
+    	game:GetService("Lighting").LightingLayers:Destroy()
+    end
 })
+
+
 
 MISCTAP:AddToggle({
 	Name = "INFINITY ABILITY",
@@ -4866,6 +4884,14 @@ CBTAP:AddDropdown({
 		_G.SelectPly = Value
 	end    
 })
+
+CBTAP:AddButton({
+	Name = "REFLICH",
+	Callback = function()
+    	Playerslist = {}
+    end
+})
+
 
 CBTAP:AddToggle({
 	Name = "TP PLAYER",
