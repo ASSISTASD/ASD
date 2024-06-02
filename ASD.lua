@@ -3,7 +3,7 @@ notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
 
 local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window =asdlib:MakeWindow({Name = "asd script", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
+local Window =asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
 -- set local
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -2385,15 +2385,17 @@ end)
     local FOVCircle = Drawing.new("Circle")
 	FOVCircle.Thickness = 2
 	FOVCircle.NumSides = 100
+	FOVCircle.Visible = true 
 	FOVCircle.Filled = false
-	FOVCircle.Transparency = 0
+	FOVCircle.Transparency = 0.1
 	FOVCircle.Radius = 200
-	FOVCircle.Color = Color3.fromRGB(191, 255, 209)
+	FOVCircle.Color = Color3.fromRGB(255, 255, 255)
 	
 	game:GetService("RunService").Stepped:Connect(function()
 		FOVCircle.Radius = _G.Select_Size_Fov
 		FOVCircle.Thickness = 2
-		FOVCircle.NumSides = 11
+		FOVCircle.NumSides = 100
+		FOVCircle.Visible = true 
 		FOVCircle.Position = Vector2.new(402, 196)
 		if ShowFov then
 			FOVCircle.Visible = true
@@ -4980,7 +4982,7 @@ CBTAP:AddSlider({
 	Name = "FOV SIZE",
 	Min = 1,
 	Max = 360,
-	Default = 50,
+	Default = 100,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
 	ValueName = "SIZE AIM BOT",
