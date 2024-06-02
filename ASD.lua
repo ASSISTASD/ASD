@@ -2387,15 +2387,15 @@ end)
 	FOVCircle.NumSides = 100
 	FOVCircle.Visible = true 
 	FOVCircle.Filled = false
-	FOVCircle.Transparency = 0.1
-	FOVCircle.Radius = 200
-	FOVCircle.Color = Color3.fromRGB(255, 255, 255)
+	FOVCircle.Transparency = 1
+	FOVCircle.Radius = 100
+	FOVCircle.Color = Color3.fromRGB(0, 0, 0)
 	
 	game:GetService("RunService").Stepped:Connect(function()
 		FOVCircle.Radius = _G.Select_Size_Fov
 		FOVCircle.Thickness = 2
 		FOVCircle.NumSides = 100
-		FOVCircle.Visible = true 
+		FOVCircle.Filled = false
 		FOVCircle.Position = Vector2.new(402, 196)
 		if ShowFov then
 			FOVCircle.Visible = true
