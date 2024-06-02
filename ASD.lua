@@ -2382,6 +2382,27 @@ spawn(function()
 end)
 
 
+    local FOVCircle = Drawing.new("Circle")
+	FOVCircle.Thickness = 5
+	FOVCircle.NumSides = 460
+	FOVCircle.Filled = false
+	FOVCircle.Transparency = 0.5
+	FOVCircle.Radius = 200
+	FOVCircle.Color = Color3.fromRGB(255, 255, 255)
+	
+	game:GetService("RunService").Stepped:Connect(function()
+		FOVCircle.Radius = _G.Select_Size_Fov
+		FOVCircle.Thickness = 1
+		FOVCircle.NumSides = 11
+		FOVCircle.Position = game:GetService('UserInputService'):GetMouseLocation()
+		if ShowFov then
+			FOVCircle.Visible = true
+		else
+			FOVCircle.Visible = false
+		end
+	end)
+	
+
 Skillz = true
 Skillx = true
 Skillc = true
@@ -4956,7 +4977,7 @@ CBTAP:AddToggle({
 })
 
 CBTAP:AddSlider({
-	Name = "SLIDER SIZE",
+	Name = "FOV SIZE",
 	Min = 1,
 	Max = 360,
 	Default = 1,
@@ -4965,6 +4986,14 @@ CBTAP:AddSlider({
 	ValueName = "SIZE AIM BOT",
 	Callback = function(Value)
 		_G.Select_Size_Fov = Value
+	end    
+})
+
+CBTAP:AddToggle({
+	Name = "SHOW FOV",
+	Default = false,
+	Callback = function(Value)
+		ShowFov = Value
 	end    
 })
 
