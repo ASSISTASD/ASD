@@ -2388,7 +2388,7 @@ end)
 	FOVCircle.Filled = false
 	FOVCircle.Transparency = 0.5
 	FOVCircle.Radius = 200
-	FOVCircle.Color = Color3.fromRGB(255, 255, 255)
+	FOVCircle.Color = Color3.fromRGB(191, 255, 209)
 	
 	game:GetService("RunService").Stepped:Connect(function()
 		FOVCircle.Radius = _G.Select_Size_Fov
