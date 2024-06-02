@@ -2345,7 +2345,7 @@ spawn(function()
                         local Head = v.Character:FindFirstChild("HumanoidRootPart")
                         if Head then
                             local Pos, Vis = game.Workspace.CurrentCamera:WorldToScreenPoint(Head.Position)
-                            local MousePos = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+                            local MousePos = Vector2.new(402, 196)
                             local TheirPos = Vector2.new(Pos.X, Pos.Y)
                             local Dist = (TheirPos - MousePos).Magnitude
                             if Dist < MaxDist then
@@ -2383,18 +2383,18 @@ end)
 
 
     local FOVCircle = Drawing.new("Circle")
-	FOVCircle.Thickness = 5
-	FOVCircle.NumSides = 460
+	FOVCircle.Thickness = 2
+	FOVCircle.NumSides = 100
 	FOVCircle.Filled = false
-	FOVCircle.Transparency = 0.5
+	FOVCircle.Transparency = 1
 	FOVCircle.Radius = 200
 	FOVCircle.Color = Color3.fromRGB(191, 255, 209)
 	
 	game:GetService("RunService").Stepped:Connect(function()
 		FOVCircle.Radius = _G.Select_Size_Fov
-		FOVCircle.Thickness = 1
+		FOVCircle.Thickness = 2
 		FOVCircle.NumSides = 11
-		FOVCircle.Position = game:GetService('UserInputService'):GetMouseLocation()
+		FOVCircle.Position = Vector2.new(402, 196)
 		if ShowFov then
 			FOVCircle.Visible = true
 		else
@@ -4980,7 +4980,7 @@ CBTAP:AddSlider({
 	Name = "FOV SIZE",
 	Min = 1,
 	Max = 360,
-	Default = 1,
+	Default = 50,
 	Color = Color3.fromRGB(255,255,255),
 	Increment = 1,
 	ValueName = "SIZE AIM BOT",
@@ -5021,9 +5021,9 @@ CBTAP:AddButton({
 	Name = "REFLICH",
 	Callback = function()
     	Playerslist = {}
-    	_G.SelectPly:Clear()
+    	OrionLib.Flags["PLY"]:Clear()
         for i,v in pairs(game:GetService("Players"):GetChildren()) do  
-            _G.SelectPly:Add(v.Name)
+            OrionLib.Flags["PLY"]:Add(v.Name)
         end
     end
 })
