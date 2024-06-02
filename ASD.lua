@@ -2386,7 +2386,7 @@ end)
 	FOVCircle.Thickness = 2
 	FOVCircle.NumSides = 100
 	FOVCircle.Filled = false
-	FOVCircle.Transparency = 1
+	FOVCircle.Transparency = 0
 	FOVCircle.Radius = 200
 	FOVCircle.Color = Color3.fromRGB(191, 255, 209)
 	
