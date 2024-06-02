@@ -3643,9 +3643,13 @@ spawn(function()
 				if _G.AutoFKitsune then
 					if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
 					    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+					    KITSUNE:Set("🏝 Kitsune Island:  ✅")
+				        notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
 					    _G.tpkit = true
 					    wait(2)
 					    _G.tpkit = false
+					else 
+					    KITSUNE:Set("🏝 Kitsune Island:  ❌")
 					end
 				end
 			end
@@ -3776,20 +3780,9 @@ Playerslist = {}
     end
     
 -------------lable
-task.spawn(function()
-	while task.wait() do
-		pcall(function()
-			if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
-				KITSUNE:Set("🏝 Kitsune Island:  ✅")
-				notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
-			else
-				KITSUNE:Set("🏝 Kitsune Island:  ❌")
-			end
-		end)
-	end
-end) 
-task.spawn(function()
-	while task.wait() do
+
+spawn(function()
+	while wait() do
 		pcall(function()
 			if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')  then
 				MRG:Set("🏝 Mirage Island:  ✅")
