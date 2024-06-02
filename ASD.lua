@@ -3919,9 +3919,100 @@ spawn(function()
 end)
 
 
+-----------boos
+local Boss = {}
+
+for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+    if string.find(v.Name, "Boss") then
+        if v.Name == "Ice Admiral" then
+            else
+            table.insert(Boss, v.Name)
+        end
+    end
+end
+
+local bossCheck = {}
+local bossNames = { "The Gorilla King", "Bobby", "The Saw", "Yeti", "Mob Leader", "Vice Admiral", "Warden", "Chief Warden", "Swan", "Saber Expert", "Magma Admiral", "Fishman Lord", "Wysper", "Thunder God", "Cyborg", "Greybeard", "Diamond", "Jeremy", "Fajita", "Don Swan", "Smoke Admiral", "Awakened Ice Admiral", "Tide Keeper", "Order", "Darkbeard", "Cursed Captain", "Stone", "Island Empress", "Kilo Admiral", "Captain Elephant", "Beautiful Pirate", "Longma", "Cake Queen", "Soul Reaper", "Rip_Indra", "Cake Prince", "Dough King" }
 
 
+if World1 or World2 or World3 then
+    for _, bossName in pairs(bossNames) do
+        if game:GetService("ReplicatedStorage"):FindFirstChild(bossName) then
+            table.insert(bossCheck, bossName)
+        end
+    end
+end
 
+for _, name in pairs(Boss) do
+    table.insert(bossCheck, name)
+end
+
+spawn(function()
+        while wait() do
+            if _G.AutoFarmBoss and BypassTP then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == _G.SelectBoss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        topos(v.HumanoidRootPart.CFrame * Pos)
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    elseif game.ReplicatedStorage:FindFirstChild(_G.SelectBoss) then
+						if ((game.ReplicatedStorage:FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame).Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).magnitude <= 1500 then
+							topos(game.ReplicatedStorage:FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame)
+						else
+							BTP(game.ReplicatedStorage:FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame)
+					    end
+                    end
+                end)
+            end
+        end
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoFarmBoss and not BypassTP then
+                pcall(function()
+                    if game:GetService("Workspace").Enemies:FindFirstChild(_G.SelectBoss) then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == _G.SelectBoss then
+                                if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                                    repeat task.wait()
+                                        AutoHaki()
+                                        EquipWeapon(_G.SelectWeapon)
+                                        v.HumanoidRootPart.CanCollide = false
+                                        v.Humanoid.WalkSpeed = 0
+                                        v.HumanoidRootPart.Size = Vector3.new(80,80,80)                             
+                                        topos(v.HumanoidRootPart.CFrame * (Farm_pos))
+                                        game:GetService("VirtualUser"):CaptureController()
+                                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
+                                        sethiddenproperty(game:GetService("Players").LocalPlayer,"SimulationRadius",math.huge)
+                                    until not _G.AutoFarmBoss or not v.Parent or v.Humanoid.Health <= 0
+                                end
+                            end
+                        end
+                    else
+                        if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,10,7))
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+    
 
 ---------------
 local AFTAP = Window:MakeTab({
@@ -3976,6 +4067,8 @@ AFTAP:AddToggle({
 	end    
 })
 
+
+
 AFTAP:AddDropdown({
 	Name = "Select mod",
 	Default = "Normal",
@@ -3985,7 +4078,24 @@ AFTAP:AddDropdown({
 	end    
 })
 
+AFTAP:AddToggle({
+	Name = "AUTO FARM BOSS",
+	Default = _G.Auto_Bone,
+	Callback = function(Value)
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+        _G.AutoFarmBoss = Value
+        StopTween(_G.AutoFarmBoss)
+	end    
+})
 
+AFTAP:AddDropdown({
+	Name = "Select Weapons",
+	Default = bossCheck,
+	Options = bossCheck,
+	Callback = function(Value)
+		_G.SelectBoss = Value
+	end    
+})
 
 local STAP = Window:MakeTab({
 	Name = "SETTING",
@@ -4889,6 +4999,10 @@ CBTAP:AddButton({
 	Name = "REFLICH",
 	Callback = function()
     	Playerslist = {}
+    	_G.SelectPly:Clear()
+        for i,v in pairs(game:GetService("Players"):GetChildren()) do  
+            _G.SelectPly:Add(v.Name)
+        end
     end
 })
 
