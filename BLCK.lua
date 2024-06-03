@@ -35,8 +35,9 @@ infoplayers.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Main.Name = "Main"
 Main.Parent = infoplayers
 Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Main.Position = UDim2.new(0.48, 0, 0, 0)
+Main.Position = UDim2.new(0.5, 0, -0.1, 0)
 Main.Size = UDim2.new(0, 280, 0, 70)
+Main.Visible = true
 
 MainCorner.Name = "MainCorner"
 MainCorner.Parent = Main
@@ -315,7 +316,7 @@ function UpdatePlayerChams()
 						name.BackgroundTransparency = 1
 						name.TextStrokeTransparency = 0.5
 						if player.Playersaimbot then
-							name.TextColor3 = Color3.new(1, 1, 1)
+							name.TextColor3 = Color3.new(51, 25, 25)
 						else
 							name.TextColor3 = Color3.new(255, 255, 255)
 						end
@@ -608,7 +609,7 @@ function UpdatePlayerChams()
 						name.BackgroundTransparency = 1
 						name.TextStrokeTransparency = 0.5
 						if player.Playersaimbot then
-							name.TextColor3 = Color3.new(0, 255, 255)
+							name.TextColor3 = Color3.new(51, 25, 25)
 						else
 							name.TextColor3 = Color3.new(255, 255, 255)
 						end
@@ -1068,6 +1069,89 @@ spawn(function()
 		    end
 	    end
     end)
+    
+game:GetService("RunService").Stepped:Connect(function()
+		if _G.ShowInfo then
+			Main.Visible = true
+		else
+			Main.Visible = false
+		end
+	end)
+
+spawn(function()
+			while task.wait() do
+				pcall(function()
+					if _G.WalkWater then
+						game:GetService("Workspace").Map["WaterBase-Plane"].Size = Vector3.new(1000,112,1000)
+					else
+						game:GetService("Workspace").Map["WaterBase-Plane"].Size = Vector3.new(1000,80,1000)
+					end
+				end)
+			end
+		end)
+
+spawn(function()
+    pcall(function()
+        game:GetService("RunService").Stepped:Connect(function()
+            if _G.No_clip then
+                for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false    
+                    end
+                end
+            end
+        end)
+    end)
+end)
+
+
+    function InfAb()
+        if InfAbility then
+            if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility") then
+                local inf = Instance.new("ParticleEmitter")
+                inf.Acceleration = Vector3.new(0,0,0)
+                inf.Archivable = true
+                inf.Drag = 20
+                inf.EmissionDirection = Enum.NormalId.Top
+                inf.Enabled = true
+                inf.Lifetime = NumberRange.new(0,0)
+                inf.LightInfluence = 0
+                inf.LockedToPart = true
+                inf.Name = "Agility"
+                inf.Rate = 500
+                local numberKeypoints2 = {
+                    NumberSequenceKeypoint.new(0, 0);
+                    NumberSequenceKeypoint.new(1, 4); 
+                }
+                inf.Size = NumberSequence.new(numberKeypoints2)
+                inf.RotSpeed = NumberRange.new(99999999, 99999999)
+                inf.Rotation = NumberRange.new(0, 0)
+                inf.Speed = NumberRange.new(50, 50)
+                inf.SpreadAngle = Vector2.new(0,0,0,0)
+                inf.Texture = ""
+                inf.VelocityInheritance = 0
+                inf.ZOffset = 2
+                inf.Transparency = NumberSequence.new(0)
+                inf.Color = ColorSequence.new(Color3.fromRGB(0,0,0),Color3.fromRGB(0,0,0))
+                inf.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+            end
+        else
+            if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility") then
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy()
+            end
+        end
+    end
+    
+    local LocalPlayer = game:GetService'Players'.LocalPlayer
+    local originalstam = LocalPlayer.Character.Energy.Value
+spawn(function()
+        while wait() do
+            if InfAbility then
+                InfAb()
+            end
+        end
+    end)
+    
 
 local CBTAP = Window:MakeTab({
 	Name = "PLAYER",
@@ -1100,6 +1184,13 @@ CBTAP:AddToggle({
 	end    
 })
 
+CBTAP:AddToggle({
+	Name = "SHOW INFO PLAYER",
+	Default = true,
+	Callback = function(Value)
+		_G.ShowInfo = Value
+	end    
+})
 
 CBTAP:AddToggle({
 	Name = "AIMBOT",
@@ -1110,7 +1201,7 @@ CBTAP:AddToggle({
 })
 
 local ESPTAP = Window:MakeTab({
-	Name = "ESP / RAID",
+	Name = "ESP",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -1126,6 +1217,53 @@ ESPTAP:AddToggle({
 	UpdatePlayerChams()
 	end    
 })
+
+local MISCTAP = Window:MakeTab({
+	Name = "MISC",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Sectionmisc = MISCTAP:AddSection({
+	Name = "PLAYERS"
+})
+MISCTAP:AddToggle({
+	Name = "WALK IN WATER",
+	Default = false,
+	Callback = function(Value)
+		_G.WalkWater = Value
+	end    
+})
+
+MISCTAP:AddToggle({
+	Name = "NO CLIP",
+	Default = false,
+	Callback = function(Value)
+		_G.No_clip = Value
+	end    
+})
+
+
+MISCTAP:AddButton({
+	Name = "NO FOG IN SEA",
+	Callback = function()
+    	game:GetService("Lighting").LightingLayers:Destroy()
+    end
+})
+
+
+
+MISCTAP:AddToggle({
+	Name = "INFINITY ABILITY",
+	Default = true,
+	Callback = function(Value)
+        InfAbility = Value
+        if Value == false then
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy()
+        end
+	end    
+})
+
 
 
 
