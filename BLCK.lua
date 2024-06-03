@@ -315,7 +315,7 @@ function UpdatePlayerChams()
 						name.TextYAlignment = 'Top'
 						name.BackgroundTransparency = 1
 						name.TextStrokeTransparency = 0.5
-						if player.Playersaimbot then
+						if v.Team == game.Players.LocalPlayer.Team then
 							name.TextColor3 = Color3.new(51, 25, 25)
 						else
 							name.TextColor3 = Color3.new(255, 255, 255)
@@ -608,7 +608,7 @@ function UpdatePlayerChams()
 						name.TextYAlignment = 'Top'
 						name.BackgroundTransparency = 1
 						name.TextStrokeTransparency = 0.5
-						if player.Playersaimbot then
+						if v.Team == game.Players.LocalPlayer.Team then
 							name.TextColor3 = Color3.new(51, 25, 25)
 						else
 							name.TextColor3 = Color3.new(255, 255, 255)
