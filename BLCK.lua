@@ -1168,7 +1168,7 @@ spawn(function()
                     y.activeController.active = false
                     y.activeController.timeToNextBlock = 0
                     y.activeController.focusStart = 9999999999999
-                    y.activeController.increment = 0.1
+                    y.activeController.increment = 1
                     y.activeController.blocking = false
                     y.activeController.attacking = false
                     y.activeController.humanoid.AutoRotate = true
@@ -1323,7 +1323,37 @@ MISCTAP:AddToggle({
 	end    
 })
 
+MISCTAP:AddButton({
+	Name = "TEAM PIRATES ",
+	Callback = function()
+    local args = {
+			[1] = "SetTeam",
+			[2] = "Pirates"
+		}
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args)) 
+		local args = {
+			[1] = "BartiloQuestProgress"
+		}
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+	end
+		
+})
 
+MISCTAP:AddButton({
+	Name = "TEAM MARINES ",
+	Callback = function()
+    local args = {
+			[1] = "SetTeam",
+			[2] = "Marines"
+		}
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args)) 
+		local args = {
+			[1] = "BartiloQuestProgress"
+		}
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+	end
+		
+})
 
 local STAP = Window:MakeTab({
 	Name = "SETTING",
