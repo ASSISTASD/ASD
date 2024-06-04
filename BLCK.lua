@@ -1168,7 +1168,7 @@ spawn(function()
                     y.activeController.active = false
                     y.activeController.timeToNextBlock = 0
                     y.activeController.focusStart = 9999999999999
-                    y.activeController.increment = 100
+                    y.activeController.increment = 0.1
                     y.activeController.blocking = false
                     y.activeController.attacking = false
                     y.activeController.humanoid.AutoRotate = true
