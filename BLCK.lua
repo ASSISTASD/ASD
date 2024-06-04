@@ -1126,7 +1126,7 @@ end)
                 inf.Size = NumberSequence.new(numberKeypoints2)
                 inf.RotSpeed = NumberRange.new(99999999, 99999999)
                 inf.Rotation = NumberRange.new(0, 0)
-                inf.Speed = NumberRange.new(50, 50)
+                inf.Speed = NumberRange.new(120, 120)
                 inf.SpreadAngle = Vector2.new(0,0,0,0)
                 inf.Texture = ""
                 inf.VelocityInheritance = 0
@@ -1152,6 +1152,149 @@ spawn(function()
         end
     end)
     
+    
+local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+y = debug.getupvalues(CombatFrameworkR)[2]
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.FastAttack then
+            if typeof(y) == "table" then
+                pcall(function()
+                    CameraShaker:Stop()
+                    y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
+                    y.activeController.timeToNextAttack = 0
+                    y.activeController.hitboxMagnitude = 150
+                    y.activeController.active = false
+                    y.activeController.timeToNextBlock = 0
+                    y.activeController.focusStart = 3655503339.0980349
+                    y.activeController.increment = 1
+                    y.activeController.blocking = false
+                    y.activeController.attacking = false
+                    y.activeController.humanoid.AutoRotate = true
+                end)
+            end
+        end
+    end)
+end)
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.FastAttack == true then
+            game.Players.LocalPlayer.Character.Stun.Value = 0
+            game.Players.LocalPlayer.Character.Busy.Value = false        
+        end
+    end)
+end)
+
+spawn(function()
+    while wait(.1) do
+        if _G.AUTOHAKI then 
+            if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+                local args = {
+                    [1] = "Buso"
+                }
+                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+            end
+        end
+    end
+end)
+
+local INFOTAP = Window:MakeTab({
+	Name = "YOUR INFO",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local SectionCB = CBTAP:AddSection({
+	Name = "INFO"
+})
+
+    local locallv = INFOTAP:AddLabel("Level")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                locallv:Set("Level:".." "..game:GetService("Players").LocalPlayer.Data.Level.Value)
+            end)
+        end
+    end)
+    
+    local localrace = INFOTAP:AddLabel("Race")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                localrace:Set("Race:".." "..game:GetService("Players").LocalPlayer.Data.Race.Value)
+            end)
+        end
+    end)
+    
+    local localbeli = INFOTAP:AddLabel("Beli")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                localbeli:Set("Beli:".." "..game:GetService("Players").LocalPlayer.Data.Beli.Value)
+            end)
+        end
+    end)
+    
+    local localfrag = INFOTAP:AddLabel("Fragment")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                localfrag:Set("Fragments:".." "..game:GetService("Players").LocalPlayer.Data.Fragments.Value)
+            end)
+        end
+    end)
+    
+    
+    local localexp = INFOTAP:AddLabel("ExP")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                localexp:Set("ExP Points:".." "..game:GetService("Players").LocalPlayer.Data.Exp.Value)
+            end)
+        end
+    end)
+    
+    local localstat = INFOTAP:AddLabel("Stats Points")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                localstat:Set("Stats Points:".." "..game:GetService("Players").LocalPlayer.Data.Points.Value)
+            end)
+        end
+    end)
+    
+    local localbountyhornor = INFOTAP:AddLabel("Bounty")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                localbountyhornor:Set("Bounty / Honor:".." "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)
+            end)
+        end
+    end)
+    
+    local localDevil = INFOTAP:AddLabel("Devil Fruit")
+    
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value) or game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(game:GetService("Players").LocalPlayer.Data.DevilFruit.Value) then
+                    localDevil:Set("Devil Fruit:".." "..game:GetService("Players").LocalPlayer.Data.DevilFruit.Value)
+                else
+                    localDevil:Set("Not Have Devil Fruit")
+                end
+            end)
+        end
+    end)
+
+
 
 local CBTAP = Window:MakeTab({
 	Name = "PLAYER",
@@ -1218,6 +1361,18 @@ ESPTAP:AddToggle({
 	end    
 })
 
+ESPTAP:AddToggle({
+	Name = "ESP FRUIT",
+	Default = false,
+	Callback = function(a)
+		DevilFruitESP = a
+        while DevilFruitESP do wait()
+            UpdateDevilChams() 
+        end
+	end    
+})
+
+
 local MISCTAP = Window:MakeTab({
 	Name = "MISC",
 	Icon = "rbxassetid://4483345998",
@@ -1266,5 +1421,36 @@ MISCTAP:AddToggle({
 
 
 
+local STAP = Window:MakeTab({
+	Name = "SETTING",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local Sectionst = STAP:AddSection({
+	Name = "SETTING"
+})
 
+STAP:AddToggle({
+	Name = "FAST ATTACK",
+	Default = true,
+	Callback = function(Value)
+		_G.FastAttack = Value
+	end    
+})
+
+STAP:AddToggle({
+	Name = "BYPASS TP",
+	Default = BypassTP,
+	Callback = function(Value)
+		BypassTP = Value
+	end    
+})
+
+STAP:AddToggle({
+	Name = "AUTO HAKI",
+	Default = true,
+	Callback = function(Value)
+		_G.AUTOHAKI = Value
+	end    
+})
 
