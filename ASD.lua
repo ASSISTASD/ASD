@@ -3679,6 +3679,19 @@ spawn(function()
 		end)
 	end)
 	
+spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
+                    KITSUNE:Set("🏝 Kitsune Island:  ✅")
+				        notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
+				else 
+					KITSUNE:Set("🏝 Kitsune Island:  ❌")
+                end
+            end
+        end)
+    end)
+    
 --------------+++-----+++++++++++-------
 	
 spawn(function()
@@ -3757,7 +3770,7 @@ spawn(function()
                 inf.Size = NumberSequence.new(numberKeypoints2)
                 inf.RotSpeed = NumberRange.new(9999999, 9999999)
                 inf.Rotation = NumberRange.new(0, 0)
-                inf.Speed = NumberRange.new(30, 30)
+                inf.Speed = NumberRange.new(120, 120)
                 inf.SpreadAngle = Vector2.new(0,0,0,0)
                 inf.Texture = ""
                 inf.VelocityInheritance = 0
