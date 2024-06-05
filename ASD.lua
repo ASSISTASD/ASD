@@ -1854,10 +1854,10 @@ spawn(function()
                     CameraShaker:Stop()
                     y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
                     y.activeController.timeToNextAttack = 0
-                    y.activeController.hitboxMagnitude = 60
+                    y.activeController.hitboxMagnitude = 300
                     y.activeController.active = false
                     y.activeController.timeToNextBlock = 0
-                    y.activeController.focusStart = 1655503339.0980349
+                    y.activeController.focusStart = 9999999999999
                     y.activeController.increment = 1
                     y.activeController.blocking = false
                     y.activeController.attacking = false
@@ -2732,39 +2732,45 @@ function UpdateChestChams()
 	end
 end
 function UpdateDevilChams() 
-	for i,v in pairs(game.Workspace:GetChildren()) do
-		pcall(function()
-			if DevilFruitESP then
-				if string.find(v.Name, "Fruit") then   
-					if not v.Handle:FindFirstChild('NameEsp'..Number) then
-						local bill = Instance.new('BillboardGui',v.Handle)
-						bill.Name = 'NameEsp'..Number
-						bill.ExtentsOffset = Vector3.new(0, 1, 0)
-						bill.Size = UDim2.new(1,200,1,30)
-						bill.Adornee = v.Handle
-						bill.AlwaysOnTop = true
-						local name = Instance.new('TextLabel',bill)
-						name.Font = Enum.Font.GothamSemibold
-						name.FontSize = "Size14"
-						name.TextWrapped = true
-						name.Size = UDim2.new(1,0,1,0)
-						name.TextYAlignment = 'Top'
-						name.BackgroundTransparency = 1
-						name.TextStrokeTransparency = 0.5
-						name.TextColor3 = Color3.fromRGB(255, 255, 255)
-						name.Text = (v.Name ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Handle.Position).Magnitude/3) ..' Distance')
-					else
-						v.Handle['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Handle.Position).Magnitude/3) ..' Distance')
-					end
-				end
-			else
-				if v.Handle:FindFirstChild('NameEsp'..Number) then
-					v.Handle:FindFirstChild('NameEsp'..Number):Destroy()
-				end
-			end
-		end)
-	end
+    for i, v in pairs(game.Workspace:GetChildren()) do
+        pcall(function()
+            local handle = v:FindFirstChild("Handle")
+            if handle then
+                local billboardName = 'NameEsp'..Number
+                if DevilFruitESP and string.find(v.Name, "Fruit") then
+                    local fruitName = v.Name
+                    if fruitName == "" or not fruitName then
+                        fruitName = "(Unknown Fruit)"
+                    end
+
+                    local bill = handle:FindFirstChild(billboardName) or Instance.new('BillboardGui', handle)
+                    bill.Name = billboardName
+                    bill.ExtentsOffset = Vector3.new(0, 1, 0)
+                    bill.Size = UDim2.new(1, 200, 1, 30)
+                    bill.Adornee = handle
+                    bill.AlwaysOnTop = true
+
+                    local name = bill:FindFirstChildOfClass('TextLabel') or Instance.new('TextLabel', bill)
+                    name.Font = Enum.Font.GothamSemibold
+                    name.FontSize = Enum.FontSize.Size14
+                    name.TextWrapped = true
+                    name.Size = UDim2.new(1, 0, 1, 0)
+                    name.TextYAlignment = Enum.TextYAlignment.Top
+                    name.BackgroundTransparency = 1
+                    name.TextStrokeTransparency = 0.5
+                    name.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    name.Text = fruitName .. ' \n' .. math.round((game.Players.LocalPlayer.Character.Head.Position - handle.Position).Magnitude / 3) .. ' Distance'
+                else
+                    local bill = handle:FindFirstChild(billboardName)
+                    if bill then
+                        bill:Destroy()
+                    end
+                end
+            end
+        end)
+    end
 end
+
 function UpdateFlowerChams() 
 	for i,v in pairs(game.Workspace:GetChildren()) do
 		pcall(function()
@@ -3025,39 +3031,45 @@ function UpdateChestChams()
 	end
 end
 function UpdateDevilChams() 
-	for i,v in pairs(game.Workspace:GetChildren()) do
-		pcall(function()
-			if DevilFruitESP then
-				if string.find(v.Name, "Fruit") then   
-					if not v.Handle:FindFirstChild('NameEsp'..Number) then
-						local bill = Instance.new('BillboardGui',v.Handle)
-						bill.Name = 'NameEsp'..Number
-						bill.ExtentsOffset = Vector3.new(0, 1, 0)
-						bill.Size = UDim2.new(1,200,1,30)
-						bill.Adornee = v.Handle
-						bill.AlwaysOnTop = true
-						local name = Instance.new('TextLabel',bill)
-						name.Font = Enum.Font.GothamSemibold
-						name.FontSize = "Size14"
-						name.TextWrapped = true
-						name.Size = UDim2.new(1,0,1,0)
-						name.TextYAlignment = 'Top'
-						name.BackgroundTransparency = 1
-						name.TextStrokeTransparency = 0.5
-						name.TextColor3 = Color3.fromRGB(255, 255, 255)
-						name.Text = (v.Name ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Handle.Position).Magnitude/3) ..' Distance')
-					else
-						v.Handle['NameEsp'..Number].TextLabel.Text = (v.Name ..'   \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Handle.Position).Magnitude/3) ..' Distance')
-					end
-				end
-			else
-				if v.Handle:FindFirstChild('NameEsp'..Number) then
-					v.Handle:FindFirstChild('NameEsp'..Number):Destroy()
-				end
-			end
-		end)
-	end
+    for i, v in pairs(game.Workspace:GetChildren()) do
+        pcall(function()
+            local handle = v:FindFirstChild("Handle")
+            if handle then
+                local billboardName = 'NameEsp'..Number
+                if DevilFruitESP and string.find(v.Name, "Fruit") then
+                    local fruitName = v.Name
+                    if fruitName == "" or not fruitName then
+                        fruitName = "(Unknown Fruit)"
+                    end
+
+                    local bill = handle:FindFirstChild(billboardName) or Instance.new('BillboardGui', handle)
+                    bill.Name = billboardName
+                    bill.ExtentsOffset = Vector3.new(0, 1, 0)
+                    bill.Size = UDim2.new(1, 200, 1, 30)
+                    bill.Adornee = handle
+                    bill.AlwaysOnTop = true
+
+                    local name = bill:FindFirstChildOfClass('TextLabel') or Instance.new('TextLabel', bill)
+                    name.Font = Enum.Font.GothamSemibold
+                    name.FontSize = Enum.FontSize.Size14
+                    name.TextWrapped = true
+                    name.Size = UDim2.new(1, 0, 1, 0)
+                    name.TextYAlignment = Enum.TextYAlignment.Top
+                    name.BackgroundTransparency = 1
+                    name.TextStrokeTransparency = 0.5
+                    name.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    name.Text = fruitName .. ' \n' .. math.round((game.Players.LocalPlayer.Character.Head.Position - handle.Position).Magnitude / 3) .. ' Distance'
+                else
+                    local bill = handle:FindFirstChild(billboardName)
+                    if bill then
+                        bill:Destroy()
+                    end
+                end
+            end
+        end)
+    end
 end
+
 function UpdateFlowerChams() 
 	for i,v in pairs(game.Workspace:GetChildren()) do
 		pcall(function()
@@ -3679,19 +3691,7 @@ spawn(function()
 		end)
 	end)
 	
-spawn(function()
-        pcall(function()
-            while wait(.1) do
-                if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
-                    KITSUNE:Set("🏝 Kitsune Island:  ✅")
-				        notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
-				else 
-					KITSUNE:Set("🏝 Kitsune Island:  ❌")
-                end
-            end
-        end)
-    end)
-    
+
 --------------+++-----+++++++++++-------
 	
 spawn(function()
@@ -3817,18 +3817,7 @@ Playerslist = {}
     
 -------------lable
 
-spawn(function()
-	while wait() do
-		pcall(function()
-			if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')  then
-				MRG:Set("🏝 Mirage Island:  ✅")
-				notis.new("<Color=Yellow>THE MIRAGE SPAWNED<Color=/>"):Display()
-			else
-				MRG:Set("🏝 Mirage Island:  ❌")
-			end
-		end)
-	end
-end) 
+
 -------------race v4
 spawn(function()
     pcall(function()
@@ -4044,6 +4033,49 @@ spawn(function()
     
 
 ---------------
+spawn(function()
+        while wait() do
+            pcall(function()
+                localrace:Set("Race:".." "..game:GetService("Players").LocalPlayer.Data.Race.Value)
+            end)
+        end
+    end)
+    
+local INFOPLY = Window:MakeTab({
+	Name = "INFO",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local SINFOPLY = INFOPLY:AddSection({
+	Name = "YOUR ACCOUNT"
+})
+
+
+local localrace = INFOPLY:AddLabel("???")
+local LOCLV = INFOPLY:AddLabel("???")
+local localbountyhornor = INFOPLY:AddLabel("???")
+spawn(function()
+        while wait() do
+            pcall(function()
+                localrace:Set("Race:".." "..game:GetService("Players").LocalPlayer.Data.Race.Value)
+            end)
+        end
+    end)
+spawn(function()
+        while wait() do
+            pcall(function()
+                LOCLV:Set("Level:".." "..game:GetService("Players").LocalPlayer.Data.Level.Value)
+            end)
+        end
+    end)    
+spawn(function()
+        while wait() do
+            pcall(function()
+                localbountyhornor:Set("Bounty / Honor:".." "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)
+            end)
+        end
+    end)
 local AFTAP = Window:MakeTab({
 	Name = "AUTO FARM",
 	Icon = "rbxassetid://4483345998",
@@ -4232,38 +4264,7 @@ STAP:AddToggle({
 		_G.SkillV = Value
 	end    
 })
-local FRUITTAP= Window:MakeTab({
-	Name = "FRUIT",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-local Sectionfr = FRUITTAP:AddSection({
-	Name = "FRUIT"
-})
-FRUITTAP:AddToggle({
-	Name = "AUTO STORE FRUIT",
-	Default = _G.AutoStoreFruit,
-	Callback = function(Value)
-		_G.AutoStoreFruit = Value
-	end    
-})
 
-FRUITTAP:AddToggle({
-	Name = "AUTO RANDOM FRUIT",
-	Default = _G.Random_Auto,
-	Callback = function(Value)
-		_G.Random_Auto = Value
-	end    
-})
-
-
-FRUITTAP:AddToggle({
-	Name = "AUTO DROP FRUIT",
-	Default = _G.DropFruit,
-	Callback = function(Value)
-		_G.DropFruit = Value
-	end    
-})
 
 
 local SEATAP = Window:MakeTab({
@@ -4315,7 +4316,22 @@ local Sectionseaa = SEATAP:AddSection({
 	Name = "KITSUNE ISLAND"
 })
 
-local KITSUNE = SEATAP:AddLabel("🏝 Kitsune Island:  ❌")
+local KITSUNE = SEATAP:AddLabel("🏝")
+
+
+spawn(function()
+        pcall(function()
+            while wait(.1) do
+                if game:GetService("Workspace").Map:FindFirstChild("KitsuneIsland") then
+                    KITSUNE:Set("🏝 Kitsune Island:  ✅")
+				        notis.new("<Color=Yellow>THE KITSUNE SPAWNED<Color=/>"):Display()
+				else 
+					KITSUNE:Set("🏝 Kitsune Island:  ❌")
+                end
+            end
+        end)
+    end)
+    
 
 SEATAP:AddToggle({
 	Name = "AUTO FIND KITSUNE",
@@ -4373,8 +4389,19 @@ local Sectionsea = SEATAP:AddSection({
 	Name = "MIRAGE ISLAND"
 })
 
-local MRG = SEATAP:AddLabel("🏝 Mirage Island:  ❌")
-
+local MRG = SEATAP:AddLabel("🏝 Mirage Island:")
+spawn(function()
+	while wait() do
+		pcall(function()
+			if game.Workspace._WorldOrigin.Locations:FindFirstChild('Mirage Island')  then
+				MRG:Set("🏝 Mirage Island:  ✅")
+				notis.new("<Color=Yellow>THE MIRAGE SPAWNED<Color=/>"):Display()
+			else
+				MRG:Set("🏝 Mirage Island:  ❌")
+			end
+		end)
+	end
+end) 
 SEATAP:AddToggle({
 	Name = "AUTO SPAWN MIRAGE ISLAND",
 	Default = _G.ATFMirage,
@@ -4405,7 +4432,7 @@ SEATAP:AddToggle({
 
 ----------------
 local ESPTAP = Window:MakeTab({
-	Name = "ESP / RAID",
+	Name = "ESP / RAID /FRUIT",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
@@ -4543,6 +4570,35 @@ if World3 or World2 then
     	end    
     })
 end
+
+local Sectionfr = ESPTAP:AddSection({
+	Name = "FRUIT"
+})
+ESPTAP:AddToggle({
+	Name = "AUTO STORE FRUIT",
+	Default = _G.AutoStoreFruit,
+	Callback = function(Value)
+		_G.AutoStoreFruit = Value
+	end    
+})
+
+ESPTAP:AddToggle({
+	Name = "AUTO RANDOM FRUIT",
+	Default = _G.Random_Auto,
+	Callback = function(Value)
+		_G.Random_Auto = Value
+	end    
+})
+
+
+ESPTAP:AddToggle({
+	Name = "AUTO DROP FRUIT",
+	Default = _G.DropFruit,
+	Callback = function(Value)
+		_G.DropFruit = Value
+	end    
+})
+
 ------------------------
 local TPTAP = Window:MakeTab({
 	Name = "TP",
@@ -5022,23 +5078,24 @@ CBTAP:AddToggle({
 local SectionCB = CBTAP:AddSection({
 	Name = "PLAYERS"
 })
-
 CBTAP:AddDropdown({
-	Name = "SELECT PLAYER",
-	Default = Playerslist,
-	Options = Playerslist,
-	Callback = function(Value)
-		_G.SelectPly = Value
-	end    
+    Name = "SELECT PLAYER",
+    Default = Playerslist,
+   	Options = Playerslist,
+    Callback = function(Value)
+    	_G.SelectPly = Value
+    end    
 })
+
+
 
 CBTAP:AddButton({
 	Name = "REFLICH",
 	Callback = function()
     	Playerslist = {}
-    	OrionLib.Flags["PLY"]:Clear()
+    	PLY:Clear()
         for i,v in pairs(game:GetService("Players"):GetChildren()) do  
-            OrionLib.Flags["PLY"]:Add(v.Name)
+            PLY:Add(v.Name)
         end
     end
 })
