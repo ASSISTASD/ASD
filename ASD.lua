@@ -1,5 +1,6 @@
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
+notis.new("<Color=Yellow>ASD NORMAL SCRIPT<Color=/>"):Display()
 
 local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
@@ -3621,7 +3622,7 @@ spawn(function()
 	
 ---------------my hack
 spawn(function()
-        pcall(function()
+        game:GetService("RunService").RenderStepped:Connect(function()
             while wait(.1) do
                 if _G.NoStun then
                     game.Players.LocalPlayer.Character.Stun.Value = 0
@@ -3797,17 +3798,15 @@ spawn(function()
     end)
     
 spawn(function()
-    while wait() do
-		pcall(function()
-			if _G.AutoAwakeningRace then
-				game:GetService("VirtualInputManager"):SendKeyEvent(true,"Y",false,game)
-				wait(0.1)
-                game:GetService("VirtualInputManager"):SendKeyEvent(false,"Y",false,game)
-			end
-		end)
-    end
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.AutoAwakeningRace and game.Players.LocalPlayer.Character.RaceEnergy.Value == 1 then
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, "Y", false, game)
+            wait(0.1)
+            game:GetService("VirtualInputManager"):SendKeyEvent(false, "Y", false, game)
+        end
     end)
-    
+end)
+
     
 Playerslist = {}
     
