@@ -3808,11 +3808,7 @@ spawn(function()
 end)
 
     
-Playerslist = {}
-    
-    for i,v in pairs(game:GetService("Players"):GetChildren()) do
-        table.insert(Playerslist,v.Name)
-    end
+
     
 -------------lable
 
@@ -4034,12 +4030,32 @@ spawn(function()
 ---------------
 spawn(function()
         while wait() do
-            pcall(function()
-                localrace:Set("Race:".." "..game:GetService("Players").LocalPlayer.Data.Race.Value)
-            end)
+            if _G.AutoBuyLegendarySword then
+                pcall(function()
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "1"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "2"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    local args = {
+                        [1] = "LegendarySwordDealer",
+                        [2] = "3"
+                    }
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+                    if _G.AutoBuyLegendarySword_Hop and _G.AutoBuyLegendarySword and World2 then
+                        wait(10)
+                        Hop()
+                    end
+                end)
+            end 
         end
     end)
-    
+
 local INFOPLY = Window:MakeTab({
 	Name = "INFO",
 	Icon = "rbxassetid://4483345998",
@@ -4054,6 +4070,26 @@ local SINFOPLY = INFOPLY:AddSection({
 local localrace = INFOPLY:AddLabel("???")
 local LOCLV = INFOPLY:AddLabel("???")
 local localbountyhornor = INFOPLY:AddLabel("???")
+local plyserv = INFOPLY:AddLabel("Players")
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+                    if i == 12 then
+                        plyserv:Set("Players:".." "..i.." ".."/".." ".."12".." ".."(Max)")
+                    elseif i == 1 then
+                        plyserv:Set("Player:".." "..i.." ".."/".." ".."12")
+                    else
+                        plyserv:Set("Players:".." "..i.." ".."/".." ".."12")
+                    end
+                end
+            end)
+        end
+    end)
+
+
+
 spawn(function()
         while wait() do
             pcall(function()
@@ -4156,6 +4192,25 @@ AFTAP:AddDropdown({
 		_G.SelectBoss = Value
 	end    
 })
+
+
+local ITEMTAP = Window:MakeTab({
+	Name = "ITEMS",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local Sectionst = ITEMTAP:AddSection({
+	Name = "AUTO BUY"
+})
+
+ITEMTAP:AddToggle({
+	Name = "AUTO BUY LEGENDARY SWORD",
+	Default = true,
+	Callback = function(Value)
+		_G.AutoBuyLegendarySword = Value
+	end    
+})
+
 
 local STAP = Window:MakeTab({
 	Name = "SETTING",
@@ -5077,25 +5132,34 @@ CBTAP:AddToggle({
 local SectionCB = CBTAP:AddSection({
 	Name = "PLAYERS"
 })
-CBTAP:AddDropdown({
+
+local Playerslist = {}
+
+local function refreshPlayersList()
+    Playerslist = {}
+    for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+        table.insert(Playerslist, v.Name)
+    end
+end
+
+-- Initial population of the player list
+refreshPlayersList()
+
+local SelectedPly = CBTAP:AddDropdown({
     Name = "SELECT PLAYER",
-    Default = Playerslist,
-   	Options = Playerslist,
+    Default = Playerslist[1],  -- Assuming Playerslist is not empty initially
+    Options = Playerslist,
     Callback = function(Value)
-    	_G.SelectPly = Value
-    end    
+        _G.SelectPly = Value
+    end
 })
 
-
-
+-- Button to refresh the player list
 CBTAP:AddButton({
-	Name = "REFLICH",
-	Callback = function()
-    	Playerslist = {}
-    	PLY:Clear()
-        for i,v in pairs(game:GetService("Players"):GetChildren()) do  
-            PLY:Add(v.Name)
-        end
+    Name = "REFRESH",
+    Callback = function()
+        refreshPlayersList()
+        SelectedPly:Refresh(Playerslist, true)
     end
 })
 
