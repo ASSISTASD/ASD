@@ -1,6 +1,6 @@
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
-
+notis.new("<Color=Yellow>ASD PVP SCRIPT<Color=/>"):Display()
 local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window =asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
@@ -1199,6 +1199,16 @@ spawn(function()
     end
 end)
 
+spawn(function()
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if _G.AutoAwakeningRace and game.Players.LocalPlayer.Character.RaceEnergy.Value == 1 then
+            game:GetService("VirtualInputManager"):SendKeyEvent(true, "Y", false, game)
+            wait(0.1)
+            game:GetService("VirtualInputManager"):SendKeyEvent(false, "Y", false, game)
+        end
+    end)
+end)
+
 
 local CBTAP = Window:MakeTab({
 	Name = "PLAYER",
@@ -1322,6 +1332,15 @@ MISCTAP:AddToggle({
         end
 	end    
 })
+
+MISCTAP:AddToggle({
+	Name = "AUTO AWAKENING RACE",
+	Default = false,
+	Callback = function(Value)
+		_G.AutoAwakeningRace = Value
+	end    
+})
+
 
 MISCTAP:AddButton({
 	Name = "TEAM PIRATES ",
