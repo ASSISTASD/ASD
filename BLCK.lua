@@ -1315,6 +1315,7 @@ local function executeTextProcess()
         --melee fun
         
         local function skmelee_x(holdTime_x)
+            EquipWeapon(_G.SelectMel)
             wait(0.1)
             
             game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
@@ -1326,6 +1327,7 @@ local function executeTextProcess()
         end
         
         local function skmelee_z(holdTime_z)
+            EquipWeapon(_G.SelectMel)
             wait(0.1)
             
             game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
