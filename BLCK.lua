@@ -1209,6 +1209,355 @@ spawn(function()
     end)
 end)
 
+----------auto combo
+local combotext = Instance.new("StringValue")
+combotext.Value = ""
+
+task.spawn(function()
+	while wait() do
+		pcall(function()
+			if _G.SelectMel == "Melee" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Melee" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectMel = v.Name
+						end
+					end
+				end
+			elseif _G.SelectSrd == "Sword" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Sword" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectSrd = v.Name
+						end
+					end
+				end
+			elseif _G.SelectGun == "Gun" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Gun" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectGun = v.Name
+						end
+					end
+				end
+			elseif _G.SelectFru == "Fruit" then
+				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+					if v.ToolTip == "Blox Fruit" then
+						if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
+							_G.SelectFru = v.Name
+						end
+					end
+				end
+			end
+		end)
+	end
+    end)
+    
+
+
+
+    function UnEquipWeapon(Weapon)
+        if game.Players.LocalPlayer.Character:FindFirstChild(Weapon) then
+            _G.NotAutoEquip = true
+            wait(.5)
+            game.Players.LocalPlayer.Character:FindFirstChild(Weapon).Parent = game.Players.LocalPlayer.Backpack
+            wait(.1)
+            _G.NotAutoEquip = false
+        end
+    end
+    
+    function EquipWeapon(ToolSe)
+        if not _G.NotAutoEquip then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
+                Tool = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
+                wait(.1)
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(Tool)
+            end
+        end
+    end
+
+_G.SelectMel = "Melee"
+_G.SelectGun = "Gun"
+_G.SelectFru = "Fruit"
+_G.SelectSrd = "Sword"
+
+local function executeTextProcess()
+    getgenv().keytoclick = "Combo"
+    local tool = Instance.new("Tool")
+    tool.RequiresHandle = false
+    tool.Name = keytoclick
+    tool.Activated:connect(function()
+        local text = combotext.Value
+        local parts = {}
+        for part in string.gmatch(text, "([^&]+)") do
+            table.insert(parts, part)
+        end
+        local function extractWaitTime(part)
+            local waitTime = string.match(part, "wait%((%d+%.?%d*)%)")
+            return waitTime and tonumber(waitTime) or nil
+        end
+        ---melee hold
+        local function extractHoldTime_x(part)
+            local holdTime_x = string.match(part, "melee%.x%.hold%((%d+)%)")
+            return holdTime_x and tonumber(holdTime_x) or nil
+        end
+        
+        local function extractHoldTime_z(part)
+            local holdTime_z = string.match(part, "melee%.z%.hold%((%d+)%)")
+            return holdTime_z and tonumber(holdTime_z) or nil
+        end
+        
+        local function extractHoldTime_c(part)
+            local holdTime_c = string.match(part, "melee%.c%.hold%((%d+)%)")
+            return holdTime_c and tonumber(holdTime_c) or nil
+        end
+        
+        --melee fun
+        
+        local function skmelee_x(holdTime_x)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+            if holdTime_x then
+                wait(holdTime_x)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+            print("your text")
+        end
+        
+        local function skmelee_z(holdTime_z)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+            if holdTime_z then
+                wait(holdTime_z)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+            print("your")
+        end
+        
+        local function skmelee_c(holdTime_c)
+            EquipWeapon(_G.SelectMel)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+            if holdTime_c then
+                wait(holdTime_c)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+        end
+        
+        --gun hold
+        local function extractHoldTime_x_G(part)
+            local holdTime_x_G = string.match(part, "gun%.x%.hold%((%d+)%)")
+            return holdTime_x_G and tonumber(holdTime_x_G) or nil
+        end
+        local function extractHoldTime_z_G(part)
+            local holdTime_z_G = string.match(part, "gun%.z%.hold%((%d+)%)")
+            return holdTime_z_G and tonumber(holdTime_z_G) or nil
+        end
+        ---gun fun
+        
+        
+        local function skgun_x(holdTime_x_G)
+            EquipWeapon(_G.SelectGun)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+            if holdTime_x_G then
+                wait(holdTime_x_G)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+        end
+        
+        local function skgun_z(holdTime_z_G)
+            EquipWeapon(_G.SelectGun)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+            if holdTime_z_G then
+                wait(holdTime_z_G)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+        end
+        
+        ----------sword hold
+        local function extractHoldTime_x_S(part)
+            local holdTime_x_S = string.match(part, "sword%.x%.hold%((%d+)%)")
+            return holdTime_x_S and tonumber(holdTime_x_S) or nil
+        end
+        
+        local function extractHoldTime_z_S(part)
+            local holdTime_z_S = string.match(part, "sword%.z%.hold%((%d+)%)")
+            return holdTime_z_S and tonumber(holdTime_z_S) or nil
+        end
+        ---sword fun
+        local function skSrd_x(holdTime_x_S)
+            EquipWeapon(_G.SelectSrd)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+            if holdTime_x_S then
+                wait(holdTime_x_S)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+        end
+        
+        local function skSrd_z(holdTime_z_S)
+            EquipWeapon(_G.SelectSrd)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+            if holdTime_z_S then
+                wait(holdTime_z_S)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+        end
+        
+        ---------frut hold
+        local function extractHoldTime_x_F(part)
+            local holdTime_x_F = string.match(part, "fruit%.x%.hold%((%d+)%)")
+            return holdTime_x_F and tonumber(holdTime_x_F) or nil
+        end
+        
+        local function extractHoldTime_z_F(part)
+            local holdTime_z_F = string.match(part, "fruit%.z%.hold%((%d+)%)")
+            return holdTime_z_F and tonumber(holdTime_z_F) or nil
+        end
+        
+        local function extractHoldTime_c_F(part)
+            local holdTime_c_F = string.match(part, "fruit%.c%.hold%((%d+)%)")
+            return holdTime_c_F and tonumber(holdTime_c_F) or nil
+        end
+        
+        local function extractHoldTime_v_F(part)
+            local holdTime_v_F = string.match(part, "fruit%.v%.hold%((%d+)%)")
+            return holdTime_v_F and tonumber(holdTime_v_F) or nil
+        end
+        ----------fruit fun
+        local function skFRU_x(holdTime_x_F)
+            EquipWeapon(_G.SelectFru)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "X", false, game)
+            if holdTime_x_F then
+                wait(holdTime_x_F)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
+        end
+        
+        local function skFRU_z(holdTime_z_F)
+            EquipWeapon(_G.SelectFru)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "Z", false, game)
+            if holdTime_z_F then
+                wait(holdTime_z_F)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
+        end
+        
+        local function skFRU_c(holdTime_c_F)
+            EquipWeapon(_G.SelectFru)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "C", false, game)
+            if holdTime_c_F then
+                wait(holdTime_c_F)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "C", false, game)
+        end
+        
+        local function skFRU_v(holdTime_v_F)
+            EquipWeapon(_G.SelectFru)
+            wait(0.1)
+            
+            game:service('VirtualInputManager'):SendKeyEvent(true, "V", false, game)
+            if holdTime_v_F then
+                wait(holdTime_v_F)
+            end
+            game:service('VirtualInputManager'):SendKeyEvent(false, "V", false, game)
+        end
+        --work zhahaha
+        
+        for _, part in ipairs(parts) do
+            local waitTime = extractWaitTime(part)
+            if waitTime then
+                    wait(waitTime)
+                    print(waitTime)
+            elseif string.match(part, "melee%.x%.hold%(%d+%)") then
+                local holdTime_x = extractHoldTime_x(part)
+                skmelee_x(holdTime_x)
+            elseif string.match(part, "melee%.z%.hold%(%d+%)") then
+                local holdTime_z = extractHoldTime_z(part)
+                skmelee_z(holdTime_z)
+            elseif string.match(part, "melee%.c%.hold%(%d+%)") then
+                local holdTime_c = extractHoldTime_c(part)
+                skmelee_c(holdTime_c)    
+            elseif part == "melee.x" then
+                skmelee_x()
+            elseif part == "melee.z" then
+                skmelee_z()
+            elseif part == "melee.c" then
+                skmelee_c()
+            --------------------- sword
+            elseif string.match(part, "sword%.x%.hold%(%d+%)") then
+                local holdTime_x_S = extractHoldTime_x_S(part)
+                skSrd_x(holdTime_x_S)    
+            elseif string.match(part, "sword%.z%.hold%(%d+%)") then
+                local holdTime_z_S = extractHoldTime_z_S(part)
+                skSrd_z(holdTime_z_S)
+            elseif part == "sword.x" then
+                skSrd_x()
+            elseif part == "sword.z" then
+                skSrd_z()
+            ------------------gun
+            elseif string.match(part, "gun%.x%.hold%(%d+%)") then
+                local holdTime_x_G = extractHoldTime_x_G(part)
+                skgun_x(holdTime_x_G)    
+            elseif string.match(part, "gun%.z%.hold%(%d+%)") then
+                local holdTime_z_G = extractHoldTime_z_G(part)
+                skgun_z(holdTime_z_G)
+            elseif part == "gun.x" then
+                skgun_x()
+            elseif part == "gun.z" then
+                skgun_z()
+            -----+--------------fruit
+            elseif string.match(part, "fruit%.x%.hold%(%d+%)") then
+                local holdTime_x_F = extractHoldTime_x_F(part)
+                skFRU_x(holdTime_x_F)    
+            elseif string.match(part, "fruit%.z%.hold%(%d+%)") then
+                local holdTime_z_F = extractHoldTime_z_F(part)
+                skFRU_z(holdTime_z_F)    
+            elseif string.match(part, "fruit%.c%.hold%(%d+%)") then
+                local holdTime_c_F = extractHoldTime_c_F(part)
+                skFRU_c(holdTime_c_F)    
+            elseif string.match(part, "fruit%.v%.hold%(%d+%)") then
+                local holdTime_v_F = extractHoldTime_v_F(part)
+                skFRU_v(holdTime_v_F)   
+            elseif part == "fruit.x" then
+                skFRU_x()
+            elseif part == "fruit.z" then
+                skFRU_z()
+            elseif part == "fruit.c" then
+                skFRU_c()
+            elseif part == "fruit.v" then
+                skFRU_v()
+            end
+        end
+    end)
+    tool.Parent = game.Players.LocalPlayer.Backpack
+    wait(0.2)
+end
+
+
+
+
+
+
+--------
+
+
 
 local CBTAP = Window:MakeTab({
 	Name = "PLAYER",
@@ -1256,6 +1605,38 @@ CBTAP:AddToggle({
 		_G.Aimbot = Value
 	end    
 })
+
+local SectionCB = CBTAP:AddSection({
+    Name = "AUTO COMBO"
+})
+
+local combois = CBTAP:AddLabel("COMBO :")
+
+spawn(function()
+        while wait() do
+            pcall(function()
+                combois:Set("COMBO : ".." "..combotext.Value)
+            end)
+        end
+    end)
+-- إنشاء TextBox للحصول على مدخلات المستخدم
+CBTAP:AddTextbox({
+	Name = "COMBO TEXT",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		combotext.Value = Value
+	end	  
+})
+
+
+CBTAP:AddButton({
+    Name = "COMBO",
+    Callback = function()
+        executeTextProcess()
+    end
+})
+
 
 local ESPTAP = Window:MakeTab({
 	Name = "ESP",
