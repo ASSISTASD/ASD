@@ -59,7 +59,7 @@ function Notif.New(text, timee)
     local frame_3 = Instance.new("Frame")
     frame_3.AnchorPoint = Vector2.new(0.5, 1)
     frame_3.AutomaticSize = Enum.AutomaticSize.X
-    frame_3.BackgroundColor3 = Color3.new(255, 255, 0)
+    frame_3.BackgroundColor3 = Color3.new(1, 1, 0) -- لون وسط الإطار إلى أصفر
     frame_3.BackgroundTransparency = 0.20000000298023224
     frame_3.BorderColor3 = Color3.new(0, 0, 0)
     frame_3.Position = UDim2.new(0.5, 0, 1, 60)
@@ -80,13 +80,13 @@ function Notif.New(text, timee)
 
     local uistroke = Instance.new("UIStroke")
     uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    uistroke.Color = Color3.new(0.0313726, 0.0313726, 0.0313726)
+    uistroke.Color = Color3.new(0.5, 0.5, 0) -- لون الحواف إلى أصفر داكن
     uistroke.Parent = frame_3
 
     local text_label = Instance.new("TextLabel")
     text_label.Font = Enum.Font.Gotham
     text_label.Text = text
-    text_label.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+    text_label.TextColor3 = Color3.new(0.5, 0.5, 0.5) -- لون النص إلى رمادي
     text_label.TextSize = 14
     text_label.AutomaticSize = Enum.AutomaticSize.X
     text_label.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -172,7 +172,7 @@ function Notif.New(text, timee)
         TS:Create(frame_3, TweenInfo.new(0.25, Enum.EasingStyle.Quint), { BackgroundTransparency = 1 }):Play()
         TS:Create(uistroke, TweenInfo.new(0.24, Enum.EasingStyle.Quint), { Transparency = 1 }):Play()
         task.wait(.05)
-        TS:Create(frame_2, TweenInfo.new(0.2, Enum.EasingStyle.Quint), { Size = UDim2.new(0, 100, 0, 0) }):Play()
+        TS:Create(frame_2, TweenInfo.new(0.2, Enum.EasingStyle.Quint), { Size = UDim2.new(0, 100, 0, 0) }):Play
         task.wait(.2)
         frame_2:Destroy()
     end)
