@@ -35,7 +35,7 @@ frame.BackgroundTransparency = 1
 frame.BorderColor3 = Color3.new(0, 0, 0)
 frame.BorderSizePixel = 0
 frame.Position = UDim2.new(1, 0, 0, 0)
-frame.Size = UDim2.new(0, 1000, 0, 100)
+frame.Size = UDim2.new(0, 100, 0, 100)
 frame.Visible = true
 frame.Parent = screen_gui
 
@@ -48,10 +48,10 @@ uilist_layout.Parent = frame
 function Notif.New(text, timee)
     local frame_2 = Instance.new("Frame")
     frame_2.BackgroundColor3 = Color3.new(1, 1, 1)
-    frame_2.BorderColor3 = Color3.new(0, 0, 0)
+    frame_2.BorderColor3 = Color3.new(255, 255, 0)
     frame_2.BorderSizePixel = 0
     frame_2.BackgroundTransparency = 1
-    frame_2.Size = UDim2.new(0, 100, 0, 0)
+    frame_2.Size = UDim2.new(0, 50, 50, 0)
     frame_2.Visible = true
     frame_2.Parent = frame
 	
