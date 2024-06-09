@@ -1,3 +1,10 @@
+--[[ 
+    Notify Lib by me: mr.xrer
+    Changelog:
+        25.07.2023:
+            - Time argument, autoclose
+            - Better animations
+--]]
 local Notif = {}
 
 local CoreGUI = game:GetService("CoreGui")
@@ -27,7 +34,7 @@ frame.BackgroundColor3 = Color3.new(1, 1, 1)
 frame.BackgroundTransparency = 1
 frame.BorderColor3 = Color3.new(0, 0, 0)
 frame.BorderSizePixel = 0
-frame.Position = UDim2.new(0.5, 0, 0.954999983, 0)
+frame.Position = UDim2.new(0.5, 0, 0.1, 0)
 frame.Size = UDim2.new(0, 100, 0, 100)
 frame.Visible = true
 frame.Parent = screen_gui
