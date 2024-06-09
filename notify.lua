@@ -34,7 +34,7 @@ frame.BackgroundColor3 = Color3.new(255, 255, 0)
 frame.BackgroundTransparency = 1
 frame.BorderColor3 = Color3.new(0, 0, 0)
 frame.BorderSizePixel = 0
-frame.Position = UDim2.new(1, 0, 0.1, 0)
+frame.Position = UDim2.new(0.5, 0, 0.1, 0)
 frame.Size = UDim2.new(0, 100, 0, 100)
 frame.Visible = true
 frame.Parent = screen_gui
@@ -59,7 +59,7 @@ function Notif.New(text, timee)
     local frame_3 = Instance.new("Frame")
     frame_3.AnchorPoint = Vector2.new(0.5, 1)
     frame_3.AutomaticSize = Enum.AutomaticSize.X
-    frame_3.BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
+    frame_3.BackgroundColor3 = Color3.new(255, 255, 0)
     frame_3.BackgroundTransparency = 0.20000000298023224
     frame_3.BorderColor3 = Color3.new(0, 0, 0)
     frame_3.Position = UDim2.new(0.5, 0, 1, 60)
