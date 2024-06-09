@@ -30,12 +30,12 @@ Hide_UI(screen_gui)
 
 local frame = Instance.new("Frame")
 frame.AnchorPoint = Vector2.new(0.5, 0.949999988079071)
-frame.BackgroundColor3 = Color3.new(1, 1, 1)
+frame.BackgroundColor3 = Color3.new(255, 255, 0)
 frame.BackgroundTransparency = 1
 frame.BorderColor3 = Color3.new(0, 0, 0)
 frame.BorderSizePixel = 0
-frame.Position = UDim2.new(0.9, 0, 0.1, 0)
-frame.Size = UDim2.new(0, 100, 0, 100)
+frame.Position = UDim2.new(1, 0, 0, 0)
+frame.Size = UDim2.new(0, 1000, 0, 100)
 frame.Visible = true
 frame.Parent = screen_gui
 
