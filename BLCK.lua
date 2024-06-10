@@ -4,7 +4,84 @@ notis.new("<Color=Yellow>ASD PVP SCRIPT<Color=/>"):Display()
 local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window =asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
+
+
+
+
+
+
+
+
+
+
+
+function Hop()
+        local PlaceID = game.PlaceId
+        local AllIDs = {}
+        local foundAnything = ""
+        local actualHour = os.date("!*t").hour
+        local Deleted = false
+        function TPReturner()
+            local Site;
+            if foundAnything == "" then
+                Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+            else
+                Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+            end
+            local ID = ""
+            if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+                foundAnything = Site.nextPageCursor
+            end
+            local num = 0;
+            for i,v in pairs(Site.data) do
+                local Possible = true
+                ID = tostring(v.id)
+                if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                    for _,Existing in pairs(AllIDs) do
+                        if num ~= 0 then
+                            if ID == tostring(Existing) then
+                                Possible = false
+                            end
+                        else
+                            if tonumber(actualHour) ~= tonumber(Existing) then
+                                local delFile = pcall(function()
+                                    AllIDs = {}
+                                    table.insert(AllIDs, actualHour)
+                                end)
+                            end
+                        end
+                        num = num + 1
+                    end
+                    if Possible == true then
+                        table.insert(AllIDs, ID)
+                        wait()
+                        pcall(function()
+                            wait()
+                            game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                        end)
+                        wait(4)
+                    end
+                end
+            end
+        end
+        function Teleport() 
+            while wait() do
+                pcall(function()
+                    TPReturner()
+                    if foundAnything ~= "" then
+                        TPReturner()
+                    end
+                end)
+            end
+        end
+        Teleport()
+    end       
+    
+
 -- set local
+
+
+
 local mouse = game.Players.LocalPlayer:GetMouse()
 local guiservice = game.GetService(game, "GuiService")
 local players = game.GetService(game, "Players")
@@ -1558,7 +1635,61 @@ end
 
 
 --------
+local INFOPLY = Window:MakeTab({
+	Name = "INFO",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
 
+local SINFOPLY = INFOPLY:AddSection({
+	Name = "YOUR ACCOUNT"
+})
+
+
+local localrace = INFOPLY:AddLabel("???")
+local LOCLV = INFOPLY:AddLabel("???")
+local localbountyhornor = INFOPLY:AddLabel("???")
+local plyserv = INFOPLY:AddLabel("Players")
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+                    if i == 12 then
+                        plyserv:Set("Players:".." "..i.." ".."/".." ".."12".." ".."(Max)")
+                    elseif i == 1 then
+                        plyserv:Set("Player:".." "..i.." ".."/".." ".."12")
+                    else
+                        plyserv:Set("Players:".." "..i.." ".."/".." ".."12")
+                    end
+                end
+            end)
+        end
+    end)
+
+
+
+spawn(function()
+        while wait() do
+            pcall(function()
+                localrace:Set("Race:".." "..game:GetService("Players").LocalPlayer.Data.Race.Value)
+            end)
+        end
+    end)
+spawn(function()
+        while wait() do
+            pcall(function()
+                LOCLV:Set("Level:".." "..game:GetService("Players").LocalPlayer.Data.Level.Value)
+            end)
+        end
+    end)    
+spawn(function()
+        while wait() do
+            pcall(function()
+                localbountyhornor:Set("Bounty / Honor:".." "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)
+            end)
+        end
+    end)
 
 
 local CBTAP = Window:MakeTab({
@@ -1756,6 +1887,73 @@ MISCTAP:AddButton({
 	end
 		
 })
+
+local Sectionmisc = MISCTAP:AddSection({
+	Name = "SERVER"
+})
+
+
+MISCTAP:AddButton({
+	Name = "SERVER HOP",
+	Callback = function()
+    	Hop()
+    end
+})
+
+
+
+
+
+MISCTAP:AddButton({
+	Name = "SERVER HOP LOWER",
+	Callback = function()
+    	getgenv().AutoTeleport = true
+        getgenv().DontTeleportTheSameNumber = true 
+        getgenv().CopytoClipboard = false
+        if not game:IsLoaded() then
+            print("Game is loading waiting...")
+        end
+        local maxplayers = math.huge
+        local serversmaxplayer;
+        local goodserver;
+        local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100" 
+        function serversearch()
+            for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
+                if type(v) == "table" and v.playing ~= nil and maxplayers > v.playing then
+                    serversmaxplayer = v.maxPlayers
+                    maxplayers = v.playing
+                    goodserver = v.id
+                end
+            end       
+        end
+        function getservers()
+            serversearch()
+            for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
+                if i == "nextPageCursor" then
+                    if gamelink:find("&cursor=") then
+                        local a = gamelink:find("&cursor=")
+                        local b = gamelink:sub(a)
+                        gamelink = gamelink:gsub(b, "")
+                    end
+                    gamelink = gamelink .. "&cursor=" ..v
+                    getservers()
+                end
+            end
+        end 
+        getservers()
+        if AutoTeleport then
+            if DontTeleportTheSameNumber then 
+                if #game:GetService("Players"):GetPlayers() - 4  == maxplayers then
+                    return warn("It has same number of players (except you)")
+                elseif goodserver == game.JobId then
+                    return warn("Your current server is the most empty server atm") 
+                end
+            end
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
+        end
+    end
+})
+
 
 local STAP = Window:MakeTab({
 	Name = "SETTING",
