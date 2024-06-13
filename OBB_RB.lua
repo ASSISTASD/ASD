@@ -1292,143 +1292,143 @@ parent.TopBar.ProfileMenu.PlayerProfile.ImageLabel.Image = game:GetService("Play
 
 
 function UILIB:Load(name, img, direction)
-        local self = setmetatable({}, UILIB)
+	local self = setmetatable({}, UILIB)
+	task.spawn(function()
+			local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
+			local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.23, 0,0.012, 0) })
+			tw:Play()
+			tw.Completed:Wait()
+			task.wait(0.3)
+			tw2:Play()
+	end)
         task.spawn(function()
-                        local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
-                        local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.23, 0,0.012, 0) })
-                        tw:Play()
-                        tw.Completed:Wait()
-                        task.wait(0.3)
-                        tw2:Play()
+	     while true do
+		task.wait(0.1)
+		parent.TopBar.ProfileMenu.Clock.TextLabel.Text = os.date("%H:%m")
+	     end
         end)
-        task.spawn(function()
-             while true do
-                task.wait(0.1)
-                parent.TopBar.ProfileMenu.Clock.TextLabel.Text = os.date("%H:%m")
-             end
-        end)
-        parent.TopBar.ProfileMenu.Title.TextLabel.Text = name
-        if img then
-                parent.MainBar.Logo.Image = img
-        elseif img == "Default" then
+	parent.TopBar.ProfileMenu.Title.TextLabel.Text = name
+	if img then
+		parent.MainBar.Logo.Image = img
+	elseif img == "Default" then
 
-        else
-                parent.MainBar.Logo.Image = ""
-                end
+	else
+		parent.MainBar.Logo.Image = ""
+		end
 
 
-        parent.TopBar.TopBarClose.MouseButton1Click:Connect(function()
-                if closed == false then
-                        closed = true
-                        local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.612, 0) })
-                        local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.95, 0) })
-                        local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.173, 0) })
-                        local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 180 })
+	parent.TopBar.TopBarClose.MouseButton1Click:Connect(function()
+		if closed == false then
+			closed = true
+			local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.612, 0) })
+			local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.95, 0) })
+			local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.173, 0) })
+			local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 180 })
 
-                        tw:Play()
-                        tw.Completed:Wait()
-                        tw2:Play()
-                        task.wait(0.1)
-                        twRotate:Play()
-                        tw3:Play()
+			tw:Play()
+			tw.Completed:Wait()
+			tw2:Play()
+			task.wait(0.1)
+			twRotate:Play()
+			tw3:Play()
+			
+		elseif closed == true then
+			closed = false
+			local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
+			local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.52, 0) })
+			local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.012, 0) })
+			local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 0 })
 
-                elseif closed == true then
-                        closed = false
-                        local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
-                        local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.52, 0) })
-                        local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.012, 0) })
-                        local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 0 })
-
-                        tw:Play()
-                        tw.Completed:Wait()
-                        tw2:Play()
-                        task.wait(0.1)
-                        twRotate:Play()
-                        tw3:Play()
-                end
-        end)
+			tw:Play()
+			tw.Completed:Wait()
+			tw2:Play()
+			task.wait(0.1)
+			twRotate:Play()
+			tw3:Play()
+		end
+	end)
 
 
-        function self:Open()
-                local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
-                local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.52, 0) })
-                local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.012, 0) })
-                local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 0 })
+	function self:Open()
+		local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
+		local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.52, 0) })
+		local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.012, 0) })
+		local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 0 })
 
-                tw:Play()
-                tw.Completed:Wait()
-                tw2:Play()
-                task.wait(0.1)
-                twRotate:Play()
-                tw3:Play()
-        end
+		tw:Play()
+		tw.Completed:Wait()
+		tw2:Play()
+		task.wait(0.1)
+		twRotate:Play()
+		tw3:Play()
+	end
 
-        function self:Close()
-                local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.612, 0) })
-                local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.95, 0) })
-                local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.173, 0) })
-                local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 180 })
+	function self:Close()
+		local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.612, 0) })
+		local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.95, 0) })
+		local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.173, 0) })
+		local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 180 })
 
-                tw:Play()
-                tw.Completed:Wait()
-                tw2:Play()
-                task.wait(0.1)
-                twRotate:Play()
-                tw3:Play()
-        end
-        function self:HideCloseButton()
-                DRR["1f"].Visible = false
-        end
+		tw:Play()
+		tw.Completed:Wait()
+		tw2:Play()
+		task.wait(0.1)
+		twRotate:Play()
+		tw3:Play()
+	end
+	function self:HideCloseButton()
+		DRR["1f"].Visible = false
+	end
         function self:Hide()
-                DDR["1"].Enabled = false
+		DDR["1"].Enabled = false
+	end
+	function self:Show()
+		DDR["1"].Enabled = true
         end
-        function self:Show()
-                DDR["1"].Enabled = true
-        end
-        function self:Toggle()
-                if closed == false then
-                        closed = true
-                        local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.612, 0) })
-                        local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.95, 0) })
-                        local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.173, 0) })
-                        local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 180 })
+	function self:Toggle()
+		if closed == false then
+			closed = true
+			local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.612, 0) })
+			local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.95, 0) })
+			local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,-0.173, 0) })
+			local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 180 })
 
-                        tw:Play()
-                        tw.Completed:Wait()
-                        tw2:Play()
-                        tw2.Completed:Wait()
-                        twRotate:Play()
-                        tw3:Play()
-                elseif closed == true then
-                        closed = false
-                        local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
-                        local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.52, 0) })
-                        local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.012, 0) })
-                        local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 0 })
+			tw:Play()
+			tw.Completed:Wait()
+			tw2:Play()
+			tw2.Completed:Wait()
+			twRotate:Play()
+			tw3:Play()
+		elseif closed == true then
+			closed = false
+			local tw = twServ:Create(parent.MainBar, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.212, 0) })
+			local tw3 = twServ:Create(parent.TopBar.TopBarClose, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Position = UDim2.new(0.916, 0,0.52, 0) })
+			local tw2 = twServ:Create(parent.TopBar, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out), { Position = UDim2.new(0.23, 0,0.012, 0) })
+			local twRotate = twServ:Create(parent.TopBar.TopBarClose.ImageLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), { Rotation = 0 })
 
-                        tw:Play()
-                        tw.Completed:Wait()
-                        tw2:Play()
-                        tw2.Completed:Wait()
-                        twRotate:Play()
-                        tw3:Play()
-                end
-        end
-        function self:SetTheme(color, color2)
-                for i,v in pairs(parent:GetChildren()) do
-                        if v:IsA("GuiObject") then
-                                pcall(function()
-                                        if v.BackgroundColor3 == Color3.fromRGB(39, 44, 61) then
-                                                v.BackgroundColor3 = color
-                                                GlobalColor1 = color
-                                        elseif v.BackgroundColor3 == Color3.fromRGB(0, 255, 38) then
-                                                v.BackgroundColor3 = color2
-                                                GlobalColor2 = color2
-                                        end
-                                end)
-                        end
-                end
-        end
+			tw:Play()
+			tw.Completed:Wait()
+			tw2:Play()
+			tw2.Completed:Wait()
+			twRotate:Play()
+			tw3:Play()
+		end
+	end
+	function self:SetTheme(color, color2)
+		for i,v in pairs(parent:GetChildren()) do
+			if v:IsA("GuiObject") then
+				pcall(function()
+					if v.BackgroundColor3 == Color3.fromRGB(39, 44, 61) then
+						v.BackgroundColor3 = color
+						GlobalColor1 = color
+					elseif v.BackgroundColor3 == Color3.fromRGB(0, 255, 38) then
+						v.BackgroundColor3 = color2
+						GlobalColor2 = color2
+					end
+				end)
+			end
+		end
+	end
 
 end
 
@@ -1442,329 +1442,334 @@ end
 
 
 
-function UILIB.newTab(name, img)        
-        local self = setmetatable({}, UILIB)
-
-        local newTab = parent.Folder.TabReserved:Clone()
-        newTab.Parent = parent.MainBar
-        newTab.Name = name
-        newTab.Visible = false
-
-        local newTabBtn = parent.Folder.TabButtonReserved:Clone()
-        newTabBtn.Parent = parent.TopBar.ScrollingFrame
-        newTabBtn.Name = name or "Tab"..#parent.MainBar:GetChildren() - 4
-        newTabBtn.Frame.TextLabel.Text = name
-        if img then
-                newTabBtn.ImageLabel.Image = img
-        else
-                newTabBtn.ImageLabel.Image = ""
-        end
-        newTabBtn.Visible = true
-
-        newTabBtn.MouseButton1Click:Connect(function()
-                for i,v in pairs(parent.TopBar.ScrollingFrame:GetChildren()) do
-                        if v:IsA("ImageButton") then
-                                local vTab = parent.MainBar:FindFirstChild(v.Name)
-                                if v.Name ~= name then
-                                        local twBtn = twServ:Create(v, TweenInfo.new(0.2), { Transparency = 0.75})
-
-                                        twBtn:Play()
-
-                                        vTab.Visible = false
-                                elseif v.Name == name then
-                                        vTab.Visible = true
-                                        local twBtn = twServ:Create(v, TweenInfo.new(0.2), { Transparency = 0 })
-
-                                        twBtn:Play()
-
-                                end
-
-                        end
-                end
-        end)
-
-        function self.newButton(name, desc, func)
-                local newbtn = reserved.Button:Clone()
-                newbtn.Parent = newTab
-                newbtn.Title.Text = name
-                newbtn.Description.Text = desc
-                newbtn.Visible = true
-                newbtn.Name = name
-
-                newbtn.MouseEnter:Connect(function()
-                        local twBtn = twServ:Create(newbtn, TweenInfo.new(0.2), { Transparency = 0 })
-
-                        twBtn:Play()
-                end)
-                newbtn.MouseLeave:Connect(function()
-                        local twBtn = twServ:Create(newbtn, TweenInfo.new(0.2), { Transparency = 0.4 })
-
-                        twBtn:Play()
-                end)
-                newbtn.MouseButton1Click:Connect(func)
-        end
-
-        function self.newLabel(text)
-                local newLabel = reserved.Label:Clone()
-                newLabel.Parent = newTab
-                newLabel.Visible = true
-                newLabel.Title.Text = text
-
-                return newLabel.Title
-        end
-
-        function self.newInput(name, desc, func)
-                local newInput = reserved.Textbox:Clone()
-                local textbox = newInput.TextboxBar.ActualTextbox
-
-                newInput.MouseEnter:Connect(function()
-                        local twBtn = twServ:Create(newInput, TweenInfo.new(0.2), { Transparency = 0 })
-
-                        twBtn:Play()
-                end)
-                newInput.MouseLeave:Connect(function()
-                        local twBtn = twServ:Create(newInput, TweenInfo.new(0.2), { Transparency = 0.4 })
-
-                        twBtn:Play()
-
-
-                end)
-
-                newInput.Visible = true
-                newInput.Parent = newTab
-                newInput.Title.Text = name
-                newInput.Description.Text = desc
-                newInput.Name = name
-
-                textbox.FocusLost:Connect(function()
-                        func(textbox.Text)
-                end)
-
-        end
-
-        function self.newKeybind(name, desc, func)
-                local newKey = reserved.Keybind:Clone()
-
-
-                newKey.MouseEnter:Connect(function()
-                        local twBtn = twServ:Create(newKey, TweenInfo.new(0.2), { Transparency = 0 })
-
-                        twBtn:Play()
-                end)
-                newKey.MouseLeave:Connect(function()
-                        local twBtn = twServ:Create(newKey, TweenInfo.new(0.2), { Transparency = 0.4 })
-
-                        twBtn:Play()
-                end)
-                newKey.Parent = newTab
-                newKey.Title.Text = name
-                newKey.Name = name
-                newKey.Description.Text = desc
-                newKey.Visible =  true
-
-                local listening = false
-                local a
-
-                newKey.Bind.Button.MouseButton1Click:Connect(function()
-                        listening = true
-
-
-                        local function Loop()
-                                if listening then
-                                        newKey.Bind.Button.Text = "."
-                                end
-
-                                task.wait(0.5)
-                                if listening then
-                                        newKey.Bind.Button.Text = ".."
-                                end
-                                task.wait(0.5)
-                                if listening then
-                                        newKey.Bind.Button.Text = "..."
-                                end
-                                task.wait(0.5)
-                        end
-
-                        task.spawn(function()
-                                while listening do
-                                        Loop()
-                                end
-                        end)
-
-                        -- Connect the InputBegan event
-                        a = game:GetService("UserInputService").InputBegan:Connect(function(input, processed)
-                                if input.UserInputType == Enum.UserInputType.Keyboard then
-                                        newKey.Bind.Button.Text = input.KeyCode.Name
-                                        listening = false
-                                        a:Disconnect()
-                                        func(input)
-                                elseif input.UserInputType == Enum.UserInputType.MouseButton1 or
-                                        input.UserInputType == Enum.UserInputType.MouseButton2 or
-                                        input.UserInputType == Enum.UserInputType.MouseButton3 then
-                                        newKey.Bind.Button.Text = input.UserInputType.Name
-                                        listening = false
-                                        a:Disconnect()
-                                        func(input)
-                                end
-                        end)
-                end)
-        end
-
-
-        function self.newSlider(name, desc, max, manageSlider, func)
-                local newSlider = reserved.Slider:Clone()
-
-                newSlider.MouseEnter:Connect(function()
-                        local twBtn = twServ:Create(newSlider, TweenInfo.new(0.2), { Transparency = 0 })
-
-                        twBtn:Play()
-                end)
-                newSlider.MouseLeave:Connect(function()
-                        local twBtn = twServ:Create(newSlider, TweenInfo.new(0.2), { Transparency = 0.4 })
-
-                        twBtn:Play()
-                end)
-                newSlider.Visible = true
-                newSlider.Name = name
-                newSlider.Parent = newTab
-                newSlider.Title.Text = name
-                newSlider.Description.Text = desc
-
-                local Mouse = game.Players.LocalPlayer:GetMouse()
-                local tweenServ = twServ
-
-                local Trigger = newSlider.ActualSlider.Trigger
-                local Label = newSlider.ActualSlider.Title
-                local Fill = newSlider.ActualSlider.Fill
-                local Parent = newSlider.ActualSlider
-
-                local perc
-                local Percent
-                local MouseDown = false
-                local delayTw = 0.3
-
-                local function Update()
-                        MouseDown = true
-                        repeat
-                                task.wait()
-                                Percent = math.clamp((Mouse.X - Parent.AbsolutePosition.X) / Parent.AbsoluteSize.X, 0, 1)
-                                perc = math.round(Percent * max)
-                                if manageSlider == false then
-                                        Label.Text = perc
-                                        func(perc)
-                                elseif manageSlider == true then
-                                        Label.Text = perc
-                                        func(perc, Label)
-                                end
-                                local tween = tweenServ:Create(Fill, TweenInfo.new(delayTw, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Size = UDim2.fromScale(Percent, 1) })
-                                tween:Play()
-                        until MouseDown == false
-                end
-
-                Trigger.MouseButton1Down:Connect(Update)
-
-                UIS.InputEnded:Connect(function(input)
-                        if input.UserInputType ==  Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-                                MouseDown = false
-                        end
-                end)
-
-        end
-
-        function self.newToggle(title, desc, toggle, func)
-                local realToggle = toggle
-                local newToggle = reserved.Toggle:Clone()
-                newToggle.Parent = newTab
-                newToggle.Name = title
-                newToggle.Visible = true
-                newToggle.Title.Text = title
-                newToggle.Description.Text = desc
-
-
-                newToggle.MouseEnter:Connect(function()
-                        local twBtn = twServ:Create(newToggle, TweenInfo.new(0.2), { Transparency = 0 })
-
-                        twBtn:Play()
-                end)
-                newToggle.MouseLeave:Connect(function()
-                        local twBtn = twServ:Create(newToggle, TweenInfo.new(0.2), { Transparency = 0.4 })
-
-                        twBtn:Play()
-                end)
-
-
-                if realToggle == true then
-                        newToggle.Label.BackgroundColor3 = GlobalColor2
-                elseif realToggle == false then
-                        newToggle.Label.BackgroundColor3 = GlobalColor1
-                end
-
-
-
-                newToggle.Label.Label.MouseButton1Click:Connect(function()
-
-                        if realToggle == true then
-                                realToggle = false
-                                local twColorOn = twServ:Create(newToggle.Label, TweenInfo.new(0.2), { BackgroundColor3 = GlobalColor1 })
-                                twColorOn:Play()
-
-                                func(realToggle)
-                        elseif realToggle == false then
-                                realToggle = true
-                                local twColorOn = twServ:Create(newToggle.Label, TweenInfo.new(0.2), { BackgroundColor3 = GlobalColor2 })
-                                twColorOn:Play()
-
-                                func(realToggle)
-                        end
-                end)
-
-        end
-
-        function self.newDropdown(name, desc, listTable, func)
-                local newdd = reserved.Dropdown:Clone()
-                newdd.Visible = true
-                newdd.Parent = newTab
-
-                newdd.Name = name
-                newdd.Title.Text = name
-                newdd.Description.Text = desc
-
-                for i, list in ipairs(listTable) do
-                        local newddbtn = reserved.DropdownButton:Clone()
-                        newddbtn.Visible = true
-                        newddbtn.Parent = newdd.Box.ScrollingFrame
-
-                        newddbtn.Name = list
-                        newddbtn.name.Text = list
-                        task.spawn(function()
-                                newddbtn.MouseButton1Click:Connect(function()
-                                        newdd.DropdownBar.Open.Text = list
-                                        local twPos = twServ:Create(newdd.Box, TweenInfo.new(0.15), {Size = UDim2.new(0.97, 0,0, 0)})
-                                        twPos:Play()
-                                        twPos.Completed:Wait()
-                                        newdd.Box.Visible = false
-                                        func(list)
-                                end)
-                        end)
-                end                
-
-                newdd.DropdownBar.Trigger.MouseButton1Click:Connect(function()
-
-
-                        if newdd.Box.Visible == false then
-                                newdd.Box.Visible = true
-                                local twPos = twServ:Create(newdd.Box, TweenInfo.new(0.15), {Size = UDim2.new(0.97, 0,1.696, 0)})
-                                twPos:Play()
-                        elseif newdd.Box.Visible == true then
-                                local twPos = twServ:Create(newdd.Box, TweenInfo.new(0.15), {Size = UDim2.new(0.97, 0,0, 0)})
-                                twPos:Play()
-                                twPos.Completed:Wait()
-                                newdd.Box.Visible = false
-                        end
-                end)
-        end
-
-        return self
+function UILIB.newTab(name, img)	
+	local self = setmetatable({}, UILIB)
+
+	local newTab = parent.Folder.TabReserved:Clone()
+	newTab.Parent = parent.MainBar
+	newTab.Name = name
+	newTab.Visible = false
+
+	local newTabBtn = parent.Folder.TabButtonReserved:Clone()
+	newTabBtn.Parent = parent.TopBar.ScrollingFrame
+	newTabBtn.Name = name or "Tab"..#parent.MainBar:GetChildren() - 4
+	newTabBtn.Frame.TextLabel.Text = name
+	if img then
+		newTabBtn.ImageLabel.Image = img
+	else
+		newTabBtn.ImageLabel.Image = ""
+	end
+	newTabBtn.Visible = true
+
+	newTabBtn.MouseButton1Click:Connect(function()
+		for i,v in pairs(parent.TopBar.ScrollingFrame:GetChildren()) do
+			if v:IsA("ImageButton") then
+				local vTab = parent.MainBar:FindFirstChild(v.Name)
+				if v.Name ~= name then
+					local twBtn = twServ:Create(v, TweenInfo.new(0.2), { Transparency = 0.75})
+
+					twBtn:Play()
+
+					vTab.Visible = false
+				elseif v.Name == name then
+					vTab.Visible = true
+					local twBtn = twServ:Create(v, TweenInfo.new(0.2), { Transparency = 0 })
+
+					twBtn:Play()
+
+				end
+
+			end
+		end
+	end)
+
+	function self.newButton(name, desc, func)
+		local newbtn = reserved.Button:Clone()
+		newbtn.Parent = newTab
+		newbtn.Title.Text = name
+		newbtn.Description.Text = desc
+		newbtn.Visible = true
+		newbtn.Name = name
+
+		newbtn.MouseEnter:Connect(function()
+			local twBtn = twServ:Create(newbtn, TweenInfo.new(0.2), { Transparency = 0 })
+
+			twBtn:Play()
+		end)
+		newbtn.MouseLeave:Connect(function()
+			local twBtn = twServ:Create(newbtn, TweenInfo.new(0.2), { Transparency = 0.4 })
+
+			twBtn:Play()
+		end)
+		newbtn.MouseButton1Click:Connect(func)
+	end
+
+	function self.newLabel(text)
+		local newLabel = reserved.Label:Clone()
+		newLabel.Parent = newTab
+		newLabel.Visible = true
+		newLabel.Title.Text = text
+
+		return newLabel.Title
+	end
+    function self:Set(newtext)
+                 newLabel.Title.Text = newtext
+             end
+         return self
+     end
+ 
+	function self.newInput(name, desc, func)
+		local newInput = reserved.Textbox:Clone()
+		local textbox = newInput.TextboxBar.ActualTextbox
+
+		newInput.MouseEnter:Connect(function()
+			local twBtn = twServ:Create(newInput, TweenInfo.new(0.2), { Transparency = 0 })
+
+			twBtn:Play()
+		end)
+		newInput.MouseLeave:Connect(function()
+			local twBtn = twServ:Create(newInput, TweenInfo.new(0.2), { Transparency = 0.4 })
+
+			twBtn:Play()
+
+
+		end)
+
+		newInput.Visible = true
+		newInput.Parent = newTab
+		newInput.Title.Text = name
+		newInput.Description.Text = desc
+		newInput.Name = name
+
+		textbox.FocusLost:Connect(function()
+			func(textbox.Text)
+		end)
+
+	end
+
+	function self.newKeybind(name, desc, func)
+		local newKey = reserved.Keybind:Clone()
+
+
+		newKey.MouseEnter:Connect(function()
+			local twBtn = twServ:Create(newKey, TweenInfo.new(0.2), { Transparency = 0 })
+
+			twBtn:Play()
+		end)
+		newKey.MouseLeave:Connect(function()
+			local twBtn = twServ:Create(newKey, TweenInfo.new(0.2), { Transparency = 0.4 })
+
+			twBtn:Play()
+		end)
+		newKey.Parent = newTab
+		newKey.Title.Text = name
+		newKey.Name = name
+		newKey.Description.Text = desc
+		newKey.Visible =  true
+
+		local listening = false
+		local a
+
+		newKey.Bind.Button.MouseButton1Click:Connect(function()
+			listening = true
+
+
+			local function Loop()
+				if listening then
+					newKey.Bind.Button.Text = "."
+				end
+
+				task.wait(0.5)
+				if listening then
+					newKey.Bind.Button.Text = ".."
+				end
+				task.wait(0.5)
+				if listening then
+					newKey.Bind.Button.Text = "..."
+				end
+				task.wait(0.5)
+			end
+
+			task.spawn(function()
+				while listening do
+					Loop()
+				end
+			end)
+
+			-- Connect the InputBegan event
+			a = game:GetService("UserInputService").InputBegan:Connect(function(input, processed)
+				if input.UserInputType == Enum.UserInputType.Keyboard then
+					newKey.Bind.Button.Text = input.KeyCode.Name
+					listening = false
+					a:Disconnect()
+					func(input)
+				elseif input.UserInputType == Enum.UserInputType.MouseButton1 or
+					input.UserInputType == Enum.UserInputType.MouseButton2 or
+					input.UserInputType == Enum.UserInputType.MouseButton3 then
+					newKey.Bind.Button.Text = input.UserInputType.Name
+					listening = false
+					a:Disconnect()
+					func(input)
+				end
+			end)
+		end)
+	end
+
+
+	function self.newSlider(name, desc, max, manageSlider, func)
+		local newSlider = reserved.Slider:Clone()
+
+		newSlider.MouseEnter:Connect(function()
+			local twBtn = twServ:Create(newSlider, TweenInfo.new(0.2), { Transparency = 0 })
+
+			twBtn:Play()
+		end)
+		newSlider.MouseLeave:Connect(function()
+			local twBtn = twServ:Create(newSlider, TweenInfo.new(0.2), { Transparency = 0.4 })
+
+			twBtn:Play()
+		end)
+		newSlider.Visible = true
+		newSlider.Name = name
+		newSlider.Parent = newTab
+		newSlider.Title.Text = name
+		newSlider.Description.Text = desc
+
+		local Mouse = game.Players.LocalPlayer:GetMouse()
+		local tweenServ = twServ
+
+		local Trigger = newSlider.ActualSlider.Trigger
+		local Label = newSlider.ActualSlider.Title
+		local Fill = newSlider.ActualSlider.Fill
+		local Parent = newSlider.ActualSlider
+
+		local perc
+		local Percent
+		local MouseDown = false
+		local delayTw = 0.3
+
+		local function Update()
+			MouseDown = true
+			repeat
+				task.wait()
+				Percent = math.clamp((Mouse.X - Parent.AbsolutePosition.X) / Parent.AbsoluteSize.X, 0, 1)
+				perc = math.round(Percent * max)
+				if manageSlider == false then
+					Label.Text = perc
+					func(perc)
+				elseif manageSlider == true then
+					Label.Text = perc
+					func(perc, Label)
+				end
+				local tween = tweenServ:Create(Fill, TweenInfo.new(delayTw, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), { Size = UDim2.fromScale(Percent, 1) })
+				tween:Play()
+			until MouseDown == false
+		end
+
+		Trigger.MouseButton1Down:Connect(Update)
+
+		UIS.InputEnded:Connect(function(input)
+			if input.UserInputType ==  Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				MouseDown = false
+			end
+		end)
+
+	end
+	
+	function self.newToggle(title, desc, toggle, func)
+		local realToggle = toggle
+		local newToggle = reserved.Toggle:Clone()
+		newToggle.Parent = newTab
+		newToggle.Name = title
+		newToggle.Visible = true
+		newToggle.Title.Text = title
+		newToggle.Description.Text = desc
+		
+		
+		newToggle.MouseEnter:Connect(function()
+			local twBtn = twServ:Create(newToggle, TweenInfo.new(0.2), { Transparency = 0 })
+
+			twBtn:Play()
+		end)
+		newToggle.MouseLeave:Connect(function()
+			local twBtn = twServ:Create(newToggle, TweenInfo.new(0.2), { Transparency = 0.4 })
+
+			twBtn:Play()
+		end)
+		
+		
+		if realToggle == true then
+			newToggle.Label.BackgroundColor3 = GlobalColor2
+		elseif realToggle == false then
+			newToggle.Label.BackgroundColor3 = GlobalColor1
+		end
+		
+		
+		
+		newToggle.Label.Label.MouseButton1Click:Connect(function()
+			
+			if realToggle == true then
+				realToggle = false
+				local twColorOn = twServ:Create(newToggle.Label, TweenInfo.new(0.2), { BackgroundColor3 = GlobalColor1 })
+				twColorOn:Play()
+				
+				func(realToggle)
+			elseif realToggle == false then
+				realToggle = true
+				local twColorOn = twServ:Create(newToggle.Label, TweenInfo.new(0.2), { BackgroundColor3 = GlobalColor2 })
+				twColorOn:Play()
+				
+				func(realToggle)
+			end
+		end)
+		
+	end
+	
+	function self.newDropdown(name, desc, listTable, func)
+		local newdd = reserved.Dropdown:Clone()
+		newdd.Visible = true
+		newdd.Parent = newTab
+		
+		newdd.Name = name
+		newdd.Title.Text = name
+		newdd.Description.Text = desc
+		
+		for i, list in ipairs(listTable) do
+			local newddbtn = reserved.DropdownButton:Clone()
+			newddbtn.Visible = true
+			newddbtn.Parent = newdd.Box.ScrollingFrame
+
+			newddbtn.Name = list
+			newddbtn.name.Text = list
+			task.spawn(function()
+				newddbtn.MouseButton1Click:Connect(function()
+					newdd.DropdownBar.Open.Text = list
+					local twPos = twServ:Create(newdd.Box, TweenInfo.new(0.15), {Size = UDim2.new(0.97, 0,0, 0)})
+					twPos:Play()
+					twPos.Completed:Wait()
+					newdd.Box.Visible = false
+					func(list)
+				end)
+			end)
+		end		
+		
+		newdd.DropdownBar.Trigger.MouseButton1Click:Connect(function()
+			
+			
+			if newdd.Box.Visible == false then
+				newdd.Box.Visible = true
+				local twPos = twServ:Create(newdd.Box, TweenInfo.new(0.15), {Size = UDim2.new(0.97, 0,1.696, 0)})
+				twPos:Play()
+			elseif newdd.Box.Visible == true then
+				local twPos = twServ:Create(newdd.Box, TweenInfo.new(0.15), {Size = UDim2.new(0.97, 0,0, 0)})
+				twPos:Play()
+				twPos.Completed:Wait()
+				newdd.Box.Visible = false
+			end
+		end)
+	end
+
+	return self
 end
 
 
