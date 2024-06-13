@@ -1505,18 +1505,20 @@ function UILIB.newTab(name, img)
 	end
 
 	function self.newLabel(text)
-		local newLabel = reserved.Label:Clone()
-		newLabel.Parent = newTab
-		newLabel.Visible = true
-		newLabel.Title.Text = text
+        local newLabel = reserved.Label:Clone()
+        newLabel.Parent = newTab
+        newLabel.Visible = true
+        newLabel.Title.Text = text
+    
+        local labelfunc = {}
+        
+        function labelfunc:Set(newtext)
+            newLabel.Title.Text = newtext
+        end
+        
+        return labelfunc
+    end
 
-		return newLabel.Title
-	end
-    function self:Set(newtext)
-                 newLabel.Title.Text = newtext
-             end
-         return self
-     end
  
 	function self.newInput(name, desc, func)
 		local newInput = reserved.Textbox:Clone()
