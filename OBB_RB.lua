@@ -13,9 +13,10 @@ DRR["2"] = Instance.new("Frame", DRR["1"]);
 DRR["2"]["BorderSizePixel"] = 0;
 DRR["2"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["2"]["LayoutOrder"] = 2;
-DRR["2"]["Size"] = UDim2.new(0.5404488444328308, 0, 0.1739015281200409, 0);
+DRR["2"]["Size"] = UDim2.new(0.8, 0, 0.2, 0);  -- تعديل الحجم
+DRR["2"]["Position"] = UDim2.new(0.1, 0, 0.1, 0);  -- تعديل الموقع
+
 DRR["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-DRR["2"]["Position"] = UDim2.new(0.23000000417232513, 0, -0.1899999976158142, 0);
 DRR["2"]["Name"] = [[TopBar]];
 
 -- DrRay.TopBar.UICorner
@@ -27,15 +28,17 @@ DRR["4"] = Instance.new("ScrollingFrame", DRR["2"]);
 DRR["4"]["Active"] = true;
 DRR["4"]["ScrollingDirection"] = Enum.ScrollingDirection.Y;
 DRR["4"]["BorderSizePixel"] = 0;
-DRR["4"]["CanvasSize"] = UDim2.new(0.10000000149011612, 0, 0, 0);
 DRR["4"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 36);
 DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
-DRR["4"]["Size"] = UDim2.new(1, 0, 0.5196850299835205, 0);
+
+DRR["4"]["CanvasSize"] = UDim2.new(1, 0, 1, 0);  -- تعديل حجم الكانفاس
+DRR["4"]["Size"] = UDim2.new(1, 0, 0.5, 0);  -- تعديل الحجم
+DRR["4"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
+
 DRR["4"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["ScrollBarThickness"] = 0;
-DRR["4"]["Position"] = UDim2.new(0, 0, 0.4803149700164795, 0);
 
 -- DrRay.TopBar.ScrollingFrame.UIListLayout
 DRR["5"] = Instance.new("UIListLayout", DRR["4"]);
@@ -66,7 +69,7 @@ DRR["8"]["ImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["8"]["ImageTransparency"] = 0.5;
 DRR["8"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 DRR["8"]["Image"] = [[rbxassetid://6014261993]];
-DRR["8"]["Size"] = UDim2.new(1, 47, 1, 47);
+DRR["8"]["Size"] = UDim2.new(1, 50, 1, 50);  -- تعديل الحجم
 DRR["8"]["Name"] = [[DropShadow]];
 DRR["8"]["BackgroundTransparency"] = 1;
 DRR["8"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
@@ -81,9 +84,11 @@ DRR["a"] = Instance.new("Frame", DRR["2"]);
 DRR["a"]["BorderSizePixel"] = 0;
 DRR["a"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["a"]["LayoutOrder"] = 2;
-DRR["a"]["Size"] = UDim2.new(2, 0, 0.05511785298585892, 0);
+
+DRR["a"]["Size"] = UDim2.new(1, 0, 0.1, 0);  -- تعديل الحجم
+DRR["a"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
+
 DRR["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-DRR["a"]["Position"] = UDim2.new(0, 0, 0.4645671844482422, 0);
 DRR["a"]["Name"] = [[TopBar]];
 
 -- DrRay.TopBar.TopBar.UIGradient
@@ -96,7 +101,7 @@ DRR["c"] = Instance.new("Frame", DRR["2"]);
 DRR["c"]["BorderSizePixel"] = 0;
 DRR["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 DRR["c"]["BackgroundTransparency"] = 1;
-DRR["c"]["Size"] = UDim2.new(1, 0, 0.4645672142505646, 0);
+DRR["c"]["Size"] = UDim2.new(1, 0, 0.5, 0);  -- تعديل الحجم
 DRR["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["c"]["Name"] = [[ProfileMenu]];
 
@@ -105,10 +110,12 @@ DRR["d"] = Instance.new("ImageButton", DRR["c"]);
 DRR["d"]["BorderSizePixel"] = 0;
 DRR["d"]["AutoButtonColor"] = false;
 DRR["d"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
-DRR["d"]["Size"] = UDim2.new(0.23481373488903046, 0, 0.682426393032074, 0);
+DRR["d"]["Size"] = UDim2.new(0.2, 0, 0.6, 0);  -- تعديل الحجم
+DRR["d"]["Position"] = UDim2.new(0.02, 0, 0.2, 0);  -- تعديل الموقع
+
 DRR["d"]["Name"] = [[PlayerProfile]];
 DRR["d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-DRR["d"]["Position"] = UDim2.new(0.015024710446596146, 0, 0.18421050906181335, 0);
+
 
 -- DrRay.TopBar.ProfileMenu.PlayerProfile.UICorner
 DRR["e"] = Instance.new("UICorner", DRR["d"]);
