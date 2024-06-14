@@ -13,7 +13,7 @@ DRR["2"] = Instance.new("Frame", DRR["1"]);
 DRR["2"]["BorderSizePixel"] = 0;
 DRR["2"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["2"]["LayoutOrder"] = 2;
-DRR["2"]["Size"] = UDim2.new(0.8, 0, 0.2, 0);  -- تعديل الحجم
+DRR["2"]["Size"] = UDim2.new(0.8, 0, 0.5, 0);  -- تعديل الحجم
 DRR["2"]["Position"] = UDim2.new(0.1, 0, 0.1, 0);  -- تعديل الموقع
 
 DRR["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -400,7 +400,7 @@ DRR["33"]["Size"] = UDim2.new(0.11, 0, 0.3, 0);
 DRR["33"]["Name"] = [[TabButtonReserved]];
 DRR["33"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["33"]["Visible"] = false;
-DRR["33"]["Position"] = UDim2.new(0.015000020153820515, 0, 0, 0);
+DRR["33"]["Position"] = UDim2.new(0.015000020153820515, 0, 0.18421050906181335, 0);
 
 -- DrRay.Folder.TabButtonReserved.UICorner
 DRR["34"] = Instance.new("UICorner", DRR["33"]);
