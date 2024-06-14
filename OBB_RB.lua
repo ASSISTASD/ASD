@@ -32,7 +32,7 @@ DRR["4"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 36);
 DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
 
-DRR["4"]["CanvasSize"] = UDim2.new(0.10000000149011612, 0, 0, 0);  -- تعديل حجم الكانفاس
+DRR["4"]["CanvasSize"] = UDim2.new(1, 0, 1, 0);  -- تعديل حجم الكانفاس
 DRR["4"]["Size"] = UDim2.new(1, 0, 0.5, 0);  -- تعديل الحجم
 DRR["4"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
 
@@ -69,7 +69,7 @@ DRR["8"]["ImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["8"]["ImageTransparency"] = 0.5;
 DRR["8"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 DRR["8"]["Image"] = [[rbxassetid://6014261993]];
-DRR["8"]["Size"] = UDim2.new(1, 40, 1, 40);  -- تعديل الحجم
+DRR["8"]["Size"] = UDim2.new(1, 50, 1, 50);  -- تعديل الحجم
 DRR["8"]["Name"] = [[DropShadow]];
 DRR["8"]["BackgroundTransparency"] = 1;
 DRR["8"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
