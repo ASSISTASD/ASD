@@ -32,7 +32,7 @@ DRR["4"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 36);
 DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
 
-DRR["4"]["CanvasSize"] = UDim2.new(1, 0, 1, 0);  -- تعديل حجم الكانفاس
+DRR["4"]["CanvasSize"] = UDim2.new(0, 0, 0, 0);  -- تعديل حجم الكانفاس
 DRR["4"]["Size"] = UDim2.new(1, 0, 1, 0);  -- تعديل الحجم
 DRR["4"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
 
