@@ -13,7 +13,7 @@ DRR["2"] = Instance.new("Frame", DRR["1"]);
 DRR["2"]["BorderSizePixel"] = 0;
 DRR["2"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["2"]["LayoutOrder"] = 2;
-DRR["2"]["Size"] = UDim2.new(0.8, 0, 0.5, 0);  -- تعديل الحجم
+DRR["2"]["Size"] = UDim2.new(0.8, 0, 0.2, 0);  -- تعديل الحجم
 DRR["2"]["Position"] = UDim2.new(0.1, 0, 0.1, 0);  -- تعديل الموقع
 
 DRR["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -33,7 +33,7 @@ DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
 
 DRR["4"]["CanvasSize"] = UDim2.new(1, 0, 1, 0);  -- تعديل حجم الكانفاس
-DRR["4"]["Size"] = UDim2.new(1, 0, 0.5, 0);  -- تعديل الحجم
+DRR["4"]["Size"] = UDim2.new(1, 0, 1, 0);  -- تعديل الحجم
 DRR["4"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
 
 DRR["4"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
