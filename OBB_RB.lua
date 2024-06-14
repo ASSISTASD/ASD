@@ -28,17 +28,15 @@ DRR["4"] = Instance.new("ScrollingFrame", DRR["2"]);
 DRR["4"]["Active"] = true;
 DRR["4"]["ScrollingDirection"] = Enum.ScrollingDirection.Y;
 DRR["4"]["BorderSizePixel"] = 0;
+DRR["4"]["CanvasSize"] = UDim2.new(0.10000000149011612, 0, 0, 0);
 DRR["4"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 36);
 DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
-
-DRR["4"]["CanvasSize"] = UDim2.new(1, 0, 1, 0);  -- تعديل حجم الكانفاس
-DRR["4"]["Size"] = UDim2.new(1, 0, 0.5, 0);  -- تعديل الحجم
-DRR["4"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
-
+DRR["4"]["Size"] = UDim2.new(1, 0, 0.5196850299835205, 0);
 DRR["4"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["ScrollBarThickness"] = 0;
+DRR["4"]["Position"] = UDim2.new(0, 0, 0.4803149700164795, 0);
 
 -- DrRay.TopBar.ScrollingFrame.UIListLayout
 DRR["5"] = Instance.new("UIListLayout", DRR["4"]);
@@ -69,7 +67,7 @@ DRR["8"]["ImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["8"]["ImageTransparency"] = 0.5;
 DRR["8"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 DRR["8"]["Image"] = [[rbxassetid://6014261993]];
-DRR["8"]["Size"] = UDim2.new(1, 50, 1, 50);  -- تعديل الحجم
+DRR["8"]["Size"] = UDim2.new(1, 47, 1, 47);
 DRR["8"]["Name"] = [[DropShadow]];
 DRR["8"]["BackgroundTransparency"] = 1;
 DRR["8"]["Position"] = UDim2.new(0.5, 0, 0.5, 0);
@@ -84,11 +82,9 @@ DRR["a"] = Instance.new("Frame", DRR["2"]);
 DRR["a"]["BorderSizePixel"] = 0;
 DRR["a"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["a"]["LayoutOrder"] = 2;
-
-DRR["a"]["Size"] = UDim2.new(1, 0, 0.1, 0);  -- تعديل الحجم
-DRR["a"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
-
+DRR["a"]["Size"] = UDim2.new(2, 0, 0.05511785298585892, 0);
 DRR["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+DRR["a"]["Position"] = UDim2.new(0, 0, 0.4645671844482422, 0);
 DRR["a"]["Name"] = [[TopBar]];
 
 -- DrRay.TopBar.TopBar.UIGradient
