@@ -21,7 +21,7 @@ DRR["2"]["Name"] = [[TopBar]];
 
 -- DrRay.TopBar.UICorner
 DRR["3"] = Instance.new("UICorner", DRR["2"]);
-DRR["3"]["CornerRadius"] = UDim.new(0.10000000149011612, 0);
+DRR["3"]["CornerRadius"] = UDim.new(0, 0);
 
 -- DrRay.TopBar.ScrollingFrame
 DRR["4"] = Instance.new("ScrollingFrame", DRR["2"]);
@@ -32,7 +32,7 @@ DRR["4"]["CanvasSize"] = UDim2.new(0.10000000149011612, 0, 0, 0);
 DRR["4"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 36);
 DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
-DRR["4"]["Size"] = UDim2.new(0.9, 0, 0.5196850299835205, 0);
+DRR["4"]["Size"] = UDim2.new(1, 0, 0.5196850299835205, 0);
 DRR["4"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["ScrollBarThickness"] = 0;
