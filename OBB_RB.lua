@@ -96,7 +96,7 @@ DRR["c"] = Instance.new("Frame", DRR["2"]);
 DRR["c"]["BorderSizePixel"] = 0;
 DRR["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 DRR["c"]["BackgroundTransparency"] = 1;
-DRR["c"]["Size"] = UDim2.new(1.5, 0, 0.4645672142505646, 0);
+DRR["c"]["Size"] = UDim2.new(1, 0, 0.4645672142505646, 0);
 DRR["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["c"]["Name"] = [[ProfileMenu]];
 
