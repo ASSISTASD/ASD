@@ -392,7 +392,7 @@ DRR["33"] = Instance.new("ImageButton", DRR["30"]);
 DRR["33"]["BorderSizePixel"] = 0;
 DRR["33"]["AutoButtonColor"] = false;
 DRR["33"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
-DRR["33"]["Size"] = UDim2.new(0.11, 0, 0.6315789818763733, 0);
+DRR["33"]["Size"] = UDim2.new(0.1, 0, 0.3, 0);
 DRR["33"]["Name"] = [[TabButtonReserved]];
 DRR["33"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["33"]["Visible"] = false;
@@ -427,7 +427,7 @@ DRR["36"]["Size"] = UDim2.new(-0.145383819937706, 0, 0.415300577878952, 0);
 DRR["36"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["36"]["Text"] = [[Tab1]];
 DRR["36"]["BackgroundTransparency"] = 1;
-DRR["36"]["Position"] = UDim2.new(-1.2657674551010132, 0, 0.37021857500076294, 0);
+DRR["36"]["Position"] = UDim2.new(-1, 0, 0.37021857500076294, 0);
 
 -- DrRay.Folder.TabButtonReserved.Frame.UIListLayout
 DRR["37"] = Instance.new("UIListLayout", DRR["35"]);
