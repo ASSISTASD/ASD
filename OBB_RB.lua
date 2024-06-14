@@ -84,11 +84,9 @@ DRR["a"] = Instance.new("Frame", DRR["2"]);
 DRR["a"]["BorderSizePixel"] = 0;
 DRR["a"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["a"]["LayoutOrder"] = 2;
-
-DRR["a"]["Size"] = UDim2.new(1, 0, 0.1, 0);  -- تعديل الحجم
-DRR["a"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
-
+DRR["a"]["Size"] = UDim2.new(2, 0, 0.05511785298585892, 0);
 DRR["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+DRR["a"]["Position"] = UDim2.new(0, 0, 0.4645671844482422, 0);
 DRR["a"]["Name"] = [[TopBar]];
 
 -- DrRay.TopBar.TopBar.UIGradient
