@@ -101,7 +101,7 @@ DRR["c"] = Instance.new("Frame", DRR["2"]);
 DRR["c"]["BorderSizePixel"] = 0;
 DRR["c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 DRR["c"]["BackgroundTransparency"] = 1;
-DRR["c"]["Size"] = UDim2.new(1, 0, 0.5, 0);  -- تعديل الحجم
+DRR["c"]["Size"] = UDim2.new(1, 0, 0.4645672142505646, 0);
 DRR["c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["c"]["Name"] = [[ProfileMenu]];
 
@@ -110,12 +110,10 @@ DRR["d"] = Instance.new("ImageButton", DRR["c"]);
 DRR["d"]["BorderSizePixel"] = 0;
 DRR["d"]["AutoButtonColor"] = false;
 DRR["d"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
-DRR["d"]["Size"] = UDim2.new(0.2, 0, 0.6, 0);  -- تعديل الحجم
-DRR["d"]["Position"] = UDim2.new(0.02, 0, 0.2, 0);  -- تعديل الموقع
-
+DRR["d"]["Size"] = UDim2.new(0.23481373488903046, 0, 0.682426393032074, 0);
 DRR["d"]["Name"] = [[PlayerProfile]];
 DRR["d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-
+DRR["d"]["Position"] = UDim2.new(0.015024710446596146, 0, 0.18421050906181335, 0);
 
 -- DrRay.TopBar.ProfileMenu.PlayerProfile.UICorner
 DRR["e"] = Instance.new("UICorner", DRR["d"]);
