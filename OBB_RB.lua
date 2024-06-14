@@ -13,9 +13,9 @@ DRR["2"] = Instance.new("Frame", DRR["1"]);
 DRR["2"]["BorderSizePixel"] = 0;
 DRR["2"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
 DRR["2"]["LayoutOrder"] = 2;
-DRR["2"]["Size"] = UDim2.new(1, 0, 0.1739015281200409, 0);
+DRR["2"]["Size"] = UDim2.new(0.8, 0, 0.1739015281200409, 0);  -- تعديل العرض ليكون 80%
 DRR["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-DRR["2"]["Position"] = UDim2.new(0.23000000417232513, 0, -0.1899999976158142, 0);
+DRR["2"]["Position"] = UDim2.new(0.1, 0, -0.1899999976158142, 0);  -- تعديل الموضع ليكون في المنتصف أكثر
 DRR["2"]["Name"] = [[TopBar]];
 
 -- DrRay.TopBar.UICorner
@@ -31,7 +31,7 @@ DRR["4"]["CanvasSize"] = UDim2.new(0.10000000149011612, 0, 0, 0);
 DRR["4"]["BackgroundColor3"] = Color3.fromRGB(26, 26, 36);
 DRR["4"]["AutomaticCanvasSize"] = Enum.AutomaticSize.X;
 DRR["4"]["BackgroundTransparency"] = 1;
-DRR["4"]["Size"] = UDim2.new(2, 0, 0.5196850299835205, 0);
+DRR["4"]["Size"] = UDim2.new(0.915977954864502, 0, 0.5196850299835205, 0);
 DRR["4"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["ScrollBarThickness"] = 0;
@@ -109,6 +109,7 @@ DRR["d"]["Size"] = UDim2.new(0.23481373488903046, 0, 0.682426393032074, 0);
 DRR["d"]["Name"] = [[PlayerProfile]];
 DRR["d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["d"]["Position"] = UDim2.new(0.015024710446596146, 0, 0.18421050906181335, 0);
+
 
 -- DrRay.TopBar.ProfileMenu.PlayerProfile.UICorner
 DRR["e"] = Instance.new("UICorner", DRR["d"]);
@@ -391,7 +392,7 @@ DRR["33"] = Instance.new("ImageButton", DRR["30"]);
 DRR["33"]["BorderSizePixel"] = 0;
 DRR["33"]["AutoButtonColor"] = false;
 DRR["33"]["BackgroundColor3"] = Color3.fromRGB(42, 42, 58);
-DRR["33"]["Size"] = UDim2.new(0.5, 0, 0.6315789818763733, 0);
+DRR["33"]["Size"] = UDim2.new(0.15, 0, 0.6315789818763733, 0);
 DRR["33"]["Name"] = [[TabButtonReserved]];
 DRR["33"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["33"]["Visible"] = false;
