@@ -34,7 +34,7 @@ DRR["4"]["BackgroundTransparency"] = 1;
 
 DRR["4"]["CanvasSize"] = UDim2.new(0.10000000149011612, 0, 0, 0);  -- تعديل حجم الكانفاس
 DRR["4"]["Size"] = UDim2.new(1, 0, 1, 0);  -- تعديل الحجم
-DRR["4"]["Position"] = UDim2.new(0, 0, 0, 0);  -- تعديل الموقع
+DRR["4"]["Position"] = UDim2.new(0, 0, 0.5, 0);  -- تعديل الموقع
 
 DRR["4"]["ScrollBarImageColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
