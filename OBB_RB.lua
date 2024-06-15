@@ -250,7 +250,7 @@ DRR["1f"]["Size"] = UDim2.new(0.08402203768491745, 0, 0.4803149402141571, 0);
 DRR["1f"]["Name"] = [[TopBarClose]];
 DRR["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["1f"]["Text"] = [[]];
-DRR["1f"]["Position"] = UDim2.new(0.915977954864502, 0, 0.5196850299835205, 0);
+DRR["1f"]["Position"] = UDim2.new(1, 0, 0.5196850299835205, 0);
 
 -- DrRay.TopBar.TopBarClose.UICorner
 DRR["20"] = Instance.new("UICorner", DRR["1f"]);
@@ -285,7 +285,7 @@ DRR["25"]["BorderSizePixel"] = 0;
 DRR["25"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 DRR["25"]["Image"] = [[rbxassetid://14122651741]];
 DRR["25"]["LayoutOrder"] = 1;
-DRR["25"]["Size"] = UDim2.new(0.3, 0, 0.4, 0);
+DRR["25"]["Size"] = UDim2.new(0.5081987380981445, 0, 0.5971601009368896, 0);
 DRR["25"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["25"]["BackgroundTransparency"] = 1;
 DRR["25"]["Position"] = UDim2.new(0.24589963257312775, 0, 0.23339086771011353, 0);
