@@ -246,11 +246,11 @@ DRR["1f"]["BorderSizePixel"] = 0;
 DRR["1f"]["AutoButtonColor"] = false;
 DRR["1f"]["BackgroundColor3"] = Color3.fromRGB(1, 1, 1);
 DRR["1f"]["Selectable"] = false;
-DRR["1f"]["Size"] = UDim2.new(0.08402203768491745, 0, 0.4803149402141571, 0);
+DRR["1f"]["Size"] = UDim2.new(0.5, 0, 0.3, 0);
 DRR["1f"]["Name"] = [[TopBarClose]];
 DRR["1f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 DRR["1f"]["Text"] = [[]];
-DRR["1f"]["Position"] = UDim2.new(0.915977954864502, 0, 0.5196850299835205, 0);
+DRR["1f"]["Position"] = UDim2.new(1, 0, 0.5196850299835205, 0);
 
 -- DrRay.TopBar.TopBarClose.UICorner
 DRR["20"] = Instance.new("UICorner", DRR["1f"]);
