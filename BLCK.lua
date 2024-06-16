@@ -2017,7 +2017,7 @@ spawn(function()
     end)
     
 MISCTAP.newToggle("INFINITY SORU", "", false, function(Value)
-        getgenv().InfGeppo = Value
+        getgenv().InfSoru = Value
 end)
 
     spawn(function()
@@ -2042,6 +2042,9 @@ end)
         end
     end)
 
+MISCTAP.newButton("CHANGE TO PIRATE", "Button", function()
+    Hop()
+end)
 
 
 local SETTINGTAP = ASDNEWUI.newTab("SETTING", "ImageIdHere")
