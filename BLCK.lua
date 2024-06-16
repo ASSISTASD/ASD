@@ -1,9 +1,12 @@
+
+
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
 notis.new("<Color=Yellow>ASD PVP SCRIPT<Color=/>"):Display()
-local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local ASDNEWUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/ASSISTASD/ASD/main/OBB_RB.lua"))()
 
-local Window =asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
+-- Create a new window and set its title and theme
+local window = ASDNEWUI:Load("ASD", "Default")
 
 
 local IsTeamCheckEnabled = false 
@@ -229,7 +232,7 @@ HealthgreenCorner.Parent = Healthgreen
 
 
 getgenv().setting = {
-    Fov = 100,
+    Fov = 1,
     Color = Color3.fromRGB(191, 255, 209),
     LockPlayers = false,
 }
@@ -246,7 +249,7 @@ spawn(function()
                         if v.Character:FindFirstChild('HumanoidRootPart') then
                             local pos = currentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
                             local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(402, 196)).magnitude
-                            if magnitude < getgenv().setting.Fov then
+                            if magnitude < Fovez then
                                 if magnitude < math.huge then
                                     if (v.Character.HumanoidRootPart.Position - localPlayer.Character.HumanoidRootPart.Position).magnitude <= 1000 then
                                         if v.Name ~= localPlayer.Name then
@@ -341,7 +344,7 @@ local FOVCircle = Drawing.new("Circle")
 	FOVCircle.Color = Color3.fromRGB(1, 0, 0)
 	
 	game:GetService("RunService").Stepped:Connect(function()
-		FOVCircle.Radius = Fov
+		FOVCircle.Radius = Fovez
 		FOVCircle.Thickness = 2
 		FOVCircle.NumSides = 100
 		FOVCircle.Filled = false
@@ -1213,7 +1216,7 @@ end)
                 local inf = Instance.new("ParticleEmitter")
                 inf.Acceleration = Vector3.new(0,0,0)
                 inf.Archivable = true
-                inf.Drag = 20
+                inf.Drag = 30
                 inf.EmissionDirection = Enum.NormalId.Top
                 inf.Enabled = true
                 inf.Lifetime = NumberRange.new(0,0)
@@ -1264,13 +1267,12 @@ spawn(function()
             if typeof(y) == "table" then
                 pcall(function()
                     CameraShaker:Stop()
-                    y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
-                    y.activeController.timeToNextAttack = 0.1
-                    y.activeController.hitboxMagnitude = 500
+                    y.activeController.timeToNextAttack = 0.05  -- تقليل الوقت بين الهجمات بشكل أكبر
+                    y.activeController.hitboxMagnitude = 500  -- زيادة مدى الهجوم
                     y.activeController.active = false
                     y.activeController.timeToNextBlock = 0
-                    y.activeController.focusStart = 9999999999999999999999
-                    y.activeController.increment = 1
+                    y.activeController.focusStart = 1e30  -- قيمة كبيرة جداً
+                    y.activeController.increment = 1  -- مضاعفة الزيادة لجعل الهجمات أكثر تكراراً
                     y.activeController.blocking = false
                     y.activeController.attacking = false
                     y.activeController.humanoid.AutoRotate = true
@@ -1279,6 +1281,8 @@ spawn(function()
         end
     end)
 end)
+
+
 spawn(function()
     game:GetService("RunService").RenderStepped:Connect(function()
         if _G.FastAttack == true then
@@ -1655,6 +1659,26 @@ local function executeTextProcess()
 end
 
 
+function NoDodgeCool()
+        if nododgecool then
+            for i,v in next, getgc() do
+                if game:GetService("Players").LocalPlayer.Character.Dodge then
+                    if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.Character.Dodge then
+                        for i2,v2 in next, getupvalues(v) do
+                            if tostring(v2) == "0.1" or tostring(v2) >= "0.1" then
+                            repeat wait(.1)
+                                setupvalue(v,i2,0)
+                            until not nododgecool
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+---------------
+
 -------------race v4
 spawn(function()
     pcall(function()
@@ -1776,24 +1800,24 @@ end)
 
 
 
---------
-local INFOPLY = Window:MakeTab({
-	Name = "INFO",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local SINFOPLY = INFOPLY:AddSection({
-	Name = "YOUR ACCOUNT"
-})
 
 
-local localrace = INFOPLY:AddLabel("???")
-local LOCLV = INFOPLY:AddLabel("???")
-local localbountyhornor = INFOPLY:AddLabel("???")
-local plyserv = INFOPLY:AddLabel("Players")
 
-    spawn(function()
+
+
+
+-- Create the first tab with an image ID
+local INFOPLY = ASDNEWUI.newTab("INFO", "ImageIdHere")
+
+
+
+----infotap
+local localrace = INFOPLY.newLabel("???")
+local LOCLV = INFOPLY.newLabel("???")
+local localbountyhornor = INFOPLY.newLabel("???")
+local plyserv = INFOPLY.newLabel("Players")
+
+spawn(function()
         while wait() do
             pcall(function()
                 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -1834,189 +1858,69 @@ spawn(function()
     end)
 
 
-local CBTAP = Window:MakeTab({
-	Name = "PLAYER",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
 
-local SectionCB = CBTAP:AddSection({
-	Name = "AIMBOT"
-})
 
-CBTAP:AddSlider({
-	Name = "FOV SIZE",
-	Min = 1,
-	Max = 360,
-	Default = 100,
-	Color = Color3.fromRGB(255,255,255),
-	Increment = 1,
-	ValueName = "SIZE AIM BOT",
-	Callback = function(Value)
-		Fov = Value
-	end    
-})
 
-CBTAP:AddToggle({
-	Name = "SHOW FOV",
-	Default = false,
-	Callback = function(Value)
-		ShowFov = Value
-	end    
-})
+-----
 
-CBTAP:AddToggle({
-	Name = "SHOW INFO PLAYER",
-	Default = true,
-	Callback = function(Value)
-		_G.ShowInfo = Value
-	end    
-})
+local tab = ASDNEWUI.newTab("PVP", "ImageIdHere")
 
-CBTAP:AddToggle({
-	Name = "AIMBOT",
-	Default = false,
-	Callback = function(Value)
-		_G.Aimbot = Value
-	end    
-})
+------local
 
-local SectionCB = CBTAP:AddSection({
-    Name = "AUTO COMBO"
-})
+---------
 
-local combois = CBTAP:AddLabel("COMBO :")
+tab.newSlider("AIM FOV", "Fov", 360, false, function(Value)
+    Fovez = Value
+end)
 
+tab.newToggle("SHOW INFO", "", false, function(Value)
+    _G.ShowInfo = Value
+end)
+
+tab.newToggle("SHOW FOV", "", false, function(Value)
+    ShowFov = Value
+end)
+
+tab.newToggle("AIMBOT", "", false, function(Value)
+    _G.Aimbot = Value
+end)
+
+-- إضافة تسمية إلى التبويب لعرض نص الكومبو
+local label = tab.newLabel("COMBO : " .. combotext.Value)
+
+-- تحديث نص التسمية عندما يتغير قيمة combotext
 spawn(function()
-        while wait() do
-            pcall(function()
-                combois:Set("COMBO : ".." "..combotext.Value)
-            end)
-        end
-    end)
--- إنشاء TextBox للحصول على مدخلات المستخدم
-CBTAP:AddTextbox({
-	Name = "COMBO TEXT",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		combotext.Value = Value
-	end	  
-})
-
-
-CBTAP:AddButton({
-    Name = "COMBO",
-    Callback = function()
-        executeTextProcess()
+    while wait() do
+        pcall(function()
+            label:Set("COMBO : " .. combotext.Value)
+        end)
     end
-})
+end)
 
-CBTAP:AddToggle({
-	Name = "HIT BOX",
-	Default = false,
-	Callback = function(Value)
-		_G.Hitbox = Value
-	end    
-})
+-- إضافة حقل إدخال إلى التبويب لتغيير نص الكومبو
+tab.newInput("Input", "Combo", function(Value)
+    combotext.Value = Value 
+end)
+tab.newButton("MAKE COMBO", "Well Be Make In your Inventory", function()
+    executeTextProcess()
+end)
 
-CBTAP:AddDropdown({
-    Name = "SELECT SIZE",
-    Default = "20",  -- Assuming Playerslist is not empty initially
-    Options = {"10","20","30","40"},
-    Callback = function(Value)
-        _G.HitboxZi = Value
-    end
-})
-
-local ESPTAP = Window:MakeTab({
-	Name = "ESP",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Sectionesp = ESPTAP:AddSection({
-	Name = "ESP"
-})
-ESPTAP:AddToggle({
-	Name = "ESP PLAYERS",
-	Default = false,
-	Callback = function(a)
-		ESPPlayer = a
-	UpdatePlayerChams()
-	end    
-})
-
-ESPTAP:AddToggle({
-	Name = "ESP FRUIT",
-	Default = false,
-	Callback = function(a)
-		DevilFruitESP = a
-        while DevilFruitESP do wait()
-            UpdateDevilChams() 
-        end
-	end    
-})
+tab.newDropdown("SIZE HIT BOX", "Select one of these options!", {"10","20","30","40"}, function(Value)
+    _G.HitboxZi = Value
+end)
 
 
-local MISCTAP = Window:MakeTab({
-	Name = "MISC",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local Sectionmisc = MISCTAP:AddSection({
-	Name = "PLAYERS"
-})
-MISCTAP:AddToggle({
-	Name = "WALK IN WATER",
-	Default = false,
-	Callback = function(Value)
-		_G.WalkWater = Value
-	end    
-})
-
-MISCTAP:AddToggle({
-	Name = "NO CLIP",
-	Default = false,
-	Callback = function(Value)
-		_G.No_clip = Value
-	end    
-})
-
-
-MISCTAP:AddButton({
-	Name = "NO FOG IN SEA",
-	Callback = function()
-    	game:GetService("Lighting").LightingLayers:Destroy()
-    end
-})
+tab.newToggle("HIT BOX", "", false, function(Value)
+    _G.Hitbox = Value
+end)
 
 
 
-MISCTAP:AddToggle({
-	Name = "INFINITY ABILITY",
-	Default = true,
-	Callback = function(Value)
-        InfAbility = Value
-        if Value == false then
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy()
-        end
-	end    
-})
 
-MISCTAP:AddToggle({
-	Name = "AUTO AWAKENING RACE",
-	Default = false,
-	Callback = function(Value)
-		_G.AutoAwakeningRace = Value
-	end    
-})
+local MISCTAP = ASDNEWUI.newTab("MISC", "ImageIdHere")
 
 
-MISCTAP:AddButton({
-	Name = "TEAM PIRATES ",
-	Callback = function()
+MISCTAP.newButton("CHANGE TO PIRATE", "Button", function()
     local args = {
 			[1] = "SetTeam",
 			[2] = "Pirates"
@@ -2026,13 +1930,10 @@ MISCTAP:AddButton({
 			[1] = "BartiloQuestProgress"
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-	end
-		
-})
+end)
 
-MISCTAP:AddButton({
-	Name = "TEAM MARINES ",
-	Callback = function()
+
+MISCTAP.newButton("CHANGE TO MARINE", "Button", function()
     local args = {
 			[1] = "SetTeam",
 			[2] = "Marines"
@@ -2042,183 +1943,124 @@ MISCTAP:AddButton({
 			[1] = "BartiloQuestProgress"
 		}
 		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-	end
-		
-})
+end)
 
-local Sectionmisc = MISCTAP:AddSection({
-	Name = "SERVER"
-})
+MISCTAP.newToggle("WALK WATER", "", false, function(Value)
+    _G.WalkWater = Value
+end)
 
-
-MISCTAP:AddButton({
-	Name = "SERVER HOP",
-	Callback = function()
-    	Hop()
-    end
-})
+MISCTAP.newToggle("NO CLIP", "", false, function(Value)
+    _G.No_clip = Value
+end)
 
 
+MISCTAP.newToggle("AWAKENING V4", "", false, function(Value)
+    _G.AutoAwakeningRace = Value
+end)
 
 
-
-MISCTAP:AddButton({
-	Name = "SERVER HOP LOWER",
-	Callback = function()
-    	getgenv().AutoTeleport = true
-        getgenv().DontTeleportTheSameNumber = true 
-        getgenv().CopytoClipboard = false
-        if not game:IsLoaded() then
-            print("Game is loading waiting...")
+MISCTAP.newToggle("ENABLE SPEED", "", false, function(Value)
+        InfAbility = Value
+        if Value == false then
+            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy()
         end
-        local maxplayers = math.huge
-        local serversmaxplayer;
-        local goodserver;
-        local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100" 
-        function serversearch()
-            for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
-                if type(v) == "table" and v.playing ~= nil and maxplayers > v.playing then
-                    serversmaxplayer = v.maxPlayers
-                    maxplayers = v.playing
-                    goodserver = v.id
+end)
+
+MISCTAP.newToggle("NO DODGE COOLDOWN", "", false, function(Value)
+        nododgecool = Value
+		NoDodgeCool()
+end)
+
+MISCTAP.newToggle("INFINITY OBSERVATION", "", false, function(Value)
+        getgenv().InfiniteObRange = Value
+        local VS = game:GetService("Players").LocalPlayer.VisionRadius.Value
+        while getgenv().InfiniteObRange do
+            wait()
+            local player = game:GetService("Players").LocalPlayer
+            local char = player.Character
+            local VisionRadius = player.VisionRadius
+            if player then
+                if char.Humanoid.Health <= 0 then 
+                    wait(5) 
                 end
-            end       
+                VisionRadius.Value = math.huge
+            elseif getgenv().InfiniteObRange == false and player then
+                VisionRadius.Value = VS
+            end
         end
-        function getservers()
-            serversearch()
-            for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
-                if i == "nextPageCursor" then
-                    if gamelink:find("&cursor=") then
-                        local a = gamelink:find("&cursor=")
-                        local b = gamelink:sub(a)
-                        gamelink = gamelink:gsub(b, "")
+end)
+
+MISCTAP.newToggle("INFINITY GEPPO", "", false, function(Value)
+        getgenv().InfGeppo = Value
+end)
+
+spawn(function()
+        while wait() do
+            pcall(function()
+                if getgenv().InfGeppo then
+                    for i,v in next, getgc() do
+                        if game:GetService("Players").LocalPlayer.Character.Geppo then
+                            if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.Character.Geppo then
+                                for i2,v2 in next, getupvalues(v) do
+                                    if tostring(i2) == "9" then
+                                        repeat wait(.1)
+                                            setupvalue(v,i2,0)
+                                        until not getgenv().InfGeppo or game:GetService("Players").LocalPlayer.Character.Humanoid.Health <= 0 
+                                    end
+                                end
+                            end
+                        end
                     end
-                    gamelink = gamelink .. "&cursor=" ..v
-                    getservers()
                 end
-            end
-        end 
-        getservers()
-        if AutoTeleport then
-            if DontTeleportTheSameNumber then 
-                if #game:GetService("Players"):GetPlayers() - 4  == maxplayers then
-                    return warn("It has same number of players (except you)")
-                elseif goodserver == game.JobId then
-                    return warn("Your current server is the most empty server atm") 
-                end
-            end
-            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
+            end)
         end
-    end
-})
+    end)
+    
+MISCTAP.newToggle("INFINITY SORU", "", false, function(Value)
+        getgenv().InfGeppo = Value
+end)
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if getgenv().InfSoru and game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil  then
+                    for i,v in next, getgc() do
+                        if game:GetService("Players").LocalPlayer.Character.Soru then
+                            if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.Character.Soru then
+                                for i2,v2 in next, getupvalues(v) do
+                                    if typeof(v2) == "table" then
+                                        repeat wait(0.1)
+                                            v2.LastUse = 0
+                                        until not getgenv().InfSoru or game:GetService("Players").LocalPlayer.Character.Humanoid.Health <= 0
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end)
+        end
+    end)
 
 
-local STAP = Window:MakeTab({
-	Name = "SETTING",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-local Sectionst = STAP:AddSection({
-	Name = "SETTING"
-})
 
-STAP:AddToggle({
-	Name = "FAST ATTACK",
-	Default = true,
-	Callback = function(Value)
-		_G.FastAttack = Value
-	end    
-})
+local SETTINGTAP = ASDNEWUI.newTab("SETTING", "ImageIdHere")
 
-STAP:AddToggle({
-	Name = "BYPASS TP",
-	Default = BypassTP,
-	Callback = function(Value)
-		BypassTP = Value
-	end    
-})
+SETTINGTAP.newToggle("FAST ATTACK", "", false, function(Value)
+    _G.FastAttack = Value
+end)
 
-STAP:AddToggle({
-	Name = "AUTO HAKI",
-	Default = true,
-	Callback = function(Value)
-		_G.AUTOHAKI = Value
-	end    
-})
+local ESPTAP = ASDNEWUI.newTab("ESP", "ImageIdHere")
 
+ESPTAP.newToggle("ESP PLAYER", "", false, function(Value)
+    ESPPlayer = Value
+	UpdatePlayerChams() 
+end)
+ESPTAP.newToggle("ESP FRUIT", "", false, function(Value)
+    DevilFruitESP = Value 
+        while DevilFruitESP do wait()
+            UpdateDevilChams() 
+        end
+end)
 
--------------------------------
-local RCTAP = Window:MakeTab({
-	Name = "RACE V4",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
-
-local SectionRc = RCTAP:AddSection({
-	Name = "TP RACE V4"
-})
-
-RCTAP:AddButton({
-	Name = "Teleport Temple Of Time",
-	Callback = function()
-      		Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-  	end    
-})
-
-RCTAP:AddButton({
-	Name = "Teleport To Lever Pull",
-	Callback = function()
-      		topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
-  	end    
-})
-RCTAP:AddButton({
-	Name = "Teleport To Acient One (Must Be in Temple Of Time!)",
-	Callback = function()
-      		topos(CFrame.new(28981.552734375, 14888.4267578125, -120.245849609375))
-  	end    
-})
-
-RCTAP:AddButton({
-	Name = "Teleport To Door",
-	Callback = function()
-      		if game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Human" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
-            end
-  	end    
-})
-
-local Sectionesp = RCTAP:AddSection({
-	Name = "AUTO TRAIL"
-})
-
-RCTAP:AddToggle({
-	Name = "AUTO FARM TRAIL",
-	Default = false,
-	Callback = function(Value)
-		_G.AutoQuestRace = Value
-        StopTween(_G.AutoQuestRace)
-	end    
-})
-
+local RACE V4 = ASDNEWUI.newTab("RACE", "ImageIdHere")
