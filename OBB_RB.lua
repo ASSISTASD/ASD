@@ -1823,3 +1823,13 @@ end
 	end
 	return uitab
 end
+
+
+local Library = Update:Window("ASD")
+
+local Main = Library:Tab("Main","rbxassetid://6026568198")
+local Setting = Library:Tab("Settings","rbxassetid://6034509993")
+local Combat = Library:Tab("Player","rbxassetid://7251993295")
+local Teleport = Library:Tab("Teleport","rbxassetid://6035190846")
+local Dungeon = Library:Tab("Esp","rbxassetid://7044284832")
+local Misc = Library:Tab("Misc","rbxassetid://6034509993")
