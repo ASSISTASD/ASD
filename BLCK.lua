@@ -3735,10 +3735,10 @@ Misc:Button("TP CLICK",function()
         tool.RequiresHandle = false
         tool.Name = "Teleport Tool"
         tool.Activated:Connect(function()
-        local root = plr.Character.HumanoidRootPart
-        local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
-        local offset = pos-root.Position
-        root.CFrame = root.CFrame+offset
+            local root = plr.Character.HumanoidRootPart
+            local pos = mouse.Hit.Position+Vector3.new(0,2.5,0)
+            local offset = pos-root.Position
+            root.CFrame = root.CFrame+offset
         end)
     end)
     
@@ -3901,14 +3901,14 @@ function FPSBooster()
             end
         end
     end
-Dungeon:Seperator("「 FPS 」")
+Dungeon:Seperator("「 ESP 」")
 
-Setting:Toggle("ESP PLAYERS",false,function(Value)
+Dungeon:Toggle("ESP PLAYERS",false,function(Value)
         ESPPlayer = Value
     	UpdatePlayerChams() 
     end)
     
-Setting:Toggle("ESP FRUIT",false,function(Value)
+Dungeon:Toggle("ESP FRUIT",false,function(Value)
         DevilFruitESP = Value 
         while DevilFruitESP do wait()
             UpdateDevilChams() 
