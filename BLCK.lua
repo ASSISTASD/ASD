@@ -3665,11 +3665,12 @@ local targetUserIds = {4383867873, 4994315653, 5745302230} -- يمكنك إضا�
 
 -- دالة للتحقق من دخول الأشخاص المستهدفين
 spawn(function()
-        if _G.Anti_Admin == true then
+        if _G.Anti_Admin then
             while true do
                 for _, player in pairs(game.Players:GetPlayers()) do
                     for _, targetUserId in pairs(targetUserIds) do
                         if player.UserId == targetUserId then
+                            print("done")
                             game.Players.LocalPlayer:Kick('You So lucky , The Admin Join In Your Anti Admin Kick You')
                         end
                     end
