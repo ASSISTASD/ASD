@@ -3909,7 +3909,10 @@ Misc:Button("REJOIN",function()
     Misc:Button("Join Marines Team",function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
     end)
-
+    
+    Misc:Button("J",function()
+        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+    end)
 
 Setting:Seperator("「 SETTING 」")
 
