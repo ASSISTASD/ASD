@@ -2064,7 +2064,7 @@ spawn(function()
                     if game.Workspace.Characters:FindFirstChild(v.Name) or game.Workspace.Characters:FindFirstChild(v.DisplayName) then
                         if v.Character:FindFirstChild('HumanoidRootPart') then
                             local pos = currentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
-                            local magnitude = (Vector2.new(402, 196) - Vector2.new(402, 196)).magnitude
+                            local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(402, 196)).magnitude
                             if magnitude < Fovez then
                                 if magnitude < math.huge then
                                     if (v.Character.HumanoidRootPart.Position - localPlayer.Character.HumanoidRootPart.Position).magnitude <= 500 then
