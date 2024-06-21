@@ -2064,10 +2064,10 @@ spawn(function()
                     if game.Workspace.Characters:FindFirstChild(v.Name) or game.Workspace.Characters:FindFirstChild(v.DisplayName) then
                         if v.Character:FindFirstChild('HumanoidRootPart') then
                             local pos = currentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
-                            local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(402, 196)).magnitude
+                            local magnitude = (Vector2.new(402, 196) - Vector2.new(402, 196)).magnitude
                             if magnitude < Fovez then
                                 if magnitude < math.huge then
-                                    if (v.Character.HumanoidRootPart.Position - localPlayer.Character.HumanoidRootPart.Position).magnitude <= 1000 then
+                                    if (v.Character.HumanoidRootPart.Position - localPlayer.Character.HumanoidRootPart.Position).magnitude <= 500 then
                                         if v.Name ~= localPlayer.Name then
                                             if not getgenv().setting.LockPlayers then
                                                 Playersaimbot = v.Name
@@ -2155,7 +2155,7 @@ local FOVCircle = Drawing.new("Circle")
 	FOVCircle.NumSides = 100
 	FOVCircle.Visible = true 
 	FOVCircle.Filled = false
-	FOVCircle.Transparency = 0.1
+	FOVCircle.Transparency = 1
 	FOVCircle.Radius = 100
 	FOVCircle.Color = Color3.fromRGB(1, 0, 0)
 	
