@@ -4016,7 +4016,7 @@ end
 
     end)
 
-Setting:Toggle("Remove attack Animation",true,function(value)
+Setting:Toggle("Remove attack Animation", false,function(value)
     getgenv().A = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).wrapAttackAnimationAsync 
 getgenv().B = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle).play
 spawn(function()
@@ -4040,7 +4040,7 @@ spawn(function()
 end)
 end)
   
-Setting:Toggle("Delete Attack FIx",nil,function(d)
+Setting:Toggle("Delete Attack FIx", false,function(d)
     _G.DeleteAttackFx = d
     if _G.DeleteAttackFx == true then
     while _G.DeleteAttackFx do wait()
