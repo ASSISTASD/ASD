@@ -3661,7 +3661,7 @@ local localbountyhornor = Main:Label("error")
 
 ------------anti admin
 -- جدول يحتوي على المعرفات المستهدفة
-local targetUserIds = {4383867873, 4994315653, 789012} -- يمكنك إضافة أي معرفات أخرى هنا
+local targetUserIds = {4383867873, 4994315653, 5745302230} -- يمكنك إضافة أي معرفات أخرى هنا
 
 -- دالة للتحقق من دخول الأشخاص المستهدفين
 spawn(function()
@@ -3727,7 +3727,7 @@ spawn(function()
 
 Main:Seperator("「 SAVE 」")
 
-Misc:Toggle("ANTI ADMIN (You Will kick If Admin Joined)", true,function(Value)
+Main:Toggle("ANTI ADMIN (You Will kick If Admin Joined)", _G.Anti_Admin,function(Value)
         _G.Anti_Admin = Value
     end)
 
