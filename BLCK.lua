@@ -1825,6 +1825,15 @@ end
 	return uitab
 end
 -----------------
+
+if game.PlaceId == 2753915549 then
+	World1 = true
+elseif game.PlaceId == 4442272183 then
+	World2 = true
+elseif game.PlaceId == 7449423635 then
+	World3 = true
+end
+
 local IsTeamCheckEnabled = false 
 
 spawn(function()
@@ -3652,27 +3661,25 @@ local localbountyhornor = Main:Label("error")
 
 ------------anti admin
 -- جدول يحتوي على المعرفات المستهدفة
-local targetUserIds = {6107609777, 123456, 789012} -- يمكنك إضافة أي معرفات أخرى هنا
+local targetUserIds = {4383867873, 4994315653, 789012} -- يمكنك إضافة أي معرفات أخرى هنا
 
 -- دالة للتحقق من دخول الأشخاص المستهدفين
-local function checkPlayerEntry()
-    while true do
-        -- التحقق من جميع اللاعبين في اللعبة
-        for _, player in pairs(game.Players:GetPlayers()) do
-            -- التحقق من معرف اللاعب إذا كان موجودًا في جدول المعرفات المستهدفة
-            for _, targetUserId in pairs(targetUserIds) do
-                if player.UserId == targetUserId then
-                    print("لقد دخل الشخص بمعرف: " .. targetUserId)
+spawn(function()
+        if _G.Anti_Admin == true then
+            while true do
+                for _, player in pairs(game.Players:GetPlayers()) do
+                    for _, targetUserId in pairs(targetUserIds) do
+                        if player.UserId == targetUserId then
+                            game.Players.LocalPlayer:Kick('You So lucky , The Admin Join In Your Anti Admin Kick You')
+                        end
+                    end
                 end
+                wait(1)
             end
         end
-        -- الانتظار لمدة 1 ثانية قبل التحقق مرة أخرى لتجنب استخدام موارد النظام بشكل مفرط
-        wait(1)
-    end
-end
+    end)
 
--- بدء العملية اللا نهائية في وضع موازٍ
-spawn(checkPlayerEntry)
+-- بدء العملية ا
 
 
 
@@ -3716,6 +3723,12 @@ spawn(function()
                 localbountyhornor:Set("Bounty / Honor:".." "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)
             end)
         end
+    end)
+
+Main:Seperator("「 SAVE 」")
+
+Misc:Toggle("ANTI ADMIN (You Will kick If Admin Joined)", true,function(Value)
+        _G.Anti_Admin = Value
     end)
 
 Combat:Seperator("「 PVP 」")
@@ -3785,6 +3798,12 @@ spawn(function()
         end)
     end)
     
+    
+
+Misc:Toggle("AUTO AWAKENING",_G.AutoAwakeningRace,function(Value)
+        _G.AutoAwakeningRace = Value
+    end)
+
 Misc:Toggle("MINK ABILITY",false,function(Value)
         InfAbility = Value
         if Value == false then
@@ -4123,9 +4142,18 @@ Dungeon:Toggle("ESP FRUIT",false,function(Value)
             UpdateDevilChams() 
         end
     end)
-Dungeon:Toggle("ESP FLOWER",false,function(Value)
-        FlowerESP = Value
-	    UpdateFlowerChams() 
+if World2 then
+    Dungeon:Toggle("ESP FLOWER",false,function(Value)
+            FlowerESP = Value
+    	    UpdateFlowerChams() 
+        end)
+end
+
+Dungeon:Toggle("ESP ISLAND",false,function(Value)
+        IslandESP = Value
+        while IslandESP do wait()
+            UpdateIslandESP() 
+        end
     end)
 --------------------------------------------------------------------------------------------------------------------------------------------
 
