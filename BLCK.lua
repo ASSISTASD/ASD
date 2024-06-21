@@ -3921,6 +3921,118 @@ Setting:Toggle("FAST ATTACK",_G.FastAttack,function(Value)
     end)
 
 
+Setting:Toggle("SuperFastAttack (Kickable)",false,function(value)
+        local SuperFastMode = value -- à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹€à¸›à¹‡à¸™à¸ˆà¸£à¸´à¸‡à¸–à¹‰à¸²à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¹‚à¸ˆà¸¡à¸•à¸µ Super Super Super Fast (à¹€à¸Šà¹ˆà¸™à¸à¸²à¸£à¸†à¹ˆà¸²à¸—à¸±à¸™à¸—à¸µ) à¹à¸•à¹ˆà¸ˆà¸°à¸—à¸³à¹ƒà¸«à¹‰à¹€à¸à¸¡à¹€à¸•à¸°à¸„à¸¸à¸“à¸¡à¸²à¸à¸à¸§à¹ˆà¸²à¹‚à¸«à¸¡à¸”à¸›à¸à¸•à¸´
+             _G.SuperFastMode = value
+
+local plr = game.Players.LocalPlayer
+
+local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
+local CbFw2 = CbFw[2]
+
+function GetCurrentBlade() 
+    local p13 = CbFw2.activeController
+    local ret = p13.blades[1]
+    if not ret then return end
+    while ret.Parent~=game.Players.LocalPlayer.Character do ret=ret.Parent end
+    return ret
+end
+function AttackNoCD() 
+    local AC = CbFw2.activeController
+    for i = 1, 1 do 
+        local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
+            plr.Character,
+            {plr.Character.HumanoidRootPart},
+            60
+        )
+        local cac = {}
+        local hash = {}
+        for k, v in pairs(bladehit) do
+            if v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
+                table.insert(cac, v.Parent.HumanoidRootPart)
+                hash[v.Parent] = true
+            end
+        end
+        bladehit = cac
+        if #bladehit > 0 then
+            local u8 = debug.getupvalue(AC.attack, 5)
+            local u9 = debug.getupvalue(AC.attack, 6)
+            local u7 = debug.getupvalue(AC.attack, 4)
+            local u10 = debug.getupvalue(AC.attack, 7)
+            local u12 = (u8 * 798405 + u7 * 727595) % u9
+            local u13 = u7 * 798405
+            (function()
+                u12 = (u12 * u9 + u13) % 1099511627776
+                u8 = math.floor(u12 / u9)
+                u7 = u12 - u8 * u9
+            end)()
+            u10 = u10 + 1
+            debug.setupvalue(AC.attack, 5, u8)
+            debug.setupvalue(AC.attack, 6, u9)
+            debug.setupvalue(AC.attack, 4, u7)
+            debug.setupvalue(AC.attack, 7, u10)
+            pcall(function()
+                for k, v in pairs(AC.animator.anims.basic) do
+                    v:Play()
+                end                  
+            end)
+            if plr.Character:FindFirstChildOfClass("Tool") and AC.blades and AC.blades[1] then 
+                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(GetCurrentBlade()))
+                game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215), u10)
+                game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, i, "") 
+            end
+        end
+    end
+end
+local cac
+if SuperFastMode then 
+	cac=task.wait
+else
+	cac=wait
+end
+while cac() do 
+	AttackNoCD()
+end
+
+    end)
+
+Setting:Toggle("Remove attack Animation",true,function(value)
+    getgenv().A = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).wrapAttackAnimationAsync 
+getgenv().B = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework.Particle).play
+spawn(function()
+
+    while wait() do
+            pcall(function()
+                require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).wrapAttackAnimationAsync =function(a1,a2,a3,a4,a5)
+                    local GetBladeHits = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).getBladeHits(a2,a3,a4)
+                    if GetBladeHits then
+                         require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).play = function() end
+                        a1:Play(0.2, 0.2, 0.2)
+                        a5(GetBladeHits)
+                         require(game:GetService("ReplicatedStorage").CombatFramework.RigLib).play = getgenv().B 
+                        wait(.5)
+                        a1:Stop()
+                    end
+                end
+            end)
+        
+    end
+end)
+end)
+  
+Setting:Toggle("Delete Attack FIx",nil,function(d)
+    _G.DeleteAttackFx = d
+    if _G.DeleteAttackFx == true then
+    while _G.DeleteAttackFx do wait()
+        for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+            if v.Name == "CurvedRing" or v.Name == "DamageCounter" or v.Name == "SwordSlash" or v.Name == "Damage" or v.Name == "Mon" or v.Name == "Sounds" then
+                v:Destroy() 
+            end
+        end
+    end
+    end
+end)
+
 Setting:Seperator("「 FPS 」")
 
     Setting:Toggle("Hide Ui (Reduce Lag)",false,function(value)
