@@ -2074,7 +2074,7 @@ spawn(function()
                         if v.Character:FindFirstChild('HumanoidRootPart') then
                             local pos = currentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
                             local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(402, 196)).magnitude
-                            if magnitude < Fovez then
+                            if magnitude < (Fovez * 6 -8) /2 then
                                 if magnitude < math.huge then
                                     if (v.Character.HumanoidRootPart.Position - localPlayer.Character.HumanoidRootPart.Position).magnitude <= 500 then
                                         if v.Name ~= localPlayer.Name then
