@@ -2327,10 +2327,31 @@ STAP:AddToggle({
             local SuperFastMode = Value -- à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹€à¸›à¹‡à¸™à¸ˆà¸£à¸´à¸‡à¸–à¹‰à¸²à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¹‚à¸ˆà¸¡à¸•à¸µ Super Super Super Fast (à¹€à¸Šà¹ˆà¸™à¸à¸²à¸£à¸†à¹ˆà¸²à¸—à¸±à¸™à¸—à¸µ) à¹à¸•à¹ˆà¸ˆà¸°à¸—à¸³à¹ƒà¸«à¹‰à¹€à¸à¸¡à¹€à¸•à¸°à¸„à¸¸à¸“à¸¡à¸²à¸à¸à¸§à¹ˆà¸²à¹‚à¸«à¸¡à¸”à¸›à¸à¸•à¸´
                  _G.SuperFastMode = Value
     
-            local plr = game.Players.LocalPlayer
+
+	end    
+})
+
+STAP:AddToggle({
+	Name = "BYPASS TP",
+	Default = BypassTP,
+	Callback = function(Value)
+		BypassTP = Value
+	end    
+})
+
+STAP:AddToggle({
+	Name = "AUTO HAKI",
+	Default = true,
+	Callback = function(Value)
+		_G.AUTOHAKI = Value
+	end    
+})
+
+
+local plr = game.Players.LocalPlayer          
             
-            local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
-            local CbFw2 = CbFw[2]
+local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
+local CbFw2 = CbFw[2]
             
             function GetCurrentBlade() 
                 local p13 = CbFw2.activeController
@@ -2386,7 +2407,7 @@ STAP:AddToggle({
                     end
                 end
             end
-            local cac
+local cac
             if SuperFastMode then 
             	cac=task.wait
             else
@@ -2395,24 +2416,6 @@ STAP:AddToggle({
             while cac() do 
             	AttackNoCD()
             end
-	end    
-})
-
-STAP:AddToggle({
-	Name = "BYPASS TP",
-	Default = BypassTP,
-	Callback = function(Value)
-		BypassTP = Value
-	end    
-})
-
-STAP:AddToggle({
-	Name = "AUTO HAKI",
-	Default = true,
-	Callback = function(Value)
-		_G.AUTOHAKI = Value
-	end    
-})
 
 
 -------------------------------
