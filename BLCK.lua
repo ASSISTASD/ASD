@@ -3,7 +3,7 @@ notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
 notis.new("<Color=Yellow>ASD PVP SCRIPT<Color=/>"):Display()
 local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window =asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
+local Window = asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
 
 
 local IsTeamCheckEnabled = false 
