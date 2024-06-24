@@ -1,7 +1,9 @@
+notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
+notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
+notis.new("<Color=Yellow>CITY PVP SCRIPT<Color=/>"):Display()
+local CITYlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
-local Window = asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
+local Window = CITYlib:MakeWindow({Name = "CITY", HidePremium = false, IntroText = "CITY", SaveConfig = true, ConfigFolder = "CITY"})
 
 
 local IsTeamCheckEnabled = false 
@@ -400,11 +402,11 @@ function UpdatePlayerChams()
                     else
                         local name = head[espName].TextLabel
                         if teamName == "Pirates" then
-                            name.Text = ('<font color="rgb(0,0,0)">「 ASD 」</font>\n' .. v.Name .. ' | ' .. math.round((localPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) .. ' Distance\nHealth: ' .. math.floor(v.Character.Humanoid.Health) .. "/" .. v.Character.Humanoid.MaxHealth .. '\n' .. '| TEAM:' .. '<font color="rgb(255,0,0)"> Pirate </font>' .. '|')
+                            name.Text = ('<font color="rgb(0,0,0)">「 CITY 」</font>\n' .. v.Name .. ' | ' .. math.round((localPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) .. ' Distance\nHealth: ' .. math.floor(v.Character.Humanoid.Health) .. "/" .. v.Character.Humanoid.MaxHealth .. '\n' .. '| TEAM:' .. '<font color="rgb(255,0,0)"> Pirate </font>' .. '|')
                         elseif teamName == "Marines" then
-                            name.Text = ('<font color="rgb(0,0,0)">「 ASD 」</font>\n' .. v.Name .. ' | ' .. math.round((localPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) .. ' Distance\nHealth: ' .. math.floor(v.Character.Humanoid.Health) .. "/" .. v.Character.Humanoid.MaxHealth .. '\n' .. '| TEAM:' .. '<font color="rgb(0,0,255)"> Marine </font>' .. '|')
+                            name.Text = ('<font color="rgb(0,0,0)">「 CITY 」</font>\n' .. v.Name .. ' | ' .. math.round((localPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) .. ' Distance\nHealth: ' .. math.floor(v.Character.Humanoid.Health) .. "/" .. v.Character.Humanoid.MaxHealth .. '\n' .. '| TEAM:' .. '<font color="rgb(0,0,255)"> Marine </font>' .. '|')
                         else
-                            name.Text = ('<font color="rgb(0,0,0)">「 ASD 」</font>\n' .. v.Name .. ' | ' .. math.round((localPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) .. ' Distance\nHealth: ' .. math.floor(v.Character.Humanoid.Health) .. "/" .. v.Character.Humanoid.MaxHealth .. '\n' .. '| TEAM:' .. '<font color="rgb(0,0,255)"> Error </font>' .. '|')
+                            name.Text = ('<font color="rgb(0,0,0)">「 CITY 」</font>\n' .. v.Name .. ' | ' .. math.round((localPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude / 3) .. ' Distance\nHealth: ' .. math.floor(v.Character.Humanoid.Health) .. "/" .. v.Character.Humanoid.MaxHealth .. '\n' .. '| TEAM:' .. '<font color="rgb(1,1,1)"> Error </font>' .. '|')
                         end
                     end
                 else
@@ -731,7 +733,6 @@ local function executeTextProcess()
                 wait(holdTime_x)
             end
             game:service('VirtualInputManager'):SendKeyEvent(false, "X", false, game)
-            print("your text")
         end
         
         local function skmelee_z(holdTime_z)
@@ -743,7 +744,6 @@ local function executeTextProcess()
                 wait(holdTime_z)
             end
             game:service('VirtualInputManager'):SendKeyEvent(false, "Z", false, game)
-            print("your")
         end
         
         local function skmelee_c(holdTime_c)
@@ -1187,7 +1187,7 @@ spawn(function()
         end
     end)
 
-
+INFOPLY:AddParagraph("Read me","The script did not work well if you had a lag or high ping, which would cause a delay in performance")
 
 
 
@@ -1196,6 +1196,68 @@ local CBTAP = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
+local Playerslist = {}
+
+local function refreshPlayersList()
+    Playerslist = {}
+    for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+        table.insert(Playerslist, v.Name)
+    end
+end
+
+-- 
+
+local SelectedPly = CBTAP:AddDropdown({
+    Name = "SELECT PLAYER",
+    Default = Playerslist[1],  -- Assuming Playerslist is not empty initially
+    Options = Playerslist,
+    Callback = function(Value)
+        _G.SelectPly = Value
+    end
+})
+
+-- Button to refresh the player list
+CBTAP:AddButton({
+    Name = "REFRESH",
+    Callback = function()
+        refreshPlayersList()
+        SelectedPly:Refresh(Playerslist, true)
+    end
+})
+
+
+CBTAP:AddToggle({
+	Name = "TP PLAYER",
+	Default = false,
+	Callback = function(Value)
+		_G.TeleportPly = Value
+        pcall(function()
+            if _G.TeleportPly then
+                repeat topos(game:GetService("Players")[_G.SelectPly].Character.HumanoidRootPart.CFrame) wait() until _G.TeleportPly == false
+            end
+            StopTween(_G.TeleportPly)
+        end)
+	end    
+})
+
+CBTAP:AddToggle({
+	Name = "SPECTATE PLAYER",
+	Default = false,
+	Callback = function(Value)
+		SpectatePlys = Value
+        local plr1 = game:GetService("Players").LocalPlayer.Character.Humanoid
+        local plr2 = game:GetService("Players"):FindFirstChild(_G.SelectPly)
+        repeat wait(.1)
+            game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.Humanoid
+        until SpectatePlys == false 
+        game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
+	end    
+})
+-------++----++----+-++++-----------------
+
+
+
 
 local SectionCB = CBTAP:AddSection({
 	Name = "AIMBOT"
@@ -1267,9 +1329,11 @@ CBTAP:AddToggle({
 local SectionCB = CBTAP:AddSection({
     Name = "AUTO COMBO"
 })
+CBTAP:AddParagraph("How To Make Combo Text","fruit.(z,x,c,v)\nsword.(z,x)\ngun.(z,x)\nmelee.(z,x,c)\nComma : &\nHold Example : sword.x.hold(99)\n wait : wait(99)")
+CBTAP:AddParagraph("Example","fruit.z&wait(0.5)&sword.z.hold(1)&wait(01)&sword.x&wait(0.5)&melee.c&wait(1.5)&melee.z&wait(2)&melee.x")
+
 
 local combois = CBTAP:AddLabel("COMBO :")
-
 spawn(function()
         while wait() do
             pcall(function()
@@ -1735,6 +1799,3 @@ local cac
 
 
 -------------------------------
-notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
-notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
-notis.new("<Color=Yellow>ASD PVP SCRIPT<Color=/>"):Display()
