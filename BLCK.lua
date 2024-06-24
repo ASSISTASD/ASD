@@ -4,7 +4,7 @@ local asdlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlex
 local Window = asdlib:MakeWindow({Name = "ASD", HidePremium = false, IntroText = "ASD", SaveConfig = true, ConfigFolder = "ASD"})
 
 
-local IsTeamCheckEnabled = false 
+local IsTeamCheckEnabled = false
 
 spawn(function()
     game:GetService('RunService').RenderStepped:Connect(function()
