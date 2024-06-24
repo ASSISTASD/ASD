@@ -1128,16 +1128,7 @@ spawn(function()
         end
     end)
 end)
-spawn(function()
-    if SpectatePlys then 
-        local plr1 = game:GetService("Players").LocalPlayer.Character.Humanoid
-        local plr2 = game:GetService("Players"):FindFirstChild(_G.SelectPly)
-        repeat wait(.1)
-            game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.Humanoid
-        until SpectatePlys == false 
-        game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
-    end
-end)
+
 
 
 --------
@@ -1256,6 +1247,12 @@ CBTAP:AddToggle({
 	Default = false,
 	Callback = function(Value)
 		SpectatePlys = Value
+local plr1 = game:GetService("Players").LocalPlayer.Character.Humanoid
+local plr2 = game:GetService("Players"):FindFirstChild(_G.SelectPly)
+        repeat wait(.1)
+            game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.Humanoid
+        until SpectatePlys == false 
+        game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
 	end    
 })
 -------++----++----+-++++-----------------
