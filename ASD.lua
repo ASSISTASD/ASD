@@ -3461,7 +3461,7 @@ Main:Seperator("「 MAIN 」")
 Main:Dropdown("SELECT WEAPON",{"Melee","Sword","Fruit","Gun"},function(Value)
         _G.SelectWeapon = Value
     end)
-Main:Dropdown("SELECT MOD",{"Normal", "Not Tween To Npc Quest"},,function(Value)
+Main:Dropdown("SELECT MOD",{"Normal", "Not Tween To Npc Quest"},function(Value)
         _G.SelectWeapon = Value
     end)
 Main:Toggle("AUTO FARM LEVEL",_G.AutoFarm,function(Value)
