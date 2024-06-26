@@ -293,7 +293,7 @@ function TP1(Pos)
         if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = false end
         pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/210, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
         tween:Play()
-        if Distance <= 250 then
+        if Distance <= 2 then
             tween:Cancel()
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
         end
@@ -1687,19 +1687,7 @@ CBTAP:AddToggle({
 	end    
 })
 
-CBTAP:AddToggle({
-	Name = "SPECTATE PLAYER",
-	Default = false,
-	Callback = function(Value)
-		SpectatePlys = Value
-local plr1 = game:GetService("Players").LocalPlayer.Character.Humanoid
-local plr2 = game:GetService("Players"):FindFirstChild(_G.SelectPly)
-        repeat wait(.1)
-            game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.Humanoid
-        until SpectatePlys == false 
-        game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
-	end    
-})
+
 -------++----++----+-++++-----------------
 
 
