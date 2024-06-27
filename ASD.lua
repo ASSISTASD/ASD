@@ -3472,8 +3472,7 @@ Main:Toggle("AUTO FARM LEVEL",_G.AutoFarm,function(Value)
         StopTween(_G.AutoFarm)
     end)
 if World3 then
-    Main:Line()
-    
+
     Main:Dropdown("SELECT MOD",{"NoQuest", "AcceptQuest", "MasteryFruit"},function(Value)
             BoneFMode = Value
         end)
@@ -3684,7 +3683,7 @@ local BonePos = CFrame.new(-9506.234375, 172.130615234375, 6117.0771484375)
             end
         end
     end)
-Main:Line()
+
     Main:Seperator("「 BOSSES 」")
     
     local Boss = {}
