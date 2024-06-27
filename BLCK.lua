@@ -741,7 +741,7 @@ spawn(function()
         end
     end
 end)
---[[
+
 spawn(function()
     local gg = getrawmetatable(game)
     local old = gg.__namecall
@@ -761,29 +761,6 @@ spawn(function()
         end
         return old(...)
     end)
-end)
-]]
-
-spawn(function()
-    local gg = getrawmetatable(game)
-    local old = gg.__namecall
-    setreadonly(gg, false)
-
-    gg.__namecall = newcclosure(function(...)
-        local method = getnamecallmethod()
-        local args = {...}
-
-        if method == "FireServer" and args[1] == "RemoteEvent" and args[2] ~= true and args[2] ~= false then
-            if Playersaimbot then
-                args[2] = PlayersPosition
-                return old(unpack(args))
-            end
-        end
-
-        return old(...)
-    end)
-
-    setreadonly(gg, true)
 end)
 
 
