@@ -3688,6 +3688,16 @@ Main:Line()
     Main:Seperator("「 BOSSES 」")
     
     local Boss = {}
+    
+    for i, v in pairs(game:GetService("ReplicatedStorage"):GetChildren()) do
+        if string.find(v.Name, "Boss") then
+            if v.Name == "Ice Admiral [Lv. 700] [Boss]" then
+                else
+                table.insert(Boss, v.Name)
+            end
+        end
+    end
+    
     local BossName = Main:Dropdown("SELECT BOSS",Boss,function(value)
         _G.SelectBoss = value
     end)
