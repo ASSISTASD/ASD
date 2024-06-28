@@ -1903,23 +1903,22 @@ if World1 then
     })
 end
 
-if World3 then
-    Map = {
-            "Mansion",
-            "Port Town",
-            "Great Tree",
-            "Castle On The Sea",
-            "MiniSky", 
-            "Hydra Island",
-            "Floating Turtle",
-            "Haunted Castle",
-            "Ice Cream Island",
-            "Peanut Island",
-            "Cake Island",
-            "Cocoa Island",
-            "Candy Island New⛄",
-            "Tiki"},
-end
+        Map = {
+                "Mansion",
+                "Port Town",
+                "Great Tree",
+                "Castle On The Sea",
+                "MiniSky", 
+                "Hydra Island",
+                "Floating Turtle",
+                "Haunted Castle",
+                "Ice Cream Island",
+                "Peanut Island",
+                "Cake Island",
+                "Cocoa Island",
+                "Candy Island New⛄",
+                "Tiki"},
+
 TPTAP:AddDropdown({
     	Name = "SELECT ISLAND",
     	Default = "Mansion",
