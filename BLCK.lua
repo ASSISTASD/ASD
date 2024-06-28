@@ -1904,10 +1904,7 @@ if World1 then
 end
 
 if World3 then
-    TPTAP:AddDropdown({
-    	Name = "SELECT ISLAND",
-    	Default = "Mansion",
-    	Options = {
+    Map = {
             "Mansion",
             "Port Town",
             "Great Tree",
@@ -1922,12 +1919,15 @@ if World3 then
             "Cocoa Island",
             "Candy Island New⛄",
             "Tiki"},
+end
+TPTAP:AddDropdown({
+    	Name = "SELECT ISLAND",
+    	Default = "Mansion",
+    	Options = Map,
     	Callback = function(Value)
     		_G.SelectIsland = Value
     	end    
     })
-end
-
 TPTAP:AddToggle({
 	Name = "TELEPORT",
 	Default = false,
@@ -2030,7 +2030,7 @@ TPTAP:AddToggle({
                 elseif _G.SelectIsland == "Candy Island New⛄" then
                     topos(CFrame.new(-1014.4241943359375, 149.11068725585938, -14555.962890625))
                 elseif _G.SelectIsland == "Tiki" then
-                    topos(CFrame.new(-1014.4241943359375, 149.11068725585938, -14555.962890625))
+                    topos(CFrame.new(-16927.451171875, 9.0863618850708, 433.8642883300781))
                 end
             until not _G.TeleportIsland
         end
@@ -2353,11 +2353,13 @@ STAP:AddToggle({
     Name = "SUPER FAST",
     Default = true,
     Callback = function(Value)
-        local SuperFastMode = Value
         _G.SuperFastMode = Value
-        local plr = game.Players.LocalPlayer
-        local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
-        local CbFw2 = CbFw[2]
+    end
+})
+
+local plr = game.Players.LocalPlayer
+local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
+local CbFw2 = CbFw[2]
 
         function GetCurrentBlade()
             local p13 = CbFw2.activeController
@@ -2417,8 +2419,8 @@ STAP:AddToggle({
             end
         end
 
-        local cac
-        if SuperFastMode then
+local cac
+        if _G.SuperFastMode then
             cac = task.wait
         else
             cac = wait
@@ -2426,9 +2428,6 @@ STAP:AddToggle({
         while cac() do
             AttackNoCD()
         end
-    end
-})
-
 
 STAP:AddToggle({
 	Name = "BYPASS TP",
