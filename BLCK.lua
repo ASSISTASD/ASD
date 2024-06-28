@@ -1903,26 +1903,26 @@ if World1 then
     })
 end
 
-        Map = {
-                "Mansion",
-                "Port Town",
-                "Great Tree",
-                "Castle On The Sea",
-                "MiniSky", 
-                "Hydra Island",
-                "Floating Turtle",
-                "Haunted Castle",
-                "Ice Cream Island",
-                "Peanut Island",
-                "Cake Island",
-                "Cocoa Island",
-                "Candy Island New⛄",
-                "Tiki"},
+
 
 TPTAP:AddDropdown({
     	Name = "SELECT ISLAND",
     	Default = "Mansion",
-    	Options = Map,
+    	Options = {
+            "Mansion",
+            "Port Town",
+            "Great Tree",
+            "Castle On The Sea",
+            "MiniSky", 
+            "Hydra Island",
+            "Floating Turtle",
+            "Haunted Castle",
+            "Ice Cream Island",
+            "Peanut Island",
+            "Cake Island",
+            "Cocoa Island",
+            "Candy Island New⛄",
+            "Tiki"},
     	Callback = function(Value)
     		_G.SelectIsland = Value
     	end    
@@ -2360,7 +2360,7 @@ local plr = game.Players.LocalPlayer
 local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
 local CbFw2 = CbFw[2]
 
-        function GetCurrentBlade()
+function GetCurrentBlade()
             local p13 = CbFw2.activeController
             local ret = p13.blades[1]
             if not ret then return end
@@ -2370,7 +2370,7 @@ local CbFw2 = CbFw[2]
             return ret
         end
 
-        function AttackNoCD()
+function AttackNoCD()
             local AC = CbFw2.activeController
             for i = 1, 1 do
                 local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
@@ -2417,7 +2417,6 @@ local CbFw2 = CbFw[2]
                 end
             end
         end
-
 local cac
         if _G.SuperFastMode then
             cac = task.wait
