@@ -5,6 +5,13 @@ local CITYlib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shle
 
 local Window = CITYlib:MakeWindow({Name = "CITY", HidePremium = false, IntroText = "CITY", SaveConfig = true, ConfigFolder = "CITY"})
 
+if game.PlaceId == 2753915549 then
+	World1 = true
+elseif game.PlaceId == 4442272183 then
+	World2 = true
+elseif game.PlaceId == 7449423635 then
+	World3 = true
+end
 
 local IsTeamCheckEnabled = false 
 
@@ -1903,9 +1910,8 @@ if World1 then
     })
 end
 
-
-
-TPTAP:AddDropdown({
+if World3 then
+    TPTAP:AddDropdown({
     	Name = "SELECT ISLAND",
     	Default = "Mansion",
     	Options = {
@@ -1921,12 +1927,13 @@ TPTAP:AddDropdown({
             "Peanut Island",
             "Cake Island",
             "Cocoa Island",
-            "Candy Island New⛄",
+            "Candy Island New⛄"
             "Tiki"},
     	Callback = function(Value)
     		_G.SelectIsland = Value
     	end    
     })
+end
 TPTAP:AddToggle({
 	Name = "TELEPORT",
 	Default = false,
@@ -2037,6 +2044,60 @@ TPTAP:AddToggle({
 	end    
 })
 
+local SectionRc = TPTAP:AddSection({
+	Name = "TP RACE V4"
+})
+
+TPTAP:AddButton({
+	Name = "Teleport Temple Of Time",
+	Callback = function()
+      		Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+  	end    
+})
+
+TPTAP:AddButton({
+	Name = "Teleport To Lever Pull",
+	Callback = function()
+      		topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
+  	end    
+})
+TPTAP:AddButton({
+	Name = "Teleport To Acient One (Must Be in Temple Of Time!)",
+	Callback = function()
+      		topos(CFrame.new(28981.552734375, 14888.4267578125, -120.245849609375))
+  	end    
+})
+
+TPTAP:AddButton({
+	Name = "Teleport To Door",
+	Callback = function()
+      		if game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman" then
+              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+              wait(0.6)
+              topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
+            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Human" then
+              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+              wait(0.6)
+              topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
+            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg" then
+              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+              wait(0.6)
+              topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
+            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea" then
+              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+              wait(0.6)
+              topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
+            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul" then
+              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+              wait(0.6)
+              topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
+            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink" then
+              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+              wait(0.6)
+              topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
+            end
+  	end    
+})
 
 
 local MISCTAP = Window:MakeTab({
@@ -2347,7 +2408,7 @@ STAP:AddToggle({
 		_G.FastAttack = Value
 	end    
 })
-
+--[[
 STAP:AddToggle({
     Name = "SUPER FAST",
     Default = true,
@@ -2426,7 +2487,7 @@ local cac
         while cac() do
             AttackNoCD()
         end
-
+]]--
 STAP:AddToggle({
 	Name = "BYPASS TP",
 	Default = BypassTP,
