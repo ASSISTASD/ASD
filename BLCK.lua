@@ -1920,7 +1920,8 @@ if World3 then
             "Peanut Island",
             "Cake Island",
             "Cocoa Island",
-            "Candy Island New⛄"},
+            "Candy Island New⛄",
+            "Tiki"},
     	Callback = function(Value)
     		_G.SelectIsland = Value
     	end    
@@ -2027,6 +2028,8 @@ TPTAP:AddToggle({
                 elseif _G.SelectIsland == "Cocoa Island" then
                     topos(CFrame.new(87.94276428222656, 73.55451202392578, -12319.46484375))
                 elseif _G.SelectIsland == "Candy Island New⛄" then
+                    topos(CFrame.new(-1014.4241943359375, 149.11068725585938, -14555.962890625))
+                elseif _G.SelectIsland == "Tiki" then
                     topos(CFrame.new(-1014.4241943359375, 149.11068725585938, -14555.962890625))
                 end
             until not _G.TeleportIsland
