@@ -1927,7 +1927,7 @@ if World3 then
             "Peanut Island",
             "Cake Island",
             "Cocoa Island",
-            "Candy Island New⛄"
+            "Candy Island New⛄",
             "Tiki"},
     	Callback = function(Value)
     		_G.SelectIsland = Value
