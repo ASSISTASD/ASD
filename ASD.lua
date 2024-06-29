@@ -6,7 +6,7 @@ _G.Dark = Color3.fromRGB(1, 1, 1)
 
 
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
-notis.new("<Color=Yellow>CITY NORMAL <Color=/>"):Display()
+notis.new("<Color=Yellow>CITY NORMAL Ww <Color=/>"):Display()
 --[[_G.SafeFarm = true
 assert(getrawmetatable)
     grm = getrawmetatable(game)
