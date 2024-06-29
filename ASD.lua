@@ -6,7 +6,7 @@ _G.Dark = Color3.fromRGB(1, 1, 1)
 
 
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
-notis.new("<Color=Yellow>CITY NORMAL Ww <Color=/>"):Display()
+notis.new("<Color=Yellow>CITY NORMAL <Color=/>"):Display()
 --[[_G.SafeFarm = true
 assert(getrawmetatable)
     grm = getrawmetatable(game)
@@ -267,7 +267,7 @@ Top.Parent = Main
 Top.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
 --Top.Size = UDim2.new(0, 656, 0, 27)
 Top.Size = UDim2.new(0, 556, 0, 30)
-Top.BackgroundTransparency = 1
+Top.BackgroundTransparency = 0.3
 local TCNR = Instance.new("UICorner")
 TCNR.Name = "TCNR"
 TCNR.Parent = Top
@@ -277,7 +277,7 @@ local ttittles = Instance.new("TextLabel")
 ttittles.Name = "ttittles"
 ttittles.Parent = Top
 ttittles.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-ttittles.BackgroundTransparency = 1
+ttittles.BackgroundTransparency = 0.3
 ttittles.Position = UDim2.new(0,30,0.05,0)
 ttittles.Size = UDim2.new(0, 255, 0.05, 25)
 ttittles.Font = Enum.Font.SourceSansBold
@@ -290,7 +290,7 @@ local patch= Instance.new("TextLabel")
 patch.Name = "patch"
 patch.Parent = Top
 patch.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-patch.BackgroundTransparency = 1
+patch.BackgroundTransparency = 0.3
 patch.Position = UDim2.new(0,200,0.05,0)
 patch.Size = UDim2.new(0, 255, 0.05, 25)
 patch.Font = Enum.Font.SourceSansBold
@@ -303,7 +303,7 @@ local ServerTime = Instance.new("TextLabel")
 ServerTime.Name = "ServerTime"
 ServerTime.Parent = Top
 ServerTime.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-ServerTime.BackgroundTransparency = 1.000
+ServerTime.BackgroundTransparency = 0.3.000
 ServerTime.Position = UDim2.new(0.68, 0,0.074, 0)
 ServerTime.Size = UDim2.new(0, 225, 0, 25)
 ServerTime.Font = Enum.Font.GothamSemibold
@@ -343,7 +343,7 @@ local Logo = Instance.new("ImageLabel")
 	Logo.Name = "Logo"
 	Logo.Parent = Main
 	Logo.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-	Logo.BackgroundTransparency = 1
+	Logo.BackgroundTransparency = 0.3
 	Logo.Position = UDim2.new(0, 10, 0, 10)
 	Logo.Size = UDim2.new(0, 120, 0, 120)
 	Logo.Image = "rbxassetid://18251750782"]]--
@@ -352,7 +352,7 @@ Tab.Name = "Tab"
 Tab.Parent = Main
 Tab.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
 Tab.Position = UDim2.new(0, 14, 0, 33)
-Tab.BackgroundTransparency = 1
+Tab.BackgroundTransparency = 0.3
 --Tab.CornerRadius = UDim.new(0,5)
 Tab.Size = UDim2.new(0, 138, 0, 307)
 --Tab.Size = UDim2.new(0, 150, 0, 365)
@@ -366,7 +366,7 @@ ScrollTab.Parent = Tab
 ScrollTab.Active = true
 ScrollTab.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
 ScrollTab.Position = UDim2.new(0, 0, 0, 0)
-ScrollTab.BackgroundTransparency = 1
+ScrollTab.BackgroundTransparency = 0.3
 ScrollTab.Size = UDim2.new(0, 138, 0, 307)
 ScrollTab.ScrollBarThickness = 0
 
@@ -404,7 +404,7 @@ Page.Parent = Main
 Page.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
 Page.Position = UDim2.new(0, 162, 0, 33)
 Page.Size = UDim2.new(0, 380, 0, 308)
-Page.BackgroundTransparency = 1.000
+Page.BackgroundTransparency = 0.3.000
 --[[
 BtnStroke.Name = "BtnStroke"
             BtnStroke.Parent = Page
@@ -425,7 +425,7 @@ MainPage.Name = "MainPage"
 MainPage.Parent = Page
 MainPage.ClipsDescendants = true
 MainPage.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-MainPage.BackgroundTransparency = 1.000
+MainPage.BackgroundTransparency = 0.3.000
 MainPage.Size = UDim2.new(0, 380, 0, 307)
 
 
@@ -474,7 +474,7 @@ TabButton.Parent = ScrollTab
 TabButton.Name = text.."Server"
 TabButton.Text = ""
 TabButton.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-TabButton.BackgroundTransparency = 1
+TabButton.BackgroundTransparency = 0.3
 TabButton.Size = UDim2.new(0, 136, 0, 30)
 TabButton.Font = Enum.Font.SourceSansBold
 TabButton.TextColor3 = Color3.fromRGB(1, 1, 1)
@@ -483,7 +483,7 @@ TabButton.TextTransparency = 0.9
 
 Title.Parent = TabButton
 Title.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Title.BackgroundTransparency = 1.000
+Title.BackgroundTransparency = 0.3.000
 Title.Position = UDim2.new(0, 30, 0, 2)
 Title.Size = UDim2.new(0, 100, 0, 25)
 Title.Font = Enum.Font.SourceSansBold
@@ -495,7 +495,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 			IDK.Name = "LogoIDK"
 			IDK.Parent = TabButton
 			IDK.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-			IDK.BackgroundTransparency = 1.000
+			IDK.BackgroundTransparency = 0.3.000
 			IDK.Position = UDim2.new(0, 6, 0, 4.5)
 			IDK.Size = UDim2.new(0, 20, 0, 20)
 			IDK.Image = img
@@ -533,7 +533,7 @@ MainFramePage.Parent = PageList
 MainFramePage.Active = true
 MainFramePage.BackgroundColor3 = Color3.fromRGB(0, 10, 250)
 MainFramePage.Position = UDim2.new(0, 0, 0, 0)
-MainFramePage.BackgroundTransparency = 1
+MainFramePage.BackgroundTransparency = 0.3
 MainFramePage.Size = UDim2.new(0, 400, 0, 307)
 MainFramePage.ScrollBarThickness = 0
 -- MainFramePage.Padding = UDim.new(0, 2)
@@ -572,7 +572,7 @@ local tabButtons = {} -- Tabel untuk menyimpan tombol tab
 -- Fungsi untuk mengaktifkan tab
 function ActivateTab(tabButton)
     if activeTab then
-        activeTab.BackgroundTransparency = 1
+        activeTab.BackgroundTransparency = 0.3
     end
 
     activeTab = tabButton
@@ -604,7 +604,7 @@ if abc == false then
             button,
             TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
             {
-                BackgroundTransparency = 1
+                BackgroundTransparency = 0.3
             }
         ):Play()
     end
@@ -637,7 +637,7 @@ local Line = Instance.new("Frame")
 NotificationHold.Name = "NotificationHold"
 NotificationHold.Parent = Main
 NotificationHold.BackgroundColor3 = Color3.new(125,125,125)
-NotificationHold.BackgroundTransparency = 1
+NotificationHold.BackgroundTransparency = 0.3
 NotificationHold.BorderSizePixel = 0
 NotificationHold.Size = UDim2.new(0, 589, 0, 378)
 NotificationHold.AutoButtonColor = false
@@ -647,7 +647,7 @@ NotificationHold.TextColor3 = Color3.new(255, 255, 255)
 NotificationHold.TextSize = 13.000
 
 TweenService:Create(NotificationHold, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
- BackgroundTransparency = 1
+ BackgroundTransparency = 0.3
 }):Play()
 wait(0.4)
 
@@ -698,7 +698,7 @@ OkayBtnCorner.Parent = OkayBtn
 OkayBtnTitle.Name = "OkayBtnTitle"
 OkayBtnTitle.Parent = OkayBtn
 OkayBtnTitle.BackgroundColor3 = Color3.new(125,0,125)
-OkayBtnTitle.BackgroundTransparency = 1.000
+OkayBtnTitle.BackgroundTransparency = 0.3.000
 OkayBtnTitle.Size = UDim2.new(0, 150, 0, 30)
 OkayBtnTitle.Text = "OK"
 OkayBtnTitle.Font = Enum.Font.SourceSansBold
@@ -708,7 +708,7 @@ OkayBtnTitle.TextSize = 22.000
 NotificationTitle.Name = "NotificationTitle"
 NotificationTitle.Parent = NotificationFrame
 NotificationTitle.BackgroundColor3 = Color3.new(125,0,125)
-NotificationTitle.BackgroundTransparency = 1.000
+NotificationTitle.BackgroundTransparency = 0.3.000
 NotificationTitle.Position = UDim2.new(0, 0, 0, 10)
 NotificationTitle.Size = UDim2.new(0, 400, 0, 25)
 NotificationTitle.ZIndex = 3
@@ -727,7 +727,7 @@ Line.Size = UDim2.new(0, 380, 0, 1)
 NotificationDesc.Name = "NotificationDesc"
 NotificationDesc.Parent = NotificationFrame
 NotificationDesc.BackgroundColor3 = _G.SectionColor
-NotificationDesc.BackgroundTransparency = 1.000
+NotificationDesc.BackgroundTransparency = 0.3.000
 NotificationDesc.Position = UDim2.new(0, 10, 0, 80)
 NotificationDesc.Size = UDim2.new(0, 380, 0, 200)
 NotificationDesc.Font = Enum.Font.SourceSansBold
@@ -755,7 +755,7 @@ OkayBtn.MouseButton1Click:Connect(function()
  wait(0.4)
 
  TweenService:Create(NotificationHold, TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-  BackgroundTransparency = 1
+  BackgroundTransparency = 0.3
  }):Play()
 
  wait(.3)
@@ -776,7 +776,7 @@ local UICorner_3 = Instance.new("UICorner")
 Button.Name = "Button"
 Button.Parent = MainFramePage
 Button.BackgroundColor3 = Color3.new(0,0,0)
-Button.BackgroundTransparency = 1
+Button.BackgroundTransparency = 0.3
 Button.Size = UDim2.new(0, 358, 0, 33)
 
 UICorner.CornerRadius = UDim.new(0, 5)
@@ -800,7 +800,7 @@ UICorner_2.Parent = TextBtn
 Black.Name = "Black"
 Black.Parent = Button
 Black.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Black.BackgroundTransparency = 1.000
+Black.BackgroundTransparency = 0.3.000
 Black.BorderSizePixel = 0
 Black.Position = UDim2.new(0, 0, 0, 0)
 Black.Size = UDim2.new(0, 379, 0, 33)
@@ -822,7 +822,7 @@ TextBtn.MouseLeave:Connect(function()
   Black,
   TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
   {
-   BackgroundTransparency = 1
+   BackgroundTransparency = 0.3
   }
  ):Play()
  end)
@@ -855,7 +855,7 @@ local ImageButton = Instance.new("ImageButton")
 CheckFrame.Name = TogInfo or "CheckFrame"
 CheckFrame.Parent = MainFramePage
 CheckFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-CheckFrame.BackgroundTransparency = 1.000
+CheckFrame.BackgroundTransparency = 0.3.000
 CheckFrame.BorderSizePixel = 0
 CheckFrame.Size = UDim2.new(0, 360, 0, 31)
 
@@ -881,7 +881,7 @@ UICorner.CornerRadius = UDim.new(0, 3)
 
 Title.Parent = CheckFrame2
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-Title.BackgroundTransparency = 1.000
+Title.BackgroundTransparency = 0.3.000
 Title.Position = UDim2.new(0, 50, 0, 0)
 Title.Size = UDim2.new(0, 280, 0, 30)
 Title.Font = Enum.Font.SourceSansBold
@@ -893,7 +893,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 ImageButton.Name = "ImageButton"
 ImageButton.Parent = CheckFrame2
 ImageButton.BackgroundColor3 = Color3.fromRGB(255,255,255)
-ImageButton.BackgroundTransparency = 1.000
+ImageButton.BackgroundTransparency = 0.3.000
 ImageButton.Position = UDim2.new(0, 357, 0, 3)
 ImageButton.Size = UDim2.new(0, 25, 0, 25)
 ImageButton.ZIndex = 2
@@ -982,14 +982,14 @@ local TogglePadding = Instance.new("UIPadding")
                 imgLabelIcon.Name = "Icon"
 				imgLabelIcon.Parent = Button
 				imgLabelIcon.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-				imgLabelIcon.BackgroundTransparency = 1.000
+				imgLabelIcon.BackgroundTransparency = 0.3.000
 				imgLabelIcon.Position = UDim2.new(0, 5, 0, 8)
 				imgLabelIcon.Size = UDim2.new(0, 30, 0, 30)
 				imgLabelIcon.Image = "rbxassetid://18251750782" 
 
 Title.Parent = Button
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-Title.BackgroundTransparency = 1.000
+Title.BackgroundTransparency = 0.3.000
 Title.Position = UDim2.new(0, 40, 0, 0)
 Title.Size = UDim2.new(0, 280, 0, 46)
 Title.Font = Enum.Font.SourceSansBold
@@ -1059,7 +1059,7 @@ function main:BigTitle(text)
 local Title = Instance.new("TextLabel")
 Title.Parent = MainFramePage
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-Title.BackgroundTransparency = 1.000
+Title.BackgroundTransparency = 0.3.000
 Title.Position = UDim2.new(0, 40, 0, 0)
 Title.Size = UDim2.new(0, 280, 0, 30)
 Title.Font = Enum.Font.SourceSansBold
@@ -1107,7 +1107,7 @@ local imgLabelIcon = Instance.new("ImageLabel")
                 imgLabelIcon.Name = "Icon"
 				imgLabelIcon.Parent = Dropdown
 				imgLabelIcon.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-				imgLabelIcon.BackgroundTransparency = 1.000
+				imgLabelIcon.BackgroundTransparency = 0.3.000
 				imgLabelIcon.Position = UDim2.new(0, 5, 0, 3)
 				imgLabelIcon.Size = UDim2.new(0, 30, 0, 30)
 				imgLabelIcon.Image = "rbxassetid://18251750782" 
@@ -1115,7 +1115,7 @@ local imgLabelIcon = Instance.new("ImageLabel")
 DropTitle.Name = "DropTitle"
 DropTitle.Parent = Dropdown
 DropTitle.BackgroundColor3 = Color3.fromRGB(255, 30, 50)
-DropTitle.BackgroundTransparency = 1
+DropTitle.BackgroundTransparency = 0.3
 DropTitle.Size = UDim2.new(0, 379, 0, 38)
 DropTitle.Font = Enum.Font.SourceSansBold
 DropTitle.Text = "| "..text
@@ -1181,7 +1181,7 @@ local Item = Instance.new("TextButton")
 Item.Name = "Item"
 Item.Parent = DropScroll
 Item.BackgroundColor3 = Color3.fromRGB(46, 56, 56)
-Item.BackgroundTransparency = 1
+Item.BackgroundTransparency = 0.3
 Item.Size = UDim2.new(0, 379, 0, 26)
 Item.Font = Enum.Font.SourceSansBold
 Item.Text = tostring(v)
@@ -1257,7 +1257,7 @@ local Item = Instance.new("TextButton")
 Item.Name = "Item"
 Item.Parent = DropScroll
 Item.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Item.BackgroundTransparency = 1.000
+Item.BackgroundTransparency = 0.3.000
 Item.Size = UDim2.new(0, 379, 0, 26)
 Item.Font = Enum.Font.SourceSansBold
 Item.Text = tostring(t)
@@ -1343,7 +1343,7 @@ end
                 -- Prop --
                 SliderFrame.Name = slidertitle or "SliderFrame"
                 SliderFrame.Parent = MainFramePage
-                SliderFrame.BackgroundColor3 = Color3.fromRGB(240, 240, 240)                SliderFrame.BackgroundTransparency = 1.000
+                SliderFrame.BackgroundColor3 = Color3.fromRGB(240, 240, 240)                SliderFrame.BackgroundTransparency = 0.3.000
                 SliderFrame.BorderSizePixel = 0
                 SliderFrame.Size = UDim2.new(0, 379, 0, 60)
             
@@ -1371,7 +1371,7 @@ end
                 ImageLabel.Name = "ImageLabel"
                 ImageLabel.Parent = SliderFrame_2
                 ImageLabel.BackgroundColor3 = Color3.fromRGB(240, 240, 240)        
-                ImageLabel.BackgroundTransparency = 1.000
+                ImageLabel.BackgroundTransparency = 0.3.000
                 ImageLabel.BorderSizePixel = 0
                 ImageLabel.Position = UDim2.new(0, 7.5, 0, 7.5)
                 ImageLabel.Size = UDim2.new(0, 30, 0, 30)
@@ -1382,7 +1382,7 @@ end
             
                 Title.Parent = SliderFrame_2
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-Title.BackgroundTransparency = 1.000
+Title.BackgroundTransparency = 0.3.000
 Title.Position = UDim2.new(0, 45, 0, 5)
 Title.Size = UDim2.new(0, 280, 0, 30)
 Title.Font = Enum.Font.SourceSansBold
@@ -1404,7 +1404,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
                 
                 SliderButton.Name = "SliderButton"
                 SliderButton.Parent = SliderInput
-                SliderButton.BackgroundColor3 = Color3.fromRGB(46, 56, 56)              SliderButton.BackgroundTransparency = 1.000
+                SliderButton.BackgroundColor3 = Color3.fromRGB(46, 56, 56)              SliderButton.BackgroundTransparency = 0.3.000
                 SliderButton.BorderSizePixel = 0
                 SliderButton.Position = UDim2.new(0, 0, 0, -7)
                 SliderButton.Size = UDim2.new(0, 300, 0, 25)
@@ -1422,7 +1422,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
                 Title_2.AnchorPoint = Vector2.new(0, 0)
                 Title_2.BackgroundColor3 = Color3.fromRGB(1, 1, 1)     
                 Title_2.AutoButtonColor = false
-                Title_2.BackgroundTransparency = 1.000
+                Title_2.BackgroundTransparency = 0.3.000
                 Title_2.Position = UDim2.new(0,start,0,0)
                 Title_2.Size = UDim2.new(0, 18, 0, 18)
                 Title_2.Font = Enum.Font.SourceSansBold
@@ -1450,7 +1450,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
                 BoxFrame.Name = "BoxFrame"
                 BoxFrame.Parent = SliderFrame_2
                 BoxFrame.BackgroundColor3 = Color3.fromRGB(1, 1, 1)   
-                             BoxFrame.BackgroundTransparency = 1.000
+                             BoxFrame.BackgroundTransparency = 0.3.000
                 BoxFrame.Size = UDim2.new(0, 50, 0, 15)
                 BoxFrame.Position = UDim2.new(0, 319, 0, 8)
             
@@ -1513,7 +1513,7 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
                         dragging = false
                         SliderButtonInput = input
                         game.TweenService:Create(SliderCount, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {BackgroundTransparency = 0.3, Size = UDim2.new(0, 18, 0, 18)}):Play()
-                        game.TweenService:Create(Title_2, TweenInfo.new(0.12, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {AnchorPoint = Vector2.new(0, 0), TextSize = 8.000, BackgroundTransparency = 1.000, Size = UDim2.new(0, 18, 0, 18)}):Play()
+                        game.TweenService:Create(Title_2, TweenInfo.new(0.12, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {AnchorPoint = Vector2.new(0, 0), TextSize = 8.000, BackgroundTransparency = 0.3.000, Size = UDim2.new(0, 18, 0, 18)}):Play()
                         game.TweenService:Create(SliderBox, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {TextTransparency = 0.5}):Play()
                         game.TweenService:Create(SliderInput, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {BackgroundTransparency = 0.7}):Play()
                         game.TweenService:Create(SliderStroke, TweenInfo.new(0.08, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Transparency = 0.5}):Play()
@@ -1676,7 +1676,7 @@ local posto = Instance.new("UIStroke")
 Slider.Name = "Slider"
 Slider.Parent = MainFramePage
 Slider.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Slider.BackgroundTransparency = 1
+Slider.BackgroundTransparency = 0.3
 Slider.Size = UDim2.new(0, 379, 0, 60)
 
 slidercorner.CornerRadius = UDim.new(0, 5)
@@ -1697,7 +1697,7 @@ sliderrcorner.Parent = sliderr
                 ImageLabel.Name = "ImageLabel"
                 ImageLabel.Parent = sliderr
                 ImageLabel.BackgroundColor3 = Color3.fromRGB(1, 1, 1)        
-                ImageLabel.BackgroundTransparency = 1.000
+                ImageLabel.BackgroundTransparency = 0.3.000
                 ImageLabel.BorderSizePixel = 0
                 ImageLabel.Position = UDim2.new(0, 7.5, 0, 7.5)
                 ImageLabel.Size = UDim2.new(0, 30, 0, 30)
@@ -1708,7 +1708,7 @@ sliderrcorner.Parent = sliderr
             
                 Title.Parent = sliderr
 Title.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
-Title.BackgroundTransparency = 1.000
+Title.BackgroundTransparency = 0.3.000
 Title.Position = UDim2.new(0, 45, 0, 5)
 Title.Size = UDim2.new(0, 280, 0, 30)
 Title.Font = Enum.Font.SourceSansBold
@@ -1720,13 +1720,13 @@ Title.TextXAlignment = Enum.TextXAlignment.Left
 HAHA.Name = "HAHA"
 HAHA.Parent = sliderr
 HAHA.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-HAHA.BackgroundTransparency = 1.000
+HAHA.BackgroundTransparency = 0.3.000
 HAHA.Size = UDim2.new(0, 359, 0, 29)
 
 AHEHE.Name = "AHEHE"
 AHEHE.Parent = sliderr
 AHEHE.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-AHEHE.BackgroundTransparency = 1.000
+AHEHE.BackgroundTransparency = 0.3.000
 AHEHE.Position = UDim2.new(0, 10, 0, 42)
 AHEHE.Size = UDim2.new(0, 359, 0, 5)
 AHEHE.Font = Enum.Font.SourceSans
@@ -1898,7 +1898,7 @@ TextboxxCorner.Parent = Textboxx
 
 TextboxLabel.Name = "TextboxLabel"
 TextboxLabel.Parent = Textbox
-TextboxLabel.BackgroundColor3 = Color3.fromRGB(1, 1, 1)TextboxLabel.BackgroundTransparency = 1.000
+TextboxLabel.BackgroundColor3 = Color3.fromRGB(1, 1, 1)TextboxLabel.BackgroundTransparency = 0.3.000
 TextboxLabel.Position = UDim2.new(0, 15, 0, 0)
 TextboxLabel.Text = text
 TextboxLabel.Size = UDim2.new(0, 145, 0, 31)
@@ -1911,7 +1911,7 @@ TextboxLabel.TextXAlignment = Enum.TextXAlignment.Left
 txtbtn.Name = "txtbtn"
 txtbtn.Parent = Textbox
 txtbtn.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-txtbtn.BackgroundTransparency = 1.000
+txtbtn.BackgroundTransparency = 0.3.000
 txtbtn.Position = UDim2.new(0, 1, 0, 1)
 txtbtn.Size = UDim2.new(0, 379, 0, 29)
 txtbtn.Font = Enum.Font.SourceSans
@@ -1949,7 +1949,7 @@ local labelfunc = {}
 Label.Name = "Label"
 Label.Parent = MainFramePage
 Label.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Label.BackgroundTransparency = 1.000
+Label.BackgroundTransparency = 0.3.000
 Label.Size = UDim2.new(0, 410, 0, 20)
 Label.Font = Enum.Font.SourceSansBold
 Label.TextColor3 = Color3.fromRGB(225, 225, 225)
@@ -1975,7 +1975,7 @@ local Label1func = {}
 Label1.Name = "Label1"
 Label1.Parent = MainFramePage
 Label1.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Label1.BackgroundTransparency = 1.000
+Label1.BackgroundTransparency = 0.3.000
 Label1.Size = UDim2.new(0, 410, 0, 20)
 Label1.Font = Enum.Font.SourceSansBold
 Label1.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -2027,7 +2027,7 @@ TextboxxCorner.Parent = Textboxx
 
 TextboxLabel.Name = "TextboxLabel"
 TextboxLabel.Parent = Textbox
-TextboxLabel.BackgroundColor3 = Color3.fromRGB(1, 1, 1)TextboxLabel.BackgroundTransparency = 1.000
+TextboxLabel.BackgroundColor3 = Color3.fromRGB(1, 1, 1)TextboxLabel.BackgroundTransparency = 0.3.000
 TextboxLabel.Position = UDim2.new(0, 15, 0, 0)
 TextboxLabel.Text = text
 TextboxLabel.Size = UDim2.new(0, 145, 0, 31)
@@ -2039,7 +2039,7 @@ TextboxLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 txtbtn.Name = "txtbtn"
 txtbtn.Parent = Textbox
-txtbtn.BackgroundColor3 = Color3.fromRGB(1, 1, 1)txtbtn.BackgroundTransparency = 1.000
+txtbtn.BackgroundColor3 = Color3.fromRGB(1, 1, 1)txtbtn.BackgroundTransparency = 0.3.000
 txtbtn.Position = UDim2.new(0, 1, 0, 1)
 txtbtn.Size = UDim2.new(0, 379, 0, 29)
 txtbtn.Font = Enum.Font.SourceSans
@@ -2077,7 +2077,7 @@ local labelfunc = {}
 Label.Name = "Label"
 Label.Parent = MainFramePage
 Label.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Label.BackgroundTransparency = 1.000
+Label.BackgroundTransparency = 0.3.000
 Label.Size = UDim2.new(0, 410, 0, 30)
 Label.Font = Enum.Font.SourceSansBold
 Label.TextColor3 = Color3.fromRGB(225, 225, 225)
@@ -2103,7 +2103,7 @@ local Label1func = {}
 Label1.Name = "Label1"
 Label1.Parent = MainFramePage
 Label1.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Label1.BackgroundTransparency = 1.000
+Label1.BackgroundTransparency = 0.3.000
 Label1.Size = UDim2.new(0, 410, 0, 20)
 Label1.Font = Enum.Font.SourceSansBold
 Label1.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -2130,7 +2130,7 @@ local Label1func = {}
 Label1.Name = "Label1"
 Label1.Parent = MainFramePage
 Label1.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Label1.BackgroundTransparency = 1.000
+Label1.BackgroundTransparency = 0.3.000
 Label1.Size = UDim2.new(0, 410, 0, 20)
 Label1.Font = Enum.Font.SourceSansBold
 Label1.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -2141,7 +2141,7 @@ Label1.TextXAlignment = Enum.TextXAlignment.Left
 Labeld.Name = "Labeld"
 Labeld.Parent = MainFramePage
 Labeld.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Labeld.BackgroundTransparency = 1.000
+Labeld.BackgroundTransparency = 0.3.000
 Labeld.Size = UDim2.new(0, 410, 0, 20)
 Labeld.Font = Enum.Font.SourceSansBold
 Labeld.TextColor3 = Color3.fromRGB(255, 255, 255)Labeld.TextSize = 15.000
@@ -2181,7 +2181,7 @@ Sep1.Size = UDim2.new(0, 20, 0, 10)
 Sep2.Name = "Sep2"
 Sep2.Parent = Seperator
 Sep2.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Sep2.BackgroundTransparency = 1
+Sep2.BackgroundTransparency = 0.3
 Sep2.Position = UDim2.new(0, 0, 0, 0)
 Sep2.Size = UDim2.new(0, 379, 0, 30)
 Sep2.Font = Enum.Font.SourceSansBold
@@ -2205,7 +2205,7 @@ local Line = Instance.new("Frame")
 Linee.Name = "Linee"
 Linee.Parent = MainFramePage
 Linee.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-Linee.BackgroundTransparency = 1.000
+Linee.BackgroundTransparency = 0.3.000
 Linee.Position = UDim2.new(0, 0, 0.119999997, 0)
 Linee.Size = UDim2.new(0, 310, 0, 20)
 
@@ -2229,14 +2229,14 @@ function main:UserCITY()
     UserPlayer.Name = "UserPlayer"
     UserPlayer.Position = UDim2.new(0, 0, 0, 0)
     UserPlayer.Size = UDim2.new(0, 400, 0, 110)
-    UserPlayer.BackgroundTransparency = 1
+    UserPlayer.BackgroundTransparency = 0.3
     UserPlayer.BackgroundColor3 = Color3.fromRGB(1, 1, 1) 
     UserPlayer.Parent = MainFramePage
     
     local UserImage = Instance.new("ImageLabel")
     UserImage.Size = UDim2.new(0, 100, 0, 100) -- Ubah ukuran gambar menjadi 200x300
     UserImage.Position = UDim2.new(0, 10, 0, 10)
-    UserImage.BackgroundTransparency = 1
+    UserImage.BackgroundTransparency = 0.3
     UserImage.Image = content
     UserImage.Parent = UserPlayer
 
@@ -2251,7 +2251,7 @@ function main:UserCITY()
     UserName.TextSize = 30
     UserName.Font = Enum.Font.SourceSansBold
     UserName.TextColor3 = _G.Primary
-    UserName.BackgroundTransparency = 1
+    UserName.BackgroundTransparency = 0.3
     UserName.TextTransparency = .1
     UserName.Text = game.Players.LocalPlayer.DisplayName
     UserName.Parent = UserPlayer
@@ -2264,7 +2264,7 @@ function main:UserCITY()
     P.TextSize = 15
     P.Font = Enum.Font.Jura
     P.TextColor3 = Color3.new(255, 255, 255)
-    P.BackgroundTransparency = 1
+    P.BackgroundTransparency = 0.3
     P.Text = "> User Name: "..game.Players.LocalPlayer.Name
     P.Parent = UserPlayer
     P.TextXAlignment = Enum.TextXAlignment.Left
@@ -2275,7 +2275,7 @@ function main:UserCITY()
     U.TextSize = 15
     U.Font = Enum.Font.Jura
     U.TextColor3 = Color3.new(255, 255, 255)
-    U.BackgroundTransparency = 1
+    U.BackgroundTransparency = 0.3
     U.Text = "> User ID: "..game.Players.LocalPlayer.UserId
     U.Parent = UserPlayer
     U.TextXAlignment = Enum.TextXAlignment.Left
