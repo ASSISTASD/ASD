@@ -185,7 +185,7 @@ NotificationTable.CreateNotification = function(TitleData, Text, Image, Settings
 	Frame.Size = UDim2.new(0, 263, 0, 3)
 	Frame.Visible = false;
 
-	UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 8, 231)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(64, 0, 255))}
+	UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 0, 0))}
 	UIGradient.Parent = Frame
 
 	if GradientSettings.GradientEnabled then
