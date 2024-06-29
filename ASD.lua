@@ -2,13 +2,12 @@ repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 _G.Primary = Color3.fromRGB(255, 255, 255)
 _G.Dark = Color3.fromRGB(1, 1, 1)
 ----------------------------------------------------------------------------------------------------------------------------------------
-_G.TieuDe = "CITY NORMAL"
-_G.ThongBaoChoose = "Blox Fruits"
+
 
 
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=Yellow>CITY NORMAL <Color=/>"):Display()
-_G.SafeFarm = true
+--[[_G.SafeFarm = true
 assert(getrawmetatable)
     grm = getrawmetatable(game)
     setreadonly(grm, false)
@@ -149,7 +148,7 @@ if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseT
 				end
 			end
 		until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
-	end
+	end]]
 ----------------------------------------------------------------------------------------------------------------------------------------
 local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/ASSISTASD/ASD/main/MASSAGE.lua"))()
 ----------------------------------------------------------------------------------------------------------------------------------------
