@@ -263,7 +263,7 @@ ttittles.BackgroundTransparency = 1
 ttittles.Position = UDim2.new(0,30,0.05,0)
 ttittles.Size = UDim2.new(0, 255, 0.05, 25)
 ttittles.Font = Enum.Font.SourceSansBold
-ttittles.Text = "CITY NORMAL [Free]"
+ttittles.Text = "CITY NORMAL"
 ttittles.TextSize = 15.000
 ttittles.TextColor3 = Color3.fromRGB(255, 255, 255)
 ttittles.TextXAlignment = Enum.TextXAlignment.Left
@@ -2305,7 +2305,7 @@ ScreenGui1.Parent = game.CoreGui
 ScreenGui1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageButton1.Parent = ScreenGui1
-ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 105, 148)
+ImageButton1.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 ImageButton1.BorderSizePixel = 0
 ImageButton1.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
 ImageButton1.Size = UDim2.new(0, 50, 0, 50)
@@ -2316,7 +2316,7 @@ ImageButton1.MouseButton1Down:connect(function()
   game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
 end)
 UICorner.Parent = ImageButton1
-UIStroke.Color = Color3.fromRGB(0, 105, 148)
+UIStroke.Color = Color3.fromRGB(0, 255, 0)
 UIStroke.Thickness = 1.5
 UIStroke.Parent = ImageButton1
 ----------------------------------------------------------------------------------------------------------------------------------------
