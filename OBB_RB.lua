@@ -215,7 +215,7 @@ mainopens.Parent = mainopen
         TextNoti.TextXAlignment = Enum.TextXAlignment.Left
         TextNoti.BackgroundTransparency = 1
     
-        repeat wait() until TitleFrame.Size == UDim2.new(0, 400-10, 0, 70)
+        repeat wait(.1) until TitleFrame.Size == UDim2.new(0, 400-10, 0, 70)
     
         local Time = Instance.new("Frame")
         Time.Name = "Time"
@@ -236,7 +236,7 @@ mainopens.Parent = mainopen
     
     
         Time:TweenSizeAndPosition(UDim2.new(0, 400-10, 0, 3),  UDim2.new(0., 0, 0.,0), "Out", "Quad", 0.3, true)
-        repeat wait() until Time.Size == UDim2.new(0, 400-10, 0, 3)
+        repeat wait(.1) until Time.Size == UDim2.new(0, 400-10, 0, 3)
     
         TweenService:Create(
             Time,
@@ -1937,9 +1937,9 @@ function Hop()
                     end
                     if Possible == true then
                         table.insert(AllIDs, ID)
-                        wait()
+                        wait(.1)
                         pcall(function()
-                            wait()
+                            wait(.1)
                             game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
                         end)
                         wait(4)
@@ -1948,7 +1948,7 @@ function Hop()
             end
         end
         function Teleport() 
-            while wait() do
+            while wait(.1) do
                 pcall(function()
                     TPReturner()
                     if foundAnything ~= "" then
@@ -2010,7 +2010,7 @@ function Hop()
     function BTP(p)
     	pcall(function()
 	    	if (p.Position-game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 1500 and not Auto_Raid and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
-				repeat wait()
+				repeat wait(.1)
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = p
 					wait(.05)
 					game.Players.LocalPlayer.Character.Head:Destroy()
@@ -2088,9 +2088,9 @@ function TP1(Pos)
     function StopTween(target)
         if not target then
             _G.StopTween = true
-            wait()
+            wait(.1)
             topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-            wait()
+            wait(.1)
             if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
             end
@@ -2104,7 +2104,7 @@ function TP1(Pos)
     
     spawn(function()
         pcall(function()
-            while wait() do
+            while wait(.1) do
                 for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
                     if v:IsA("Tool") then
                         if v:FindFirstChild("RemoteFunctionShoot") then 
@@ -2260,7 +2260,7 @@ local PlayersPosition = nil
 
 spawn(function()
     pcall(function()
-        while wait() do
+        while wait(.1) do
             if _G.Aimbot then
                 for _, v in pairs(players:GetPlayers()) do
                     if game.Workspace.Characters:FindFirstChild(v.Name) or game.Workspace.Characters:FindFirstChild(v.DisplayName) then
@@ -2309,7 +2309,7 @@ end)
 
 
 spawn(function()
-    while wait() do
+    while wait(.1) do
         for _, v in pairs(game.Players:GetChildren()) do
             if v.Name == Playersaimbot then
                 PlayersPosition = v.Character.HumanoidRootPart.Position
@@ -2510,7 +2510,7 @@ game:GetService("RunService").Stepped:Connect(function()
 	end)
 
 spawn(function()
-			while task.wait() do
+			while task.wait(.1) do
 				pcall(function()
 					if _G.WalkWater then
 						game:GetService("Workspace").Map["WaterBase-Plane"].Size = Vector3.new(1000,112,1000)
@@ -2576,7 +2576,7 @@ end)
     local LocalPlayer = game:GetService'Players'.LocalPlayer
     local originalstam = LocalPlayer.Character.Energy.Value
 spawn(function()
-        while wait() do
+        while wait(.1) do
             if InfAbility then
                 InfAb()
             end
@@ -2645,7 +2645,7 @@ local combotext = Instance.new("StringValue")
 combotext.Value = ""
 
 task.spawn(function()
-	while wait() do
+	while wait(.1) do
 		pcall(function()
 			if _G.SelectMel == "Melee" then
 				for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
@@ -3053,7 +3053,7 @@ local localbountyhornor = INFOPLY:Label("???")
 local plyserv = INFOPLY:Label("Players")
 
     spawn(function()
-        while wait() do
+        while wait(.1) do
             pcall(function()
                 for i,v in pairs(game:GetService("Players"):GetPlayers()) do
                     if i == 12 then
@@ -3071,21 +3071,21 @@ local plyserv = INFOPLY:Label("Players")
 
 
 spawn(function()
-        while wait() do
+        while wait(.1) do
             pcall(function()
                 localrace:Set("Race:".." "..game:GetService("Players").LocalPlayer.Data.Race.Value)
             end)
         end
     end)
 spawn(function()
-        while wait() do
+        while wait(.1) do
             pcall(function()
                 LOCLV:Set("Level:".." "..game:GetService("Players").LocalPlayer.Data.Level.Value)
             end)
         end
     end)    
 spawn(function()
-        while wait() do
+        while wait(.1) do
             pcall(function()
                 localbountyhornor:Set("Bounty / Honor:".." "..game:GetService("Players").LocalPlayer.leaderstats["Bounty/Honor"].Value)
             end)
@@ -3257,9 +3257,9 @@ end)
 
 COMBOTAP:Line()
 
-local combois = COMBOTAP:Labe("COMBO :")
+local combois = COMBOTAP:Label("COMBO :")
 spawn(function()
-        while wait() do
+        while wait(.1) do
             pcall(function()
                 combois:Set("COMBO : ".." "..combotext.Value)
             end)
