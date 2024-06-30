@@ -1854,15 +1854,7 @@ function main:Seperator(text)
  end
  
  
- local Library = Update:Window("CITY ","")
- 
- --------------------------
-local INFOPLY = Library:Tab("INFO PLAYER","rbxassetid://11446825283")
-local SETTING = Library:Tab("SETTINGS","rbxassetid://11446835336")
-local COMBOTAP = Library:Tab("PLAYER","rbxassetid://11446900930")
-local TELEPORT = Library:Tab("TELEPORT","rbxassetid://11446920523")
-local ESPTAP = Library:Tab("ESP","rbxassetid://11446965348")
-local MISC = Library:Tab("MISC","rbxassetid://11447063791")
+
 --------------------------------------------------------------------
 if game.PlaceId == 2753915549 then
 	World1 = true
@@ -3317,6 +3309,15 @@ end)
 
 
 --------
+ local Library = Update:Window("CITY ","")
+ 
+ --------------------------
+local INFOPLY = Library:Tab("INFO PLAYER","rbxassetid://11446825283")
+local SETTING = Library:Tab("SETTINGS","rbxassetid://11446835336")
+local COMBOTAP = Library:Tab("PLAYER","rbxassetid://11446900930")
+local TELEPORT = Library:Tab("TELEPORT","rbxassetid://11446920523")
+local ESPTAP = Library:Tab("ESP","rbxassetid://11446965348")
+local MISC = Library:Tab("MISC","rbxassetid://11447063791")
 -----------------
 local localrace = INFOPLY:AddLabel("???")
 local LOCLV = INFOPLY:AddLabel("???")
