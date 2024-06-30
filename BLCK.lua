@@ -3626,8 +3626,12 @@ Misc:Toggle("NO STUN",_G.NoStunV2,function(Value)
         _G.NoStunV2 = Value
     end)
     
-
-    
+Misc:Toggle("NO CLIP",false,function(Value)
+        _G.No_clip = Value
+    end)
+Misc:Toggle("WALK IN WATER",false,function(Value)
+        _G.WalkWater = Value
+    end)
     
 
 Misc:Toggle("AUTO AWAKENING",_G.AutoAwakeningRace,function(Value)
