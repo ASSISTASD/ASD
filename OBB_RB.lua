@@ -2870,7 +2870,7 @@ spawn(function()
                     y.activeController.hitboxMagnitude = 500
                     y.activeController.active = false
                     y.activeController.timeToNextBlock = 0
-                    y.activeController.focusStart = 9999999999999999999999
+                    y.activeController.focusStart = 99999999
                     y.activeController.increment = 1
                     y.activeController.blocking = false
                     y.activeController.attacking = false
@@ -3319,10 +3319,10 @@ local TELEPORT = Library:Tab("TELEPORT","rbxassetid://11446920523")
 local ESPTAP = Library:Tab("ESP","rbxassetid://11446965348")
 local MISC = Library:Tab("MISC","rbxassetid://11447063791")
 -----------------
-local localrace = INFOPLY:AddLabel("???")
-local LOCLV = INFOPLY:AddLabel("???")
-local localbountyhornor = INFOPLY:AddLabel("???")
-local plyserv = INFOPLY:AddLabel("Players")
+local localrace = INFOPLY:Label("???")
+local LOCLV = INFOPLY:Label("???")
+local localbountyhornor = INFOPLY:Label("???")
+local plyserv = INFOPLY:Label("Players")
 
     spawn(function()
         while wait() do
@@ -3364,4 +3364,138 @@ spawn(function()
         end
     end)
 --------------------------------------------------------------------
+Setting:Toggle("ANTI AFK",true,function(value)
+ _G.AFK = value
+ end)
+     Setting:Button("FPS BOOST",function()
+        pcall(function()
+            game:GetService("Lighting").FantasySky:Destroy()
+            local g = game
+            local w = g.Workspace
+            local l = g.Lighting
+            local t = w.Terrain
+            t.WaterWaveSize = 0
+            t.WaterWaveSpeed = 0
+            t.WaterReflectance = 0
+            t.WaterTransparency = 0
+            l.GlobalShadows = false
+            l.FogEnd = 9e9
+            l.Brightness = 0
+            settings().Rendering.QualityLevel = "Level01"
+            for i, v in pairs(g:GetDescendants()) do
+                if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then 
+                    v.Material = "Plastic"
+                    v.Reflectance = 0
+                elseif v:IsA("Decal") or v:IsA("Texture") then
+                    v.Transparency = 1
+                elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+                    v.Lifetime = NumberRange.new(0)
+                elseif v:IsA("Explosion") then
+                    v.BlastPressure = 1
+                    v.BlastRadius = 1
+                elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+                    v.Enabled = false
+                elseif v:IsA("MeshPart") then
+                    v.Material = "Plastic"
+                    v.Reflectance = 0
+                    v.TextureID = 10385902758728957
+                end
+            end
+            for i, e in pairs(l:GetChildren()) do
+                if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+                    e.Enabled = false
+                end
+            end
+            for i, v in pairs(game:GetService("Workspace").Camera:GetDescendants()) do
+                if v.Name == ("Water;") then
+                    v.Transparency = 1
+                    v.Material = "Plastic"
+                end
+            end
+        end)
+    end)
+
+Setting:Line()
+
+Setting:Toggle("FAST ATTACK",true,function(value)
+ _G.FastAttack = value
+end)
+Setting:Toggle("SUPER FAST ATTACK",false,function(value)
+         local SuperFastMode = value -- à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹€à¸›à¹‡à¸™à¸ˆà¸£à¸´à¸‡à¸–à¹‰à¸²à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¹‚à¸ˆà¸¡à¸•à¸µ Super Super Super Fast (à¹€à¸Šà¹ˆà¸™à¸à¸²à¸£à¸†à¹ˆà¸²à¸—à¸±à¸™à¸—à¸µ) à¹à¸•à¹ˆà¸ˆà¸°à¸—à¸³à¹ƒà¸«à¹‰à¹€à¸à¸¡à¹€à¸•à¸°à¸„à¸¸à¸“à¸¡à¸²à¸à¸à¸§à¹ˆà¸²à¹‚à¸«à¸¡à¸”à¸›à¸à¸•à¸´
+             _G.SuperFastMode = value
+
+        local plr = game.Players.LocalPlayer
+        
+        local CbFw = debug.getupvalues(require(plr.PlayerScripts.CombatFramework))
+        local CbFw2 = CbFw[2]
+        
+        function GetCurrentBlade() 
+            local p13 = CbFw2.activeController
+            local ret = p13.blades[1]
+            if not ret then return end
+            while ret.Parent~=game.Players.LocalPlayer.Character do ret=ret.Parent end
+            return ret
+        end
+        function AttackNoCD() 
+            local AC = CbFw2.activeController
+            for i = 1, 1 do 
+                local bladehit = require(game.ReplicatedStorage.CombatFramework.RigLib).getBladeHits(
+                    plr.Character,
+                    {plr.Character.HumanoidRootPart},
+                    60
+                )
+                local cac = {}
+                local hash = {}
+                for k, v in pairs(bladehit) do
+                    if v.Parent:FindFirstChild("HumanoidRootPart") and not hash[v.Parent] then
+                        table.insert(cac, v.Parent.HumanoidRootPart)
+                        hash[v.Parent] = true
+                    end
+                end
+                bladehit = cac
+                if #bladehit > 0 then
+                    local u8 = debug.getupvalue(AC.attack, 5)
+                    local u9 = debug.getupvalue(AC.attack, 6)
+                    local u7 = debug.getupvalue(AC.attack, 4)
+                    local u10 = debug.getupvalue(AC.attack, 7)
+                    local u12 = (u8 * 798405 + u7 * 727595) % u9
+                    local u13 = u7 * 798405
+                    (function()
+                        u12 = (u12 * u9 + u13) % 1099511627776
+                        u8 = math.floor(u12 / u9)
+                        u7 = u12 - u8 * u9
+                    end)()
+                    u10 = u10 + 1
+                    debug.setupvalue(AC.attack, 5, u8)
+                    debug.setupvalue(AC.attack, 6, u9)
+                    debug.setupvalue(AC.attack, 4, u7)
+                    debug.setupvalue(AC.attack, 7, u10)
+                    pcall(function()
+                        for k, v in pairs(AC.animator.anims.basic) do
+                            v:Play()
+                        end                  
+                    end)
+                    if plr.Character:FindFirstChildOfClass("Tool") and AC.blades and AC.blades[1] then 
+                        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange",tostring(GetCurrentBlade()))
+                        game.ReplicatedStorage.Remotes.Validator:FireServer(math.floor(u12 / 1099511627776 * 16777215), u10)
+                        game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("hit", bladehit, i, "") 
+                    end
+                end
+            end
+        end
+        local cac
+        if SuperFastMode then 
+        	cac=task.wait
+        else
+        	cac=wait
+        end
+        while cac() do 
+        	AttackNoCD()
+        end
+
+end)
+
+Setting:Toggle("AUTO HAKI",true,function(value)
+ _G.AUTOHAKI = value
+end)
 
