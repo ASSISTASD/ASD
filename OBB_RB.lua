@@ -1856,7 +1856,8 @@ function main:Seperator(text)
  
 
 --------------------------------------------------------------------
-
+local combotext = Instance.new("StringValue")
+combotext.Value = ""
 
 local IsTeamCheckEnabled = false 
 
@@ -2635,8 +2636,7 @@ spawn(function()
 end)
 
 ----------auto combo
-local combotext = Instance.new("StringValue")
-combotext.Value = ""
+
 
 task.spawn(function()
 	while wait(.1) do
@@ -2705,7 +2705,7 @@ _G.SelectMel = "Melee"
 _G.SelectGun = "Gun"
 _G.SelectFru = "Fruit"
 _G.SelectSrd = "Sword"
-
+--[[
 local function executeTextProcess()
     getgenv().keytoclick = "Combo"
     local tool = Instance.new("Tool")
@@ -2975,7 +2975,7 @@ local function executeTextProcess()
     wait(0.2)
 end
 
-
+]]
 function NoDodgeCool()
     if not nododgecool then return end
 
