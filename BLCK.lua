@@ -3574,22 +3574,27 @@ ESPTAP:Toggle("ESP FRUIT",false,function(a)
 end)
 
 
+
+
 ESPTAP:Toggle("FRUIT NOTIFICATION", true, function(n)
     _G.notifiti = n
     if _G.notifiti then
+        local fruitFound = false
         for _, v in pairs(game.Workspace:GetChildren()) do
             pcall(function()
                 local handle = v:FindFirstChild("Handle")
-                if handle and string.find(v.Name, "Fruit") and not notifiedFruits[v] then
-                    Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
-                        Duration = 5,
-                        Main = {
-                            Rounding = true,
-                        }
-                    })
-                    notifiedFruits[v] = true
+                if handle and string.find(v.Name, "Fruit") then
+                    fruitFound = true
                 end
             end)
+        end
+        if fruitFound then
+            Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
+                Duration = 5,
+                Main = {
+                    Rounding = true,
+                }
+            })
         end
     end
 end)
