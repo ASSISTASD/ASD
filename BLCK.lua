@@ -2532,6 +2532,10 @@ function UpdatePlayerChams()
     end
 end
 
+
+
+
+
 function UpdateDevilChams() 
     for i, v in pairs(game.Workspace:GetChildren()) do
         pcall(function()
@@ -2728,7 +2732,7 @@ spawn(function()
             game:GetService("VirtualInputManager"):SendKeyEvent(true, "Y", false, game)
             wait(0.1)
             game:GetService("VirtualInputManager"):SendKeyEvent(false, "Y", false, game)
-            wait(3)
+            wait(9)
         end
     end)
 end)
@@ -3137,6 +3141,8 @@ local TELEPORT = Library:Tab("TELEPORT","rbxassetid://11446920523")
 local ESPTAP = Library:Tab("ESP","rbxassetid://11446965348")
 local Misc = Library:Tab("MISC","rbxassetid://11447063791")
 local racev4 = Library:Tab("RACE V4","rbxassetid://11446900930")
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/ASSISTASD/ASD/main/MASSAGE.lua"))()
+
 -----------------
 local localrace = INFOPLY:Label("???")
 local LOCLV = INFOPLY:Label("???")
@@ -3566,12 +3572,34 @@ ESPTAP:Toggle("ESP FRUIT",false,function(a)
             UpdateDevilChams() 
         end
 end)
-ESPTAP:Seperator("FRUIT")
 
-ESPTAP:Toggle("AUTO STORE FRUIT",false,function(f)
-        _G.AutoStoreFruit = f
+
+ESPTAP:Toggle("FRUIT NOTIFICATION", true, function(n)
+    _G.notifiti = n
+    if _G.notifiti then
+        for _, v in pairs(game.Workspace:GetChildren()) do
+            pcall(function()
+                local handle = v:FindFirstChild("Handle")
+                if handle and string.find(v.Name, "Fruit") and not notifiedFruits[v] then
+                    Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
+                        Duration = 5,
+                        Main = {
+                            Rounding = true,
+                        }
+                    })
+                    notifiedFruits[v] = true
+                end
+            end)
+        end
+    end
 end)
 
+
+ESPTAP:Seperator("FRUIT")
+
+ESPTAP:Toggle("AUTO STORE FRUIT",true,function(f)
+        _G.AutoStoreFruit = f
+end)
 
 
 
@@ -3606,6 +3634,23 @@ function DropFruit()
 		end
 	end)
 end
+
+spawn(function()
+			while task.wait() do
+				if _G.AutoStoreFruit then
+					pcall(function()
+						for i,v in pairs(Fruit) do
+    						for x,y in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    							if string.find(y.Name,"Fruit") then
+    								game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StoreFruit",v,game.Players.LocalPlayer.Backpack[y.Name])
+    							end
+    						end
+						end
+					end)
+				end
+			end
+		end)
+
 
 spawn(function()
 	while wait() do
@@ -3769,7 +3814,7 @@ Misc:Toggle("WALK IN WATER",false,function(Value)
     end)
     
 
-Misc:Toggle("AUTO AWAKENING",_G.AutoAwakeningRace,function(Value)
+Misc:Toggle("AUTO AWAKENING",true,function(Value)
         _G.AutoAwakeningRace = Value
     end)
 
@@ -3967,6 +4012,6 @@ if World3 then
     end)
 end
 
-notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
-notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
-notis.new("<Color=Yellow>CITY PVP SCRIPT<Color=/>"):Display()
+gamenofe = require(game.ReplicatedStorage:WaitForChild("Notification"))
+gamenofe.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
+gamenofe.new("<Color=Yellow>CITY PVP SCRIPT<Color=/>"):Display()
