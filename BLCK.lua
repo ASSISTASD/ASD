@@ -3136,6 +3136,7 @@ local COMBOTAP = Library:Tab("PLAYER","rbxassetid://11446900930")
 local TELEPORT = Library:Tab("TELEPORT","rbxassetid://11446920523")
 local ESPTAP = Library:Tab("ESP","rbxassetid://11446965348")
 local Misc = Library:Tab("MISC","rbxassetid://11447063791")
+local racev4 = Library:Tab("RACE V4","rbxassetid://11446900930")
 -----------------
 local localrace = INFOPLY:Label("???")
 local LOCLV = INFOPLY:Label("???")
@@ -3554,45 +3555,7 @@ TELEPORT:Toggle("TELEPORT",false,function(value)
         StopTween(_G.TeleportIsland)
 end)
 
-TELEPORT:Seperator(" RACE V4")
 
-TELEPORT:Button("TP TEMPLE OF TIME",function()
-        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-    end)
-TELEPORT:Button("TP TO LEVER PULL",function()
-        topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
-    end)
-TELEPORT:Button("TP TO ACIENT ONE (Must Be in Temple Of Time!)",function()
-        topos(CFrame.new(28981.552734375, 14888.4267578125, -120.245849609375))
-    end)
-TELEPORT:Button("Teleport To Door",function()
-      		if game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Human" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
-            elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink" then
-              Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
-              wait(0.6)
-              topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
-            end
-  	end)
---------------------------------------------------------------------
 ESPTAP:Toggle("ESP PLAYERS",false,function(a)
     ESPPlayer = a
 	UpdatePlayerChams()
@@ -3741,6 +3704,75 @@ Misc:Button("REJOIN",function()
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
         game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
     end)
+----&---------------+-
+if World1 or World2 then
+racev4:Seperator("RACE V4")
+racev4:Label("PLEASE GO TO 3RD SEA")
+end
+if World3 then
+    racev4:Seperator("RACE V4")
+    
+    racev4:Button("TP TEMPLE OF TIME",function()
+            Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+        end)
+    racev4:Button("TP TO LEVER PULL",function()
+            topos(CFrame.new(28575.181640625, 14936.6279296875, 72.31636810302734))
+        end)
+    racev4:Button("TP TO ACIENT ONE (Must Be in Temple Of Time!)",function()
+            topos(CFrame.new(28981.552734375, 14888.4267578125, -120.245849609375))
+        end)
+    racev4:Button("Teleport To Door",function()
+          		if game:GetService("Players").LocalPlayer.Data.Race.Value == "Fishman" then
+                  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+                  wait(0.6)
+                  topos(CFrame.new(28224.056640625, 14889.4267578125, -210.5872039794922))
+                elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Human" then
+                  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+                  wait(0.6)
+                  topos(CFrame.new(29237.294921875, 14889.4267578125, -206.94955444335938))
+                elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Cyborg" then
+                  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+                  wait(0.6)
+                  topos(CFrame.new(28492.4140625, 14894.4267578125, -422.1100158691406))
+                elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Skypiea" then
+                  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+                  wait(0.6)
+                  topos(CFrame.new(28967.408203125, 14918.0751953125, 234.31198120117188))
+                elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Ghoul" then
+                  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+                  wait(0.6)
+                  topos(CFrame.new(28672.720703125, 14889.1279296875, 454.5961608886719))
+                elseif game:GetService("Players").LocalPlayer.Data.Race.Value == "Mink" then
+                  Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(28286.35546875, 14895.3017578125, 102.62469482421875)
+                  wait(0.6)
+                  topos(CFrame.new(29020.66015625, 14889.4267578125, -379.2682800292969))
+                end
+      	end)
+    
+    racev4:Toggle("AUTO BUY GEAR",_G.Auto_Farm_Bone4,function(value)
+     _G.Auto_Farm_Bone4 = value
+     StopTween(_G.Auto_Farm_Bone4)
+    end)
+    spawn(function()
+        pcall(function()
+            while wait(0.1) do
+                if _G.Auto_Farm_Bone4 then
+                    local args = {
+                        [1] = true
+                    }
+                    
+                    local args = {
+                        [1] = "UpgradeRace",
+                        [2] = "Buy"
+                    }
+    
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer(unpack(args))
+                end
+            end
+        end)
+    end)
+end
+
 notis = require(game.ReplicatedStorage:WaitForChild("Notification"))
 notis.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
 notis.new("<Color=Yellow>CITY PVP SCRIPT<Color=/>"):Display()
