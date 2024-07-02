@@ -3141,6 +3141,7 @@ local TELEPORT = Library:Tab("TELEPORT","rbxassetid://11446920523")
 local ESPTAP = Library:Tab("ESP","rbxassetid://11446965348")
 local Misc = Library:Tab("MISC","rbxassetid://11447063791")
 local racev4 = Library:Tab("RACE V4","rbxassetid://11446900930")
+local SR = Library:Tab("SERVER","rbxassetid://7040410130")
 local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/ASSISTASD/ASD/main/MASSAGE.lua"))()
 
 -----------------
@@ -3387,8 +3388,8 @@ end)
 --------------------------------------------------------------------
 TELEPORT:Seperator("ISLAND")
  
- if World1 then
-     Teleport:Dropdown("SELECT ISLAND", {
+if World1 then
+     TELEPORT:Dropdown("SELECT ISLAND", {
             "WindMill",
             "Marine",
             "Middle Town",
@@ -3410,7 +3411,7 @@ TELEPORT:Seperator("ISLAND")
      },function(value)
       _G.SelectIsland = value
       end)
- end
+end
  
  if World2 then
      TELEPORT:Dropdown("SELECT ISLAND", {
@@ -3578,31 +3579,12 @@ end)
 
 ESPTAP:Toggle("FRUIT NOTIFICATION", true, function(n)
     _G.notifiti = n
-    if _G.notifiti then
-        local fruitFound = false
-        for _, v in pairs(game.Workspace:GetChildren()) do
-            pcall(function()
-                local handle = v:FindFirstChild("Handle")
-                if handle and string.find(v.Name, "Fruit") then
-                    fruitFound = true
-                end
-            end)
-        end
-        if fruitFound then
-            Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
-                Duration = 5,
-                Main = {
-                    Rounding = true,
-                }
-            })
-        end
-    end
 end)
 
 
 ESPTAP:Seperator("FRUIT")
 
-ESPTAP:Toggle("AUTO STORE FRUIT",true,function(f)
+ESPTAP:Toggle("AUTO STORE FRUIT",false,function(f)
         _G.AutoStoreFruit = f
 end)
 
@@ -3909,16 +3891,6 @@ spawn(function()
     end
 end)
 
-Misc:Seperator("SERVER")
-
-Misc:Button("SERVER HOP",function()
-        Hop()
-    end)
-
-
-Misc:Button("REJOIN",function()
-        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
-    end)
 
     Misc:Seperator("UI")
     
@@ -4017,6 +3989,138 @@ if World3 then
     end)
 end
 
+SR:Seperator("SERVER")
+
+local idser = SR:Label("???")
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                idser:Set("JOB ID:".." "..game.JobId)
+            end)
+        end
+    end)
+    
+    
+SR:Button("COPY JON ID",function()
+        setclipboard(tostring(game.JobId))
+    end)
+    
+SR:Textbox("SET JOB ID: ","",function(value)
+    _G.Job = value
+end)
+
+SR:Button("JOIN TO JOB ID",function()
+        game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
+    end)
+
+
+
+SR:Button("SERVER HOP",function()
+        Hop()
+    end)
+
+
+SR:Button("REJOIN",function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+    end)
+    
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
+
+local HTTP = syn and syn.request or http_request or request or HttpPost
+local WebhookURL = "https://discord.com/api/webhooks/1257755662436274287/Yd0VANfVF9D3Z6Cj0mlT2_diMuHb1mES5dZCr3IiEDhFsqoNckTYpmF6DiRyipO7H8q7"
+local Headers = {
+    ['Content-Type'] = 'application/json',
+}
+
+local foundFruits = {}
+
+local function sendNotification(fruitName)
+    local player = Players.LocalPlayer
+    local username = player.Name
+    local hwid = RbxAnalyticsService:GetClientId()
+
+    local randomColor = math.random(0xFFFFFF, 0xFFFFFF)
+    local currentTime = os.date("!*t")
+    local timestamp = string.format("%s %02d:%02d:%02d UTC", os.date("%B"), currentTime.hour, currentTime.min, currentTime.sec)
+    local gameId = game.GameId
+
+    local data = {
+        ["embeds"] = {
+            {
+                ["title"] = "Found a Fruit!",
+                ["description"] = "A fruit named " .. fruitName .. " has been found.",
+                ["color"] = randomColor,
+                ["fields"] = {
+                    {
+                        ["name"] = "Player:",
+                        ["value"] = "> ``" .. username .. "``"
+                    },
+                    {
+                        ["name"] = "Server ID:",
+                        ["value"] = "> ``" .. game.JobId .. "``"
+                    }
+                },
+                ["thumbnail"] = {
+                    ["url"] = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA4mYsSxWYZCP60_B5Wum1ADaubGpD9pVKgQ&usqp=CAU"
+                }
+            }
+        },
+        ["attachments"] = {}
+    }
+
+    local PlayerData = HttpService:JSONEncode(data)
+
+    local RequestData = {
+        Url = WebhookURL,
+        Method = "POST",
+        Headers = Headers,
+        Body = PlayerData,
+    }
+
+    local success, response = pcall(HTTP, RequestData)
+    if not success then
+        warn("Failed to send webhook:", response)
+    end
+end
+
+local function noticity()
+Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
+                        Duration = 5,
+                        Main = {
+                            Rounding = true,
+                        }                                                                
+                    })
+end
+
+
+spawn(function()
+    pcall(function()
+        while wait(0.1) do
+            for _, v in pairs(game.Workspace:GetChildren()) do
+                pcall(function()
+                    local handle = v:FindFirstChild("Handle")
+                    if handle and string.find(v.Name, "Fruit") then
+                        if not foundFruits[v.Name] and v.Name == "Fruit" then
+                            foundFruits[v.Name] = true
+                            sendNotification(v.Name)
+                            if _G.notifiti then
+                                noticity()
+                            end
+                        end
+                    else
+                        foundFruits[v.Name] = nil -- إزالة الفاكهة من القائمة إذا تمت إزالتها من اللعبة
+                    end
+                end)
+            end
+        end
+    end)
+end)
+
+
+                
 gamenofe = require(game.ReplicatedStorage:WaitForChild("Notification"))
 gamenofe.new("<Color=Yellow>Loading . . .<Color=/>"):Display()
 gamenofe.new("<Color=Yellow>CITY PVP SCRIPT<Color=/>"):Display()
