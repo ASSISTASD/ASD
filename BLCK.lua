@@ -4024,22 +4024,31 @@ SR:Button("SERVER HOP",function()
 SR:Button("REJOIN",function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     end)
-    
+
+
+
+
+--+++++-------------webhookcity
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
 local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
 
 local HTTP = syn and syn.request or http_request or request or HttpPost
 local WebhookURL = "https://discord.com/api/webhooks/1257755662436274287/Yd0VANfVF9D3Z6Cj0mlT2_diMuHb1mES5dZCr3IiEDhFsqoNckTYpmF6DiRyipO7H8q7"
+local Webhookfruit = "https://discord.com/api/webhooks/1258140107156754553/kLXHtrnPN7riC9_k9l4M3MOVh5c17pW6Hi97j_3paKeRwKnvVYlajQqpp8nmDKlp7mRX"
+
+
 local Headers = {
     ['Content-Type'] = 'application/json',
 }
 
-local foundFruits = {}
+
 
 local function sendNotification(fruitName)
     local player = Players.LocalPlayer
     local username = player.Name
+    local players = game:GetService("Players")
+    local numberOfPlayers = #players:GetPlayers()
     local hwid = RbxAnalyticsService:GetClientId()
 
     local randomColor = math.random(0xFFFFFF, 0xFFFFFF)
@@ -4050,13 +4059,17 @@ local function sendNotification(fruitName)
     local data = {
         ["embeds"] = {
             {
-                ["title"] = "Found a Fruit!",
-                ["description"] = "A fruit named " .. fruitName .. " has been found.",
+                ["title"] = "Found A Fruit!",
+                ["description"] = "A Fruit Named " .. fruitName .. " Has Been Found.",
                 ["color"] = randomColor,
                 ["fields"] = {
                     {
                         ["name"] = "Player:",
-                        ["value"] = "> ``" .. username .. "``"
+                        ["value"] = "> ```" .. username .. "```"
+                    },
+                    {
+                        ["name"] = "Server Size:",
+                        ["value"] = "> ```" .. numberOfPlayers .. "```"
                     },
                     {
                         ["name"] = "Server ID:",
@@ -4065,6 +4078,117 @@ local function sendNotification(fruitName)
                 },
                 ["thumbnail"] = {
                     ["url"] = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSA4mYsSxWYZCP60_B5Wum1ADaubGpD9pVKgQ&usqp=CAU"
+                }
+            }
+        },
+        ["attachments"] = {}
+    }
+
+    local PlayerData = HttpService:JSONEncode(data)
+
+    local RequestData = {
+        Url = Webhookfruit,
+        Method = "POST",
+        Headers = Headers,
+        Body = PlayerData,
+    }
+
+    local success, response = pcall(HTTP, RequestData)
+    if not success then
+        warn("Failed to send webhook:", response)
+    end
+end
+
+local function sendNotMOON()
+    local player = Players.LocalPlayer
+    local username = player.Name
+    local hwid = RbxAnalyticsService:GetClientId()
+    local players = game:GetService("Players")
+    local numberOfPlayers = #players:GetPlayers()
+    
+    local randomColor = math.random(0xFFFFFF, 0xFFFFFF)
+    local currentTime = os.date("!*t")
+    local timestamp = string.format("%s %02d:%02d:%02d UTC", os.date("%B"), currentTime.hour, currentTime.min, currentTime.sec)
+    local gameId = game.GameId
+
+    local data = {
+        ["embeds"] = {
+            {
+                ["title"] = "Found A Full Moon!",
+                ["description"] = "The Full Moon has been found.",
+                ["color"] = randomColor,
+                ["fields"] = {
+                    {
+                        ["name"] = "Player:",
+                        ["value"] = "> ```" .. username .. "```"
+                    },
+                    {
+                        ["name"] = "Server Size:",
+                        ["value"] = "> ```" .. numberOfPlayers .. "```"
+                    },
+                    {
+                        ["name"] = "Server ID:",
+                        ["value"] = "" .. game.JobId .. ""
+                    }
+                },
+                ["thumbnail"] = {
+                    ["url"] = "https://cdn.britannica.com/96/208796-050-47869FC7/full-moon.jpg"
+                }
+            }
+        },
+        ["attachments"] = {}
+    }
+
+    local PlayerData = HttpService:JSONEncode(data)
+
+    local RequestData = {
+        Url = WebhookURL,
+        Method = "POST",
+        Headers = Headers,
+        Body = PlayerData,
+    }
+
+    local success, response = pcall(HTTP, RequestData)
+    if not success then
+        warn("Failed to send webhook:", response)
+    end
+end
+
+
+local function sendNotGibbous()
+    local player = Players.LocalPlayer
+    local username = player.Name
+    local hwid = RbxAnalyticsService:GetClientId()
+    local players = game:GetService("Players")
+    local numberOfPlayers = #players:GetPlayers()
+    
+    local randomColor = math.random(0xFFFFFF, 0xFFFFFF)
+    local currentTime = os.date("!*t")
+    local timestamp = string.format("%s %02d:%02d:%02d UTC", os.date("%B"), currentTime.hour, currentTime.min, currentTime.sec)
+    local gameId = game.GameId
+
+    local data = {
+        ["embeds"] = {
+            {
+                ["title"] = "Found A Full Moon!",
+                ["description"] = "The Full Moon has been found.",
+                ["color"] = randomColor,
+                ["fields"] = {
+                    {
+                        ["name"] = "Player:",
+                        ["value"] = "> ```" .. username .. "```"
+                    },
+                    {
+                        ["name"] = "Server Size:",
+                        ["value"] = "> ```" .. numberOfPlayers .. "```"
+                    },
+                    {
+                        ["name"] = "Server ID:",
+                        ["value"] = "" .. game.JobId .. ""
+                    }
+                },
+                ["thumbnail"] = {
+                    ["url"] = "https://www.universetoday.com/wp-content/uploads/2011/10/The-Moon-by-Logan-Mancuso.jpg"
                 }
             }
         },
@@ -4096,6 +4220,8 @@ local function noticity()
 end
 
 
+local foundFruits = {}
+
 spawn(function()
     pcall(function()
         while wait(0.1) do
@@ -4104,12 +4230,10 @@ spawn(function()
                     local handle = v:FindFirstChild("Handle")
                     if handle and string.find(v.Name, "Fruit") then
                         if not foundFruits[v.Name] then
-                            if v.Name == "Fruit" then
-                                foundFruits[v.Name] = true
-                                sendNotification(v.Name)
-                                if _G.notifiti then
-                                    noticity()
-                                end
+                            foundFruits[v.Name] = true
+                            sendNotification(v.Name)
+                            if _G.notifiti and v.Name ~= "Fruit" then
+                                noticity()
                             end
                         end
                     else
@@ -4119,6 +4243,56 @@ spawn(function()
             end
         end
     end)
+end)
+
+local moonGB = false
+local GibbousGB = false
+
+local FM = SR:Label("WAIT FOR MOON...???")
+
+task.spawn(function()
+    while task.wait(1) do  -- انتظر ثانية واحدة بين كل تكرار
+        pcall(function()
+            local lighting = game:GetService("Lighting")
+            local sky = lighting:FindFirstChild("Sky")
+            if sky then
+                local moonTextureId = sky.MoonTextureId
+                if moonTextureId == "http://www.roblox.com/asset/?id=9709149431" then
+                    FM:Set("🌕: Full Moon 100%")
+                    GibbousGB = false
+                    if not moonGB then
+                        moonGB = true
+                        sendNotMOON()
+                    end
+                elseif moonTextureId == "http://www.roblox.com/asset/?id=9709149052" then
+                    FM:Set("🌖: Full Moon 75%")
+                    moonGB = false
+                    if not GibbousGB then
+                        GibbousGB = true
+                        sendNotGibbous()
+                    end
+                elseif moonTextureId == "http://www.roblox.com/asset/?id=9709143733" then
+                    FM:Set("🌗: Full Moon 50%")
+                    moonGB = false
+                    GibbousGB = false
+                elseif moonTextureId == "http://www.roblox.com/asset/?id=9709150401" then
+                    FM:Set("🌘: Full Moon 25%")
+                    moonGB = false
+                    GibbousGB = false
+                elseif moonTextureId == "http://www.roblox.com/asset/?id=9709149680" then
+                    FM:Set("🌘: Full Moon 15%")
+                    moonGB = false
+                    GibbousGB = false
+                else
+                    FM:Set("WAIT FOR MOON 😑")
+                    moonGB = false
+                    GibbousGB = false
+                end
+            else
+                FM:Set("Sky object or MoonTextureId not found")
+            end
+        end)
+    end
 end)
 
 
