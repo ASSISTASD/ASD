@@ -4002,7 +4002,7 @@ local idser = SR:Label("???")
     end)
     
     
-SR:Button("COPY JON ID",function()
+SR:Button("COPY JOB ID",function()
         setclipboard(tostring(game.JobId))
     end)
     
@@ -4060,7 +4060,7 @@ local function sendNotification(fruitName)
                     },
                     {
                         ["name"] = "Server ID:",
-                        ["value"] = "> ``" .. game.JobId .. "``"
+                        ["value"] = "" .. game.JobId .. ""
                     }
                 },
                 ["thumbnail"] = {
@@ -4087,12 +4087,12 @@ local function sendNotification(fruitName)
 end
 
 local function noticity()
-Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
-                        Duration = 5,
-                        Main = {
-                            Rounding = true,
-                        }                                                                
-                    })
+    Notification.Notify("Fruit Notification", "A Fruit has Spawned", "rbxassetid://18251750733", {
+                            Duration = 5,
+                            Main = {
+                                Rounding = true,
+                            }                                                                
+                        })
 end
 
 
@@ -4103,11 +4103,13 @@ spawn(function()
                 pcall(function()
                     local handle = v:FindFirstChild("Handle")
                     if handle and string.find(v.Name, "Fruit") then
-                        if not foundFruits[v.Name] and v.Name == "Fruit" then
-                            foundFruits[v.Name] = true
-                            sendNotification(v.Name)
-                            if _G.notifiti then
-                                noticity()
+                        if not foundFruits[v.Name] then
+                            if v.Name == "Fruit" then
+                                foundFruits[v.Name] = true
+                                sendNotification(v.Name)
+                                if _G.notifiti then
+                                    noticity()
+                                end
                             end
                         end
                     else
