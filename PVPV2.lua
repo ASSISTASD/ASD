@@ -803,8 +803,8 @@ mainopens.Parent = mainopen
  Item.Size = UDim2.new(0, 310, 0, 26)
  Item.Font = Enum.Font.Gotham
  Item.Text = tostring(t)
- Item.TextColor3 = Color3.fromRGB(225, 225, 225)
- Item.TextSize = 13.000
+ Item.TextColor3 = Color3.fromRGB(1, 1, 1)
+ Item.TextSize = 14.000
  Item.TextTransparency = 0.500
  
  Item.MouseEnter:Connect(function()
@@ -1246,6 +1246,110 @@ function main:Seperator(text)
  
 
 
+----------------------------------save confing
+ 
+-- التأكد من أن HttpService متاح
+local HttpService = game:GetService("HttpService")
+
+-- اسم الملف الرئيسي
+local MainFileName = "CITYPVP"
+local ModeName = "PVPV2"
+-- البيانات المراد حفظها
+local CITY_CONFIG = {
+    Show_Info = _G.ShowInfo or false,
+    
+    Aimbot = _G.Aimbot or false,
+    --
+    Mod_Aim = _G.ModAim or "AIM DISTANCE",
+    
+    ESP_Player = _G.ESPPlayer or false,
+    
+    Devil_Fruit_ESP = _G.DevilFruitESP or false,
+    
+    Walk_Water = _G.WalkWater or false,
+    
+    Inf_Ability = _G.InfAbility or false,
+    
+    Auto_Awakening_Race = _G.AutoAwakeningRace or false,
+    
+    Fast_Attack = _G.FastAttack or false,
+    
+    Super_Fast_Mode = _G.SuperFastMode or false
+    
+}
+
+-- علم لتتبع التعديلات
+local isSettingsModified = false
+
+-- وظيفة لحفظ الملف
+local function UpdateFile(FileName)
+    assert(type(FileName) == "string", "Oopsies! FileName should be a string.")
+    writefile(string.format("%s/%s/%s.lua", MainFileName, ModeName, FileName), HttpService:JSONEncode(CITY_CONFIG))
+end
+
+-- وظيفة لقراءة الملف
+local function LoadFile(FileName)
+    assert(type(FileName) == "string", "Oopsies! FileName should be a string.")
+    
+    local File = string.format("%s/%s/%s.lua", MainFileName, ModeName, FileName)
+    local ConfigData = HttpService:JSONDecode(readfile(File))
+    for Index, Value in pairs(ConfigData) do
+        CITY_CONFIG[Index] = Value
+    end
+end
+
+-- الحصول على اسم اللاعب
+local PlayerName = game.Players.LocalPlayer.Name
+
+-- وظيفة للتحقق من وجود الملف
+local function FileExists(FileName)
+    local File = string.format("%s/%s/%s.lua", MainFileName, ModeName, FileName)
+    return pcall(function() readfile(File) end)
+end
+
+-- التحقق من وجود ملف اللاعب
+if not FileExists(PlayerName) then
+    UpdateFile(PlayerName)
+end
+
+wait(2)
+
+-- قراءة البيانات عند بدء اللعبة باستخدام اسم اللاعب
+LoadFile(PlayerName)
+
+-- تحديث _G بالقيم المحملة
+_G.ShowInfo = CITY_CONFIG.Show_Info
+_G.Aimbot = CITY_CONFIG.Aimbot
+_G.ModAim = CITY_CONFIG.Mod_Aim
+_G.ESPPlayer = CITY_CONFIG.ESP_Player
+_G.DevilFruitESP = CITY_CONFIG.Devil_Fruit_ESP
+_G.No_clip = CITY_CONFIG.No_clip
+_G.WalkWater = CITY_CONFIG.Walk_Water
+_G.InfAbility = CITY_CONFIG.Inf_Ability
+_G.AutoAwakeningRace = CITY_CONFIG.Auto_Awakening_Race
+_G.FastAttack = CITY_CONFIG.Fast_Attack
+_G.SuperFastMode = CITY_CONFIG.Super_Fast_Mode
+
+
+
+
+
+
+
+
+-- متابعة التعديلات وتحديث الملف عند التغيير
+spawn(function()
+    while true do
+        wait(1)
+        if isSettingsModified then
+            UpdateFile(PlayerName)
+            isSettingsModified = false -- تعيين العلم إلى false بعد التحديث
+        end
+    end
+end)
+
+
+----------------------------------save confing
 
 if game.PlaceId == 2753915549 then
 	World1 = true
@@ -1269,7 +1373,7 @@ function UpdatePlayerChams()
     for i, v in pairs(players:GetChildren()) do
         pcall(function()
             if v ~= localPlayer and v.Character and v.Character:FindFirstChild("Head") then  -- Ignore local player
-                if ESPPlayer then
+                if _G.ESPPlayer then
                     local teamName = v.Team and v.Team.Name or "No Team"
                     local head = v.Character.Head
                     local espName = 'NameEsp' .. Number
@@ -1322,7 +1426,7 @@ function UpdateDevilChams()
             local handle = v:FindFirstChild("Handle")
             if handle then
                 local billboardName = 'NameEsp'..Number
-                if DevilFruitESP and string.find(v.Name, "Fruit") then
+                if _G.DevilFruitESP and string.find(v.Name, "Fruit") then
                     local fruitName = v.Name
                     local motor6D = v:FindFirstChild("Fruit") and v.Fruit:FindFirstChild("Fruit") and v.Fruit.Fruit:FindFirstChildOfClass("Motor6D")
                     
@@ -1472,13 +1576,13 @@ spawn(function()
 		    if FlowerESP then
 			    UpdateFlowerChams() 
 		    end
-		    if DevilFruitESP then
+		    if _G.DevilFruitESP then
 			    UpdateDevilChams() 
 		    end
 		    if ChestESP then
 			    UpdateChestChams() 
 		    end
-		    if ESPPlayer then
+		    if _G.ESPPlayer then
 			    UpdatePlayerChams()
 		    end
 		    if RealFruitESP then
@@ -1751,8 +1855,10 @@ local MAIN = Library:Tab("MAIN","rbxassetid://11446825283")
 local MISC = Library:Tab("MISC","rbxassetid://11446835336")
 
 
-MAIN:Toggle("SHOW INFO PLAYER",false,function(value)
+MAIN:Toggle("SHOW INFO PLAYER",_G.ShowInfo,function(value)
  _G.ShowInfo = value
+ CITY_CONFIG.Show_Info = value
+ isSettingsModified = true
 end)
 
 game:GetService("RunService").Stepped:Connect(function()
@@ -1784,41 +1890,52 @@ MAIN:Button("REFRESH",function()
     end)
 
 
-MAIN:Toggle("ENABLE AIMBOT",false,function(value)
+MAIN:Toggle("ENABLE AIMBOT",_G.Aimbot,function(value)
  _G.Aimbot = value
+ CITY_CONFIG.Aimbot = value
+ isSettingsModified = true
 end)
 
-_G.ModAim = "AIM DISTANCE"
 
 MAIN:Dropdown("MODE AIMBOT",{"AIM DISTANCE","AIM PLAYER"},function(value)
     _G.ModAim = value
+    CITY_CONFIG.Mod_Aim = value
+    isSettingsModified = true
 end)
 
 
 
 
 
-MAIN:Toggle("ESP PLAYERS",true,function(a)
-     ESPPlayer = a
-	UpdatePlayerChams()
+MAIN:Toggle("ESP PLAYERS",_G.ESPPlayer,function(a)
+     _G.ESPPlayer = a
+     CITY_CONFIG.ESP_Player = a
+     isSettingsModified = true
+	 UpdatePlayerChams()
 end)
 
-MAIN:Toggle("ESP FRUIT",false,function(a)
-         DevilFruitESP = a
-        while DevilFruitESP do wait()
-            UpdateDevilChams() 
-        end
+MAIN:Toggle("ESP FRUIT",_G.DevilFruitESP,function(a)
+         _G.DevilFruitESP = a
+         CITY_CONFIG.Devil_Fruit_ESP = a
+         isSettingsModified = true
+         UpdateDevilChams() 
 end)
 
-MISC:Toggle("NO CLIP",false,function(Value)
+MISC:Toggle("NO CLIP",_G.No_clip,function(Value)
         _G.No_clip = Value
+        CITY_CONFIG.No_clip = Value
+        isSettingsModified = true
     end)
     
-MISC:Toggle("WALK IN WATER",true,function(Value)
+MISC:Toggle("WALK IN WATER",_G.WalkWater,function(Value)
         _G.WalkWater = Value
+        CITY_CONFIG.Walk_Water = Value
+        isSettingsModified = true
     end)
-MISC:Toggle("MINK ABILITY",true,function(Value)
-        InfAbility = Value
+MISC:Toggle("MINK ABILITY",_G.InfAbility,function(Value)
+        _G.InfAbility = Value
+        CITY_CONFIG.Inf_Ability = Value
+        isSettingsModified = true
         if Value == false then
             game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility"):Destroy()
         end
@@ -1826,9 +1943,10 @@ MISC:Toggle("MINK ABILITY",true,function(Value)
     
  
 
-MISC:Toggle("AUTO AWAKENING",true,function(Value)
+MISC:Toggle("AUTO AWAKENING",_G.AutoAwakeningRace,function(Value)
         _G.AutoAwakeningRace = Value
-        
+        CITY_CONFIG.Auto_Awakening_Race = Value
+        isSettingsModified = true
     end)
     
 spawn(function()
@@ -1874,7 +1992,7 @@ end)
 
 
     function InfAb()
-        if InfAbility then
+        if _G.InfAbility then
             if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Agility") then
                 local inf = Instance.new("ParticleEmitter")
                 inf.Acceleration = Vector3.new(0,0,0)
@@ -1914,15 +2032,19 @@ end)
     local originalstam = LocalPlayer.Character.Energy.Value
 spawn(function()
         while wait(.1) do
-            if InfAbility then
+            if _G.InfAbility then
                 InfAb()
             end
         end
     end)
 MISC:Line()
 
-MISC:Toggle("FAST ATTACK",true,function(value)
+MISC:Toggle("FAST ATTACK",_G.FastAttack,function(value)
  _G.FastAttack = value
+ CITY_CONFIG.Fast_Attack = value
+ isSettingsModified = true
+ 
+ 
 end)
 local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
 CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
@@ -1957,9 +2079,11 @@ spawn(function()
     end)
 end)
 
-MISC:Toggle("SUPER FAST ATTACK",false,function(value)
+MISC:Toggle("SUPER FAST ATTACK",_G.SuperFastMode,function(value)
          local SuperFastMode = value -- à¹€à¸›à¸¥à¸µà¹ˆà¸¢à¸™à¹€à¸›à¹‡à¸™à¸ˆà¸£à¸´à¸‡à¸–à¹‰à¸²à¸„à¸¸à¸“à¸•à¹‰à¸­à¸‡à¸à¸²à¸£à¹‚à¸ˆà¸¡à¸•à¸µ Super Super Super Fast (à¹€à¸Šà¹ˆà¸™à¸à¸²à¸£à¸†à¹ˆà¸²à¸—à¸±à¸™à¸—à¸µ) à¹à¸•à¹ˆà¸ˆà¸°à¸—à¸³à¹ƒà¸«à¹‰à¹€à¸à¸¡à¹€à¸•à¸°à¸„à¸¸à¸“à¸¡à¸²à¸à¸à¸§à¹ˆà¸²à¹‚à¸«à¸¡à¸”à¸›à¸à¸•à¸´
              _G.SuperFastMode = value
+             CITY_CONFIG.Super_Fast_Mode = value
+             isSettingsModified = true
 
         local plr = game.Players.LocalPlayer
         
